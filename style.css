@@ -246,17 +246,21 @@ th, td {
 /*         RODAPÉ           */
 /* ========================= */
 .barra-inferior {
-    position: fixed; /* Faz o rodapé ficar fixo */
-    bottom: 0; /* Alinha o rodapé à parte inferior da tela */
-    left: 0; /* Alinha o rodapé à esquerda */
-    right: 0; /* Alinha o rodapé à direita */
-    text-align: center;
-    padding: 15px;
-    background-color: #2a2a2a;
-    color: #bbbbbb;
-    font-size: 0.9em;
-    z-index: 1000; /* Garante que o rodapé fique acima de outros elementos */
+    position: fixed; /* Fixar o footer na parte inferior */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2c2b2b; /* Cor do fundo do footer */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px; /* Espaço interno */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    z-index: 1000; /* Acima do conteúdo */
 }
+
+.conteudo {
+    margin-bottom: 55px; /* Espaço para o footer */
+}
+
 
 /* ========================= */
 /*         ESTILO DO MODAL   */
