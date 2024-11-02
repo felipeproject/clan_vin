@@ -5,6 +5,10 @@
     },
     "equipes": [
         {
+            "dupla": ["xA_N_D_R_Ex", "Sem Jogador"],
+            "imagens": ["xA_N_D_R_Ex.png", "sem_jogador.png"]
+        },
+        {
             "dupla": ["Al3Mrcs", "CARNEIRO007"],
             "imagens": ["Al3Mrcs.png", "CARNEIRO007.png"]
         },
@@ -51,10 +55,6 @@
         {
             "dupla": ["Weslleycxrloko", "erikao019"],
             "imagens": ["Weslleycxrloko.png", "erikao019.png"]
-        },
-        {
-            "dupla": ["xA_N_D_R_Ex", "NovoJogador"],
-            "imagens": ["xA_N_D_R_Ex.png", "NovoJogador.png"]
         },
         {
             "dupla": ["PESADO-GAMEPLAY", "coeCORUJA"],
