@@ -1,0 +1,56 @@
+{
+    "admin": {
+        "nome": "Organizador xA_N_D_R_Ex",
+        "imagem": "xA_N_D_R_Ex.png"
+    },
+    "equipes": [
+        {
+            "dupla": ["Al3Mrcs", "CARNEIRO007"],
+            "imagens": ["Al3Mrcs.png", "CARNEIRO007.png"]
+        },
+        {
+            "dupla": ["azafree22", "Slokuz"],
+            "imagens": ["azafree22.png", "Slokuz.png"]
+        },
+        {
+            "dupla": ["ALEMAOFIRE13", "xCHUMELAx"],
+            "imagens": ["ALEMAOFIRE13.png", "xCHUMELAx.png"]
+        },
+        {
+            "dupla": ["dedel32010324", "Yuri2099"],
+            "imagens": ["dedel32010324.png", "Yuri2099.png"]
+        },
+        {
+            "dupla": ["Doomed_Aim", "Gambin-Metaleiro"],
+            "imagens": ["Doomed_Aim.png", "Gambin-Metaleiro.png"]
+        },
+        {
+            "dupla": ["GaroX-", "Mateus_Sousa"],
+            "imagens": ["GaroX-.png", "Mateus_Sousa.png"]
+        },
+        {
+            "dupla": ["ImortanRick88", "xJMaRcox"],
+            "imagens": ["ImortanRick88.png", "xJMaRcox.png"]
+        },
+        {
+            "dupla": ["Kisaki121", "gabrielhoffmann"],
+            "imagens": ["Kisaki121.png", "gabrielhoffmann.png"]
+        },
+        {
+            "dupla": ["SALOMON_BR", "LandersSA"],
+            "imagens": ["SALOMON_BR.png", "LandersSA.png"]
+        },
+        {
+            "dupla": ["WF_PROZIN", "Xx_MOTA_xX10"],
+            "imagens": ["WF_PROZIN.png", "Xx_MOTA_xX10.png"]
+        },
+        {
+            "dupla": ["xandexande", "bruninhw"],
+            "imagens": ["xandexande.png", "bruninhw.png"]
+        },
+        {
+            "dupla": ["Weslleycxrloko", "erikao019"],
+            "imagens": ["Weslleycxrloko.png", "erikao019.png"]
+        }
+    ]
+}
