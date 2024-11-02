@@ -51,6 +51,14 @@
         {
             "dupla": ["Weslleycxrloko", "erikao019"],
             "imagens": ["Weslleycxrloko.png", "erikao019.png"]
+        },
+        {
+            "dupla": ["xA_N_D_R_Ex", "NovoJogador"],
+            "imagens": ["xA_N_D_R_Ex.png", "NovoJogador.png"]
+        },
+        {
+            "dupla": ["PESADO-GAMEPLAY", "coeCORUJA"],
+            "imagens": ["PESADO-GAMEPLAY.png", "coeCORUJA.png"]
         }
     ]
 }

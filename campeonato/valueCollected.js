@@ -1,5 +1,5 @@
 // Definindo o valor da premiação
-const valorP = 270.00; // Valor total da premiação
+const valorP = 300.00; // Valor total da premiação
 
 // Formata o valor como moeda brasileira
 function formatarMoeda(valor) {

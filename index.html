@@ -65,7 +65,7 @@
             <a href="#" class="nav-link" data-page="home.html">Início</a>
             <a href="#" class="nav-link" data-page="eventos.html">Eventos</a>
             <a href="tabela.html" class="nav-link">Tabela</a>
-            <a href="Oters/index.html" class="nav-link">Campeonato</a> <!-- Agora como um link direto -->
+            <a href="campeonato/index.html" class="nav-link">Campeonato</a> <!-- Agora como um link direto -->
             <a href="#" class="nav-link" data-page="carregando.html">Jogadores</a>
             <a href="#" class="nav-link" data-page="carregando.html">Contato</a>
         </nav>
@@ -112,7 +112,7 @@
             links.forEach(link => {
                 link.addEventListener('click', function(event) {
                     // Se o link for para tabela.html ou campeonato, não previna o comportamento padrão
-                    if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'Oters/index.html') {
+                    if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'campeonato/index.html') {
                         return; // Permite o comportamento padrão
                     }
                     event.preventDefault();
