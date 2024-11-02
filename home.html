@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clã Os Vingadores</title>
+
+</head>
+<body>
+    <div style="display: flex; padding: 20px;">
+        <div style="margin-right: 20px;">
+            <h2>Bem-vindo ao Clã Os Vingadores!</h2>
+            <p>Este é o nosso espaço para compartilhar eventos, jogadores e muito mais.</p>
+        </div>
+        <div>
+            <div class="calendario-widget">
+                <div class="calendario-header">
+                    <h2>Novembro</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dom</th>
+                            <th>Seg</th>
+                            <th>Ter</th>
+                            <th>Qua</th>
+                            <th>Qui</th>
+                            <th>Sex</th>
+                            <th>Sab</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td class="evento" onclick="showEventDetails('Evento em 9 de Novembro')">9</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal -->
+<!-- Modal -->
+<div id="event-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-content" style="background-color: #302f2f; margin: 15% auto; padding: 20px; border: 1px solid #ffffff; width: 80%; max-width: 500px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <span class="close" onclick="closeModal()" aria-label="Fechar" style="color: #ffffff; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <h2 id="modal-title" style="margin: 0; font-size: 24px; color: #ffffff;">Campeonato de Duplas</h2>
+        <p style="margin: 8px 0;"><strong>Data:</strong> 9/11 (Sábado)</p>
+        <p style="margin: 8px 0;"><strong>Horário:</strong> 18:30h</p>
+        <p style="margin: 8px 0;">As inscrições de duplas e votação continuam abertas até domingo, 3/11 às 00:00h.</p>
+        <p id="event-description" style="margin: 8px 0;"></p>
+    </div>
+</div>
+
+
+
+</body>
+</html>

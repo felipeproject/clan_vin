@@ -1,33 +1,40 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estamos em Manutenção</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-    </style>
+    <title>Clã Os Vingadores [VIN]</title>
+
+    <!-- Links de Estilo -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+    <script src="navigation.js" defer></script>
 </head>
+
 <body>
-    <div>
-        <h1>Estamos em Manutenção</h1>
-        <p>Por favor, volte mais tarde.</p>
-    </div>
+    <header class="barra-superior">
+        <img src="banner.png" alt="Banner do Clã" class="banner">
+        <nav class="nav-bar">
+            <a href="#" class="nav-link" data-page="home.html">Início</a>
+            <a href="#" class="nav-link" data-page="eventos.html">Eventos</a>
+            <a href="#" class="nav-link" data-page="carregando.html">Tabela</a>
+            <a href="#" class="nav-link" data-page="carregando.html">Jogadores</a>
+            <a href="#" class="nav-link" data-page="carregando.html">Contato</a>
+        </nav>
+    </header>
+
+    <main class="conteudo" id="conteudo">
+        <!-- O conteúdo da página carregada dinamicamente irá aqui -->
+    </main>
+
+    <footer class="barra-inferior">
+        <p>&copy; 2024 Clã Os Vingadores. Todos os direitos reservados.</p>
+    </footer>
 </body>
+
 </html>
