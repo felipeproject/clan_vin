@@ -1,108 +1,27 @@
-<div class="calendario-widget">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
     <style>
-        .calendario-widget {
+        body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        object {
             width: 100%;
-            max-width: 300px; /* Largura máxima do widget */
-            margin: 20px auto; /* Centraliza o widget */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .calendario-header {
-            background-color: #4CAF50; /* Cor do cabeçalho */
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            width: 14.28%; /* 100% / 7 dias */
-            height: 40px; /* Altura das células */
-            text-align: center;
-            vertical-align: middle;
-            transition: background-color 0.3s; /* Transição suave para hover */
-        }
-        th {
-            background-color: #f0f0f0; /* Cor do cabeçalho da tabela */
-        }
-        .evento {
-            background-color: #ffcc00; /* Cor para destacar o evento */
-            font-weight: bold;
-        }
-        .escurecido {
-            background-color: #f9f9f9; /* Cor escurecida para as células anteriores */
-        }
-        td:hover {
-            background-color: #e0e0e0; /* Efeito de hover nas células */
+            height: 500px;
+            border: 1px solid #ccc;
         }
     </style>
-    <div class="calendario-header">
-        <h2>Novembro</h2>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Dom</th>
-                <th>Seg</th>
-                <th>Ter</th>
-                <th>Qua</th>
-                <th>Qui</th>
-                <th>Sex</th>
-                <th>Sab</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="escurecido"></td>
-                <td class="escurecido"></td>
-                <td class="escurecido"></td>
-                <td class="escurecido">1</td>
-                <td class="escurecido">2</td>
-                <td class="escurecido">3</td>
-                <td class="escurecido">4</td>
-            </tr>
-            <tr>
-                <td class="escurecido">5</td>
-                <td class="escurecido">6</td>
-                <td class="escurecido">7</td>
-                <td class="escurecido">8</td>
-                <td class="escurecido">9</td>
-                <td class="escurecido">10</td>
-                <td class="escurecido">11</td>
-            </tr>
-            <tr>
-                <td class="escurecido">12</td>
-                <td class="escurecido">13</td>
-                <td class="escurecido">14</td>
-                <td class="escurecido">15</td>
-                <td class="escurecido">16</td>
-                <td class="escurecido">17</td>
-                <td class="evento">18<br>Campeonato<br>18h20</td>
-            </tr>
-            <tr>
-                <td class="escurecido">19</td>
-                <td class="escurecido">20</td>
-                <td class="escurecido">21</td>
-                <td class="escurecido">22</td>
-                <td class="escurecido">23</td>
-                <td class="escurecido">24</td>
-                <td class="escurecido">25</td>
-            </tr>
-            <tr>
-                <td class="escurecido">26</td>
-                <td class="escurecido">27</td>
-                <td class="escurecido">28</td>
-                <td class="escurecido">29</td>
-                <td class="escurecido">30</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+</head>
+<body>
+    <h1>Página Principal</h1>
+    <p>Abaixo está uma página HTML carregada usando um objeto:</p>
+    <object data="tabela.html" type="text/html">
+        <p>Seu navegador não suporta a exibição de conteúdo. <a href="tabela.html">Clique aqui para abrir a tabela.</a></p>
+    </object>
+</body>
+</html>
