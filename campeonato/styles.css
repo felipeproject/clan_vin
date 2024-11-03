@@ -163,19 +163,6 @@ body {
     }
 }
 
-.pulse {
-    animation: pulse-animation 1s infinite;
-}
-
-@keyframes pulse-animation {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
 /* Estilo do Cartão do Mapa */
 .map-card {
     background: #1e1e1e;
