@@ -4,10 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="style.css">
     <title>Clã Os Vingadores</title>
     <style>
+        body {
+            margin: 0; /* Remove margens padrão do body */
+            display: flex; /* Usa flexbox para alinhar os elementos */
+            height: 100vh; /* Altura total da viewport */
+            background-color: #121212; /* Fundo escuro */
+        }
+
+        .video-section {
+            flex: 1; /* O vídeo ocupa 1 parte do espaço total */
+            display: flex; /* Flexbox para centralizar o vídeo */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            background-color: #000; /* Fundo preto para o vídeo */
+        }
+
+        .video-section iframe {
+            width: 100%; /* Largura do iframe */
+            max-width: 800px; /* Largura máxima do vídeo */
+            height: 450px; /* Altura do vídeo */
+            border: none; /* Remove a borda do iframe */
+        }
+
+        .content-section {
+            flex: 1; /* O restante do conteúdo ocupa 1 parte do espaço total */
+            display: flex; /* Flexbox para alinhar os elementos */
+            flex-direction: column; /* Coloca os elementos em coluna */
+            padding: 20px; 
+            justify-content: center; /* Centraliza verticalmente */
+        }
+
         .calendario-widget {
             text-align: center;
             overflow: hidden; /* Remove a barra de rolagem */
@@ -23,32 +52,24 @@
             width: 14.28%; /* Define a largura das células da tabela */
         }
 
-        .container {
-            display: flex; /* Flexbox para alinhar os elementos lado a lado */
-            padding: 20px; 
-            background-color: #00000000; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
-        }
-
-        .welcome-section {
-            margin-right: 20px; /* Espaçamento entre os elementos */
-            flex: 1; /* Permite que esta seção use o espaço restante */
-        }
-
-        .calendario-section {
-            flex: 1; /* Permite que esta seção use o espaço restante */
+        h2, h1 {
+            color: #ffffff; /* Cor do texto */
+            text-align: center; /* Centraliza os títulos */
+            margin: 10px 0; /* Margem para espaçamento */
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="video-section">
+        <iframe src="https://www.youtube.com/embed/u1oqfdh4xBY?autoplay=1&mute=1" allowfullscreen></iframe>
+    </div>
+    <div class="content-section">
         <div class="welcome-section">
-            <h2 style="color: #ffffff; margin-bottom: 10px;">Bem-vindo ao Clã Os Vingadores!</h2>
+            <h2>Bem-vindo ao Clã Os Vingadores!</h2>
             <p style="color: #8d8d8d; margin-bottom: 20px;">Este é o nosso espaço para compartilhar eventos, jogadores e muito mais.</p>
-            <h2 style="text-align: center; margin-top: 20px; color: #ffffff;">Campeonato de Duplas</h2>
-            <h1 style="text-align: center; margin-top: 20px; color: #0b9b2a;"> dia 9/11 - 18h30</h1>
+            <h2>Campeonato de Duplas</h2>
+            <h1>dia 9/11 - 18h30</h1>
         </div>
         <div class="calendario-section">
             <div class="calendario-widget"> <!-- Centraliza o calendário -->
