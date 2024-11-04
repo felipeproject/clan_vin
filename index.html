@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +50,6 @@
         }
     </style>
 </head>
-
 <body>
     <header class="barra-superior">
         <img src="banner.png" alt="Banner do Clã" class="banner">
@@ -80,29 +78,30 @@
     </footer>
 
     <script>
-        if (window.location.pathname !== '/index.html' && window.location.pathname !== '/') {
-            window.location.href = 'index.html';
-        }
-
-        const loader = document.querySelector('.carregando-conteudo');
-        const links = document.querySelectorAll('.nav-link');
-
-        const disableLinks = () => {
-            links.forEach(link => link.classList.add("disabled"));
-            loader.style.display = 'block';
-        };
-
-        const enableLinks = () => {
-            links.forEach(link => link.classList.remove("disabled"));
-            loader.style.display = 'none';
-        };
-
         document.addEventListener("DOMContentLoaded", function() {
+            if (!window.location.pathname.endsWith('index.html')) {
+                window.location.href = 'index.html';
+            }
+
+            const loader = document.querySelector('.carregando-conteudo');
+            const links = document.querySelectorAll('.nav-link');
+
+            const disableLinks = () => {
+                links.forEach(link => link.classList.add("disabled"));
+                loader.style.display = 'block';
+            };
+
+            const enableLinks = () => {
+                links.forEach(link => link.classList.remove("disabled"));
+                loader.style.display = 'none';
+            };
+
             loadPage('home.html');
+
             links.forEach(link => {
                 link.addEventListener('click', function(event) {
                     if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'campeonato/index.html') {
-                        return;
+                        return; // Não bloqueia o carregamento dessas páginas
                     }
                     event.preventDefault();
                     const page = this.getAttribute('data-page') || this.getAttribute('href');
@@ -156,5 +155,4 @@
         });
     </script>
 </body>
-
 </html>
