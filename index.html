@@ -5,27 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clã Os Vingadores [VIN]</title>
-
-    <!-- Links de Estilo -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* Estilo básico para o loader */
         .carregando-conteudo {
-            display: none; /* Esconde por padrão */
+            display: none;
             text-align: center;
             font-size: 18px;
             color: #333;
             margin: 20px 0;
         }
         .disabled {
-            pointer-events: none; /* Desativa eventos de clique */
-            color: gray; /* Visualmente indica que o link está desativado */
+            pointer-events: none;
+            color: gray;
         }
-        /* Estilo do modal */
         .modal {
-            display: none; /* Esconde o modal por padrão */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -33,15 +28,15 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
+            background-color: rgba(0, 0, 0, 0.5);
         }
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Largura do modal */
-            max-width: 600px; /* Largura máxima */
+            width: 80%;
+            max-width: 600px;
         }
         .close {
             color: #aaa;
@@ -49,8 +44,7 @@
             font-size: 28px;
             font-weight: bold;
         }
-        .close:hover,
-        .close:focus {
+        .close:hover, .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
@@ -65,21 +59,14 @@
             <a href="#" class="nav-link" data-page="home.html">Início</a>
             <a href="#" class="nav-link" data-page="eventos.html">Eventos</a>
             <a href="#" class="nav-link" data-page="campeonato/duplas.htm">Duplas</a>
-            
             <a href="tabela.html" class="nav-link">Tabela</a>
-            <a href="campeonato/index.html" class="nav-link">Campeonato</a> <!-- Agora como um link direto -->
-            <!-- <a href="#" class="nav-link" data-page="carregando.html">Jogadores</a>
-            <a href="#" class="nav-link" data-page="carregando.html">Contato</a> -->
+            <a href="campeonato/index.html" class="nav-link">Campeonato</a>
         </nav>
     </header>
 
-    <main class="conteudo" id="conteudo">
-        <!-- O conteúdo da página carregada dinamicamente irá aqui -->
-    </main>
-
+    <main class="conteudo" id="conteudo"></main>
     <div class="carregando-conteudo">Carregando...</div>
 
-    <!-- Modal para detalhes do evento -->
     <div id="event-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -93,33 +80,33 @@
     </footer>
 
     <script>
+        if (window.location.pathname !== '/index.html' && window.location.pathname !== '/') {
+            window.location.href = 'index.html';
+        }
+
         const loader = document.querySelector('.carregando-conteudo');
         const links = document.querySelectorAll('.nav-link');
 
         const disableLinks = () => {
             links.forEach(link => link.classList.add("disabled"));
-            loader.style.display = 'block'; // Exibe o loader
+            loader.style.display = 'block';
         };
 
         const enableLinks = () => {
             links.forEach(link => link.classList.remove("disabled"));
-            loader.style.display = 'none'; // Esconde o loader
+            loader.style.display = 'none';
         };
 
         document.addEventListener("DOMContentLoaded", function() {
-            // Carregar a página inicial por padrão
             loadPage('home.html');
-
-            // Adicionar eventos de clique aos links, exceto para o link do campeonato
             links.forEach(link => {
                 link.addEventListener('click', function(event) {
-                    // Se o link for para tabela.html ou campeonato, não previna o comportamento padrão
                     if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'campeonato/index.html') {
-                        return; // Permite o comportamento padrão
+                        return;
                     }
                     event.preventDefault();
                     const page = this.getAttribute('data-page') || this.getAttribute('href');
-                    disableLinks(); // Desativa os links antes de carregar
+                    disableLinks();
                     loadPage(page);
                 });
             });
@@ -127,7 +114,7 @@
 
         function loadPage(page) {
             const conteudo = document.getElementById('conteudo');
-            conteudo.innerHTML = '<p>Carregando...</p>'; // Mensagem de carregamento
+            conteudo.innerHTML = '<p>Carregando...</p>';
             fetch(page)
                 .then(response => {
                     if (!response.ok) throw new Error('Erro ao carregar a página.');
@@ -135,40 +122,36 @@
                 })
                 .then(html => {
                     conteudo.innerHTML = html;
-                    window.history.pushState({ page }, '', page); // Atualiza o histórico
-                    enableLinks(); // Reativa os links após o carregamento
+                    window.history.pushState({ page }, '', page);
+                    enableLinks();
                 })
                 .catch(error => {
                     conteudo.innerHTML = `<p>${error.message}</p>`;
-                    enableLinks(); // Reativa os links em caso de erro
+                    enableLinks();
                 });
         }
 
-        // Função para mostrar o modal com os detalhes do evento
         function showEventDetails(eventDescription) {
             document.getElementById('event-description').innerText = eventDescription;
             document.getElementById('event-modal').style.display = 'block';
         }
 
-        // Função para fechar o modal
         function closeModal() {
             document.getElementById('event-modal').style.display = 'none';
         }
 
-        // Fecha o modal ao clicar fora da área do conteúdo do modal
         window.onclick = function(event) {
             const modal = document.getElementById('event-modal');
             if (event.target === modal) {
                 closeModal();
             }
-        }
+        };
 
-        // Manipulação do histórico
         window.addEventListener('popstate', function(event) {
             if (event.state) {
                 loadPage(event.state.page);
             } else {
-                loadPage('home.html'); // Carrega a página inicial se não houver estado
+                loadPage('home.html');
             }
         });
     </script>

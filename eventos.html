@@ -1,37 +1,107 @@
-<!-- eventos.html -->
-<link rel="stylesheet" href="style.css">
-<div class="eventos-conteudo">
-    <h1>Eventos Futuros</h1>
-<!-- Resumo das Últimas Enquetes -->
-<div class="card">
-    <h1>📊 Resumo das Últimas Enquetes - Campeonato de Duplas</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Futuros</title>
+    <style>
+        /* Reset básico para margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <h2>Resultados das Votações para a Abertura do Campeonato:</h2>
-    
-    <h3>Datas Votadas:</h3>
-    <ul>
-        <li><strong>9/11 (Sábado):</strong> 9 votos</li>
-        <li><strong>10/11 (Domingo):</strong> 5 votos</li>
-    </ul>
+        /* Estilização do conteúdo dos eventos */
+        .eventos-conteudo {
+            max-width: 800px; /* Largura reduzida para um visual mais compacto */
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #1e1e1e; /* Fundo escuro para o conteúdo */
+            border-radius: 8px; /* Bordas arredondadas */
+        }
 
-    <h3>Horário Mais Votado:</h3>
-    <ul>
-        <li><strong>18:30h:</strong> 8 votos</li>
-        <li><strong>21:00h:</strong> 7 votos</li>
-    </ul>
+        /* Estilização dos títulos */
+        h1 {
+            text-align: center;
+            font-size: 2.5em; /* Tamanho do título */
+            color: #ffffff; /* Cor do título */
+            margin-bottom: 15px; /* Espaçamento abaixo do título */
+        }
 
-    <h2>Conclusão:</h2>
-    <p>Com base nas votações até agora, a abertura do campeonato está se encaminhando para:</p>
-    <ul>
-        <li><strong>Data:</strong> 9/11 (Sábado)</li>
-        <li><strong>Horário:</strong> 18:30h</li>
-    </ul>
+        h2 {
+            font-size: 1.8em; /* Tamanho do subtítulo */
+            margin-top: 15px; /* Espaço acima do subtítulo */
+            color: #ffffff; /* Cor do subtítulo */
+        }
 
-    <div class="lembrete" style="background-color: #0d3f2e; border-left: 5px solid #ffc107; padding: 10px; margin-top: 20px;">
-        <h2>🗓️ Lembrete:</h2>
-        <p>As <strong>inscrições de duplas</strong> e <strong>votação</strong> continuam abertas até o dia <strong>3/11</strong>. Não deixem para a última hora!</p>
+        /* Layout lado a lado para os eventos */
+        .eventos {
+            display: flex;
+            flex-direction: row; /* Altera para linha para exibir lado a lado */
+            gap: 15px; /* Espaçamento entre os cards */
+            flex-wrap: wrap; /* Permite que os cards se movam para a linha seguinte se necessário */
+        }
+
+        /* Estilização dos cards */
+        .card {
+            background-color: #2c2c2c; /* Fundo mais escuro para os cards */
+            border: none; /* Remover borda */
+            border-radius: 5px; /* Bordas mais suaves */
+            padding: 15px; /* Espaçamento interno */
+            transition: background-color 0.3s; /* Efeito de transição suave */
+            flex: 1 1 calc(30% - 15px); /* Ajusta o tamanho do card e garante espaçamento */
+            min-width: 250px; /* Largura mínima para os cards */
+        }
+
+        /* Efeito ao passar o mouse sobre os cards */
+        .card:hover {
+            background-color: #3a3a3a; /* Alterar a cor do fundo ao passar o mouse */
+        }
+
+        /* Estilização das listas */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px; /* Espaço acima da lista */
+        }
+
+        li {
+            margin-bottom: 5px; /* Espaço abaixo dos itens da lista */
+            color: #bbbbbb; /* Cor do texto da lista */
+        }
+    </style>
+</head>
+<body>
+    <div class="eventos-conteudo">
+        <h1>Eventos Futuros</h1>
+
+        <div class="eventos">
+            <!-- Campeonato de Duplas -->
+            <div class="card">
+                <h2>Campeonato de Duplas</h2>
+                <h3>Data</h3>
+                <ul>
+                    <li><strong>9 de Novembro (Sábado):</strong></li>
+                </ul>
+                <h3>Horários</h3>
+                <ul>
+                    <li><strong>18:30h:</strong> 8 votos</li>
+                </ul>
+            </div>
+
+            <!-- Campeonato de Solo -->
+            <div class="card">
+                <h2>Campeonato de Solo</h2>
+                <p>Em breve.</p>
+            </div>
+
+            <!-- Campeonato de eSquads -->
+            <div class="card">
+                <h2>Campeonato de eSquads</h2>
+                <p>Em breve.</p>
+            </div>
+        </div>
     </div>
-
-    <p>Se tiverem dúvidas ou sugestões, fiquem à vontade para comentar!</p>
-    <p>Vamos juntos fazer um ótimo campeonato! 🏆</p>
-</div>
+</body>
+</html>

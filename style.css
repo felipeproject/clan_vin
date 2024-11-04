@@ -124,9 +124,9 @@ body {
 .eventos-conteudo, 
 .jogadores-conteudo, 
 .contato-conteudo {
-    flex: 1; /* Permite que o conteúdo ocupe todo o espaço restante */
+    flex: 0; /* Permite que o conteúdo ocupe todo o espaço restante */
     padding: 1px; /* Espaçamento interno */
-    max-width: 80000px; /* Largura máxima para o conteúdo */
+    max-width: 8000px; /* Largura máxima para o conteúdo */
     margin: auto; /* Centraliza o conteúdo */
     overflow-y: auto; /* Permite rolagem vertical se o conteúdo exceder a altura */
 }
