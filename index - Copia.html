@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clã Os Vingadores [VIN]</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .carregando-conteudo {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .disabled {
+            pointer-events: none;
+            color: gray;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="barra-superior">
+        <img src="banner.png" alt="Banner do Clã" class="banner">
+        <nav class="nav-bar">
+            <a href="#" class="nav-link" data-page="home.html">Início</a>
+            <a href="#" class="nav-link" data-page="eventos.html">Eventos</a>
+            <!-- <a href="#" class="nav-link" data-page="campeonato/duplas.htm">Duplas</a> -->
+            <a href="tabela.html" class="nav-link">Tabela</a>
+            <a href="campeonato/index.html" class="nav-link">Campeonato</a>
+        </nav>
+    </header>
+
+    <main class="conteudo" id="conteudo"></main>
+    <div class="carregando-conteudo">Carregando...</div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Detalhes do Evento</h2>
+            <p id="event-description"></p>
+        </div>
+    </div>
+
+    <footer class="barra-inferior">
+        <p>&copy; 2024 Clã Os Vingadores. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        if (window.location.pathname !== '/index.html' && window.location.pathname !== '/') {
+            window.location.href = 'index.html';
+        }
+
+        const loader = document.querySelector('.carregando-conteudo');
+        const links = document.querySelectorAll('.nav-link');
+
+        const disableLinks = () => {
+            links.forEach(link => link.classList.add("disabled"));
+            loader.style.display = 'block';
+        };
+
+        const enableLinks = () => {
+            links.forEach(link => link.classList.remove("disabled"));
+            loader.style.display = 'none';
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadPage('home.html');
+            links.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'campeonato/index.html') {
+                        return;
+                    }
+                    event.preventDefault();
+                    const page = this.getAttribute('data-page') || this.getAttribute('href');
+                    disableLinks();
+                    loadPage(page);
+                });
+            });
+        });
+
+        function loadPage(page) {
+            const conteudo = document.getElementById('conteudo');
+            conteudo.innerHTML = '<p>Carregando...</p>';
+            fetch(page)
+                .then(response => {
+                    if (!response.ok) throw new Error('Erro ao carregar a página.');
+                    return response.text();
+                })
+                .then(html => {
+                    conteudo.innerHTML = html;
+                    window.history.pushState({ page }, '', page);
+                    enableLinks();
+                    // Adicione a rolagem para mostrar o conteúdo
+                    conteudo.scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(error => {
+                    conteudo.innerHTML = `<p>${error.message}</p>`;
+                    enableLinks();
+                    // Adicione a rolagem em caso de erro também
+                    conteudo.scrollIntoView({ behavior: 'smooth' });
+                });
+        }
+
+
+        function showEventDetails(eventDescription) {
+            document.getElementById('event-description').innerText = eventDescription;
+            document.getElementById('event-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('event-modal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('event-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        window.addEventListener('popstate', function (event) {
+            if (event.state) {
+                loadPage(event.state.page);
+            } else {
+                loadPage('home.html');
+            }
+        });
+    </script>
+</body>
+
+</html>
