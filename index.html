@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,12 @@
             color: #333;
             margin: 20px 0;
         }
+
         .disabled {
             pointer-events: none;
             color: gray;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -29,6 +32,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -37,26 +41,30 @@
             width: 80%;
             max-width: 600px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-        .close:hover, .close:focus {
+
+        .close:hover,
+        .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
     </style>
 </head>
+
 <body>
     <header class="barra-superior">
         <img src="banner.png" alt="Banner do Clã" class="banner">
         <nav class="nav-bar">
             <a href="#" class="nav-link" data-page="home.html">Início</a>
             <a href="#" class="nav-link" data-page="eventos.html">Eventos</a>
-            <a href="#" class="nav-link" data-page="campeonato/duplas.htm">Duplas</a>
+            <!-- <a href="#" class="nav-link" data-page="campeonato/duplas.htm">Duplas</a> -->
             <a href="tabela.html" class="nav-link">Tabela</a>
             <a href="campeonato/index.html" class="nav-link">Campeonato</a>
         </nav>
@@ -78,30 +86,29 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if (!window.location.pathname.endsWith('index.html')) {
-                window.location.href = 'index.html';
-            }
+        if (window.location.pathname !== '/index.html' && window.location.pathname !== '/') {
+            window.location.href = 'index.html';
+        }
 
-            const loader = document.querySelector('.carregando-conteudo');
-            const links = document.querySelectorAll('.nav-link');
+        const loader = document.querySelector('.carregando-conteudo');
+        const links = document.querySelectorAll('.nav-link');
 
-            const disableLinks = () => {
-                links.forEach(link => link.classList.add("disabled"));
-                loader.style.display = 'block';
-            };
+        const disableLinks = () => {
+            links.forEach(link => link.classList.add("disabled"));
+            loader.style.display = 'block';
+        };
 
-            const enableLinks = () => {
-                links.forEach(link => link.classList.remove("disabled"));
-                loader.style.display = 'none';
-            };
+        const enableLinks = () => {
+            links.forEach(link => link.classList.remove("disabled"));
+            loader.style.display = 'none';
+        };
 
+        document.addEventListener("DOMContentLoaded", function () {
             loadPage('home.html');
-
             links.forEach(link => {
-                link.addEventListener('click', function(event) {
+                link.addEventListener('click', function (event) {
                     if (this.getAttribute('href') === 'tabela.html' || this.getAttribute('href') === 'campeonato/index.html') {
-                        return; // Não bloqueia o carregamento dessas páginas
+                        return;
                     }
                     event.preventDefault();
                     const page = this.getAttribute('data-page') || this.getAttribute('href');
@@ -123,12 +130,17 @@
                     conteudo.innerHTML = html;
                     window.history.pushState({ page }, '', page);
                     enableLinks();
+                    // Adicione a rolagem para mostrar o conteúdo
+                    conteudo.scrollIntoView({ behavior: 'smooth' });
                 })
                 .catch(error => {
                     conteudo.innerHTML = `<p>${error.message}</p>`;
                     enableLinks();
+                    // Adicione a rolagem em caso de erro também
+                    conteudo.scrollIntoView({ behavior: 'smooth' });
                 });
         }
+
 
         function showEventDetails(eventDescription) {
             document.getElementById('event-description').innerText = eventDescription;
@@ -139,14 +151,14 @@
             document.getElementById('event-modal').style.display = 'none';
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('event-modal');
             if (event.target === modal) {
                 closeModal();
             }
         };
 
-        window.addEventListener('popstate', function(event) {
+        window.addEventListener('popstate', function (event) {
             if (event.state) {
                 loadPage(event.state.page);
             } else {
@@ -155,4 +167,5 @@
         });
     </script>
 </body>
+
 </html>
