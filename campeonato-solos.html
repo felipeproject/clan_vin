@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Pontuação - Campeonato de Solos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1c1c1c; /* fundo escuro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e0e0e0; /* texto em tom de creme */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #2a2a2a; /* fundo mais escuro para a caixa */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7); /* sombra mais forte */
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #00ff00; /* verde neon */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #333; /* borda escura */
+        }
+
+        th {
+            background-color: #00ff00; /* verde neon */
+            color: #1c1c1c; /* texto escuro nas células de cabeçalho */
+        }
+
+        tr:nth-child(even) {
+            background-color: #333; /* fundo das linhas pares mais escuro */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #2a2a2a; /* fundo das linhas ímpares mais claro */
+        }
+
+        tr:hover {
+            background-color: #444; /* cor de hover */
+        }
+
+        .rank {
+            font-weight: bold;
+            color: #00ff00; /* verde neon */
+        }
+
+        .kills {
+            color: #ff5722; /* cor para o número de kills (laranja) */
+        }
+
+        .pontos {
+            color: #ff9800; /* cor para os pontos (amarelo-alaranjado) */
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Campeonato de Solos</h1>
+        <table id="rankingTable">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Kills</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rank">1</td>
+                    <td>Tauzudu</td>
+                    <td class="kills">2</td>
+                    <td class="pontos"></td>
+                </tr>
+                <tr>
+                    <td class="rank">2</td>
+                    <td>xCHUMELAx</td>
+                    <td class="kills">0</td>
+                    <td class="pontos"></td>
+                </tr>
+                <tr>
+                    <td class="rank">3</td>
+                    <td>SALOMON_BR</td>
+                    <td class="kills">2</td>
+                    <td class="pontos"></td>
+                </tr>
+                <tr>
+                    <td class="rank">4</td>
+                    <td>PESADO-GAMEPLAY</td>
+                    <td class="kills">0</td>
+                    <td class="pontos"></td>
+                </tr>
+                <tr>
+                    <td class="rank">5</td>
+                    <td>xA_N_D_R_Ex</td>
+                    <td class="kills">0</td>
+                    <td class="pontos"></td>
+                </tr>
+                <!-- Adicione aqui mais jogadores para completar a pontuação:
+                <tr>
+                    <td class="rank">0</td>
+                    <td>Nick</td>
+                    <td class="kills">0</td>
+                    <td class="pontos"></td>
+                </tr> 
+                -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para calcular a pontuação com base na posição e kills
+        function calcularPontuacao() {
+            const pontuacoesPosicao = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];  // Pontuação para os top 10 (1º até 10º)
+            const players = [];
+            
+            const rows = document.querySelectorAll('#rankingTable tbody tr');
+            
+            rows.forEach((row, index) => {
+                const playerName = row.querySelector('td:nth-child(2)').textContent;
+                const kills = parseInt(row.querySelector('.kills').textContent);
+                
+                // Calculando a pontuação com base na posição e nas kills
+                let pontosPosicao = pontuacoesPosicao[index] || 0;
+                let pontosTotais = pontosPosicao + kills;
+                
+                players.push({
+                    nome: playerName,
+                    kills: kills,
+                    pontos: pontosTotais,
+                    rank: index + 1  // Armazenamos a posição inicial para ordenação posterior
+                });
+            });
+
+            // Ordenar os jogadores pela pontuação (em ordem decrescente)
+            players.sort((a, b) => b.pontos - a.pontos);
+
+            // Atualizar a tabela com os jogadores classificados corretamente
+            const tbody = document.querySelector('#rankingTable tbody');
+            tbody.innerHTML = ''; // Limpar a tabela atual
+
+            players.forEach((player, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = ` 
+                    <td class="rank">${index + 1}</td>
+                    <td>${player.nome}</td>
+                    <td class="kills">${player.kills}</td>
+                    <td class="pontos">${player.pontos}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Chama a função para calcular a pontuação ao carregar a página
+        calcularPontuacao();
+    </script>
+
+</body>
+</html>
