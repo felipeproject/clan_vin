@@ -53,6 +53,14 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
+        /* Banner */
+        .banner {
+            width: 50%;
+            max-height: 400px; /* Define a altura máxima do banner */
+            object-fit: cover; /* Faz com que a imagem cubra a área sem distorcer */
+            margin-bottom: px; /* Espaço entre o banner e o título */
+        }
+
         /* Container dos Cards */
         .card-container {
             display: flex;
@@ -147,7 +155,10 @@
     </style>
 </head>
 <body>
-    <h1>Clan [VIN] Os Vingadores</h1>
+    <h1>Clan [VIN] </h1>
+
+    <!-- Banner da página -->
+    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
 
     <!-- Cards -->
     <div class="card-container">
@@ -165,6 +176,5 @@
             <p>Confira os vencedores do campeonato de duplas.</p>
         </a>
     </div>
-
 </body>
 </html>
