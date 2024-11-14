@@ -3,74 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Clan Os Vingadores - Página Inicial</title>
     <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
+        /* Reset básico de estilos */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a, #333);
         }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
         .card-container {
             display: flex;
-            gap: 20px;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+
         .card {
-            background-color: #333;
+            background-color: #222;
             border-radius: 10px;
             padding: 20px;
-            width: 250px;
+            width: 280px;
             text-align: center;
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease-in-out;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
+
         .card:hover {
             transform: scale(1.05);
         }
+
         .card h2 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #f5f5f5;
         }
+
         .card p {
-            font-size: 14px;
-            margin: 0;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #ddd;
         }
+
         .card a {
-            display: block;
-            margin-top: 20px;
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px;
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #333;
+            padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
+
         .card a:hover {
-            background-color: #0056b3;
+            background-color: #ff9900;
+        }
+
+        /* Animacao de destaque para o campeonato em andamento */
+        .card-em-andamento {
+            background-color: #008b3f;
+        }
+
+        .card-em-andamento h2 {
+            color: #fff;
+        }
+
+        /* Adicionando ícones para Solo e Duplas */
+        .icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .solo-icon {
+            background: url('https://img.icons8.com/ios/452/player-mode.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        .dupla-icon {
+            background: url('https://img.icons8.com/ios/452/team.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        /* Animação de entrada para a página */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            animation: fadeIn 1.5s ease-in-out;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Clan Os Vingadores - PUBG PC</h1>
 
-    <div class="card-container">
-        <div class="card">
-            <h2>Campeonato de Duplas</h2>
-            <p>Ocorrido dia 09/11</p>
-            <a href="campeonato-duplas.html">Ver mais</a>
-        </div>
+        <!-- Card de destaque para campeonato em andamento -->
+        <div class="card-container">
+            <div class="card card-em-andamento">
+                <h2><span class="solo-icon"></span>Campeonato Solo</h2>
+                <p><strong>Em andamento!</strong></p>
+                <p>Participe agora e vença o campeonato de Solo.</p>
+                <a href="campeonato-solos.html">Ver Detalhes</a>
+            </div>
 
-        <div class="card">
-            <h2>Campeonato de Solos</h2>
-            <p>Em andamento</p>
-            <a href="campeonato-solos.html">Ver mais</a>
+            <!-- Card para campeonato de duplas -->
+            <div class="card">
+                <h2><span class="dupla-icon"></span>Campeonato Duplas</h2>
+                <p>Ocorrido dia 09/11</p>
+                <p>Confira os vencedores do campeonato de duplas.</p>
+                <a href="campeonato-duplas.html">Ver Detalhes</a>
+            </div>
         </div>
     </div>
-
 </body>
 </html>
