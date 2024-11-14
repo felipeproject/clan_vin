@@ -1,0 +1,70 @@
+
+<body style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f9; flex-direction: column;">
+
+    <!-- Botões Retroceder e Avançar -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button onclick="changeTab(-1)" style="background-color: #4CAF50; color: white; border: none; padding: 15px 32px; cursor: pointer; border-radius: 5px; font-size: 16px; transition: background-color 0.3s ease;">← Retroceder</button>
+        <button onclick="changeTab(1)" style="background-color: #4CAF50; color: white; border: none; padding: 15px 32px; cursor: pointer; border-radius: 5px; font-size: 16px; transition: background-color 0.3s ease;">Avançar →</button>
+    </div>
+
+    <!-- Tabela com abas -->
+    <div style="width: 80%; margin-top: 20px; text-align: center;">
+        <div style="display: flex; justify-content: center; border-bottom: 2px solid #ddd;">
+            <button class="tab-button" onclick="showTab(1)" style="padding: 10px 20px; cursor: pointer; background-color: #f4f4f9; border: 1px solid #ddd; margin-right: 5px; border-radius: 5px 5px 0 0;">Aba 1</button>
+            <button class="tab-button" onclick="showTab(2)" style="padding: 10px 20px; cursor: pointer; background-color: #f4f4f9; border: 1px solid #ddd; margin-right: 5px; border-radius: 5px 5px 0 0;">Aba 2</button>
+            <button class="tab-button" onclick="showTab(3)" style="padding: 10px 20px; cursor: pointer; background-color: #f4f4f9; border: 1px solid #ddd; margin-right: 5px; border-radius: 5px 5px 0 0;">Aba 3</button>
+        </div>
+
+        <!-- Tabelas (Abas) -->
+        <table id="tab-1" style="width: 100%; border-collapse: collapse; display: table;">
+            <thead>
+                <tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Conteúdo A1</td><td>Conteúdo A2</td><td>Conteúdo A3</td></tr>
+                <tr><td>Conteúdo A4</td><td>Conteúdo A5</td><td>Conteúdo A6</td></tr>
+            </tbody>
+        </table>
+
+        <table id="tab-2" style="width: 100%; border-collapse: collapse; display: none;">
+            <thead>
+                <tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Conteúdo B1</td><td>Conteúdo B2</td><td>Conteúdo B3</td></tr>
+                <tr><td>Conteúdo B4</td><td>Conteúdo B5</td><td>Conteúdo B6</td></tr>
+            </tbody>
+        </table>
+
+        <table id="tab-3" style="width: 100%; border-collapse: collapse; display: none;">
+            <thead>
+                <tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Conteúdo C1</td><td>Conteúdo C2</td><td>Conteúdo C3</td></tr>
+                <tr><td>Conteúdo C4</td><td>Conteúdo C5</td><td>Conteúdo C6</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let currentTab = 1;
+
+        // Mostrar/Alternar as abas
+        function showTab(tabIndex) {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('tab-' + i).style.display = (i === tabIndex) ? 'table' : 'none';
+                document.querySelectorAll('.tab-button')[i - 1].style.backgroundColor = (i === tabIndex) ? '#4CAF50' : '#f4f4f9';
+                document.querySelectorAll('.tab-button')[i - 1].style.color = (i === tabIndex) ? 'white' : 'black';
+            }
+            currentTab = tabIndex;
+        }
+
+        // Navegar entre as abas com os botões "Retroceder" e "Avançar"
+        function changeTab(direction) {
+            let newTab = currentTab + direction;
+            if (newTab < 1) newTab = 3; // Se retroceder, vai para a última aba
+            if (newTab > 3) newTab = 1; // Se avançar, vai para a primeira aba
+            showTab(newTab);
+        }
+    </script>
