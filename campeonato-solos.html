@@ -5,53 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clan Os Vingadores - Campeonato</title>
     <style>
+        /* Estilos Gerais da Página */
         body {
-            background-color: #000;
-            color: #fff;
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
+            background-color: #1b1b1b;
+            color: #ecf0f1;
+            padding: 20px;
+            margin: 0;
         }
-        h1, h2 {
-            color: #258f25;
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #fff;
-        }
-        th {
-            background-color: #333;
-        }
-        td {
-            background-color: #444;
-        }
+
+        /* Estilo do botão de voltar */
         .button {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
-            background-color: #000000;
-            color: #fff;
+            background-color: #1abc9c;
+            color: #2c3e50;
             padding: 10px 20px;
-            font-size: 16px;
             border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
+
         .button:hover {
-            background-color: #258f25
+            background-color: #16a085;
         }
+
+        /* Estilo para o título principal */
+        h1 {
+            text-align: center;
+            color: #ecf0f1;
+        }
+
+        /* Estilo das tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #34495e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #bdc3c7;
+        }
+
+        th {
+            background-color: #1abc9c;
+            color: #2c3e50;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7f8c8d;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #95a5a6;
+        }
+
+        td {
+            color: #ecf0f1;
+        }
+
+        tr:hover {
+            background-color: #16a085;
+        }
+
+        /* Estilo para o conteúdo das tabelas e seções */
         .content {
-            margin-top: 60px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: #ecf0f1;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #ecf0f1;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            color: #ecf0f1;
+            margin: 5px 0;
+        }
+
+        /* Personalização para os títulos da seção */
+        p {
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
+    <!-- Botão de Voltar -->
     <a href="index.html"><button class="button">Voltar para a Página Inicial</button></a>
 
     <h1>Clan Os Vingadores - Campeonato de Solos</h1>

@@ -5,148 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clan Os Vingadores - Página Inicial</title>
     <style>
-        /* Reset básico de estilos */
+        /* Variáveis de Cores */
+        :root {
+            --cor-fundo: #1b1b1b;
+            --cor-texto-principal: #ecf0f1;
+            --cor-texto-secundario: #b2bec3;
+            --cor-card-fundo: #2d3436;
+            --cor-card-hover: #636e72;
+            --cor-card-em-andamento-fundo: #00b894;
+            --cor-link: #00b894;
+            --cor-link-hover: #00cec9;
+            --cor-icone: #ffffff;
+            --cor-titulo-card: #ffffff;
+            --cor-texto-card: #ecf0f1;
+            --cor-texto-secundario-card: #dfe6e9;
+        }
+
+        /* Resetando margens e padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* Corpo da página */
         body {
-            background-color: #0a0a0a;
-            color: #fff;
             font-family: 'Arial', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             height: 100vh;
-            padding: 20px;
+            padding: 0 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a1a1a, #333);
         }
 
+        /* Título principal */
         h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 3em;
+            color: var(--cor-texto-principal);
             text-align: center;
-            color: #ffcc00;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
+        /* Container dos Cards */
         .card-container {
             display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            max-width: 1200px;
+            width: 100%;
         }
 
+        /* Card Comum */
         .card {
-            background-color: #222;
+            padding: 30px;
             border-radius: 10px;
-            padding: 20px;
-            width: 280px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease-in-out;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            width: 300px;
+            max-width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--cor-texto-card);
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card com destaque de andamento */
+        .card-em-andamento {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: var(--cor-texto-card);
         }
 
         .card h2 {
-            font-size: 24px;
+            font-size: 1.8em;
             margin-bottom: 15px;
-            color: #f5f5f5;
+            font-weight: bold;
+            color: var(--cor-titulo-card);
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card p {
-            font-size: 16px;
+            font-size: 1.1em;
             margin-bottom: 15px;
-            color: #ddd;
+            color: var(--cor-texto-secundario-card);
+        }
+
+        /* Ícones ao lado do título */
+        .solo-icon, .dupla-icon {
+            font-size: 1.5em;
+            color: var(--cor-icone);
         }
 
         .card a {
-            display: inline-block;
-            background-color: #ffcc00;
-            color: #333;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: var(--cor-link);
+            color: #ffffff;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 16px;
+            font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
         .card a:hover {
-            background-color: #ff9900;
+            background-color: var(--cor-link-hover);
         }
 
-        /* Animacao de destaque para o campeonato em andamento */
-        .card-em-andamento {
-            background-color: #008b3f;
-        }
-
-        .card-em-andamento h2 {
-            color: #fff;
-        }
-
-        /* Adicionando ícones para Solo e Duplas */
-        .icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .solo-icon {
-            background: url('https://img.icons8.com/ios/452/player-mode.png') no-repeat center center;
-            background-size: contain;
-        }
-
-        .dupla-icon {
-            background: url('https://img.icons8.com/ios/452/team.png') no-repeat center center;
-            background-size: contain;
-        }
-
-        /* Animação de entrada para a página */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
             }
-            100% {
-                opacity: 1;
-            }
-        }
 
-        .container {
-            animation: fadeIn 1.5s ease-in-out;
+            .card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Clan [VIN] Os Vingadores - PUBG PC</h1>
+    <h1>Clan [VIN] Os Vingadores</h1>
 
-        <!-- Card de destaque para campeonato em andamento -->
-        <div class="card-container">
-            <div class="card card-em-andamento">
-                <h2><span class="solo-icon"></span>Campeonato Solo</h2>
-                <p><strong>Em andamento!</strong></p>
-                <p>Acompanhe a tabela do campeonato de Solo.</p>
-                <a href="campeonato-solos.html">Ver Detalhes</a>
-            </div>
+    <!-- Cards -->
+    <div class="card-container">
+        <!-- Card do Campeonato Solo -->
+        <a href="campeonato-solos.html" class="card card-em-andamento">
+            <h2><span class="solo-icon">👤🥇</span>Campeonato Solo</h2>
+            <p><strong>Em andamento!</strong></p>
+            <p>Acompanhe a tabela do campeonato de Solo.</p>
+        </a>
 
-            <!-- Card para campeonato de duplas -->
-            <div class="card">
-                <h2><span class="dupla-icon"></span>Campeonato Duplas</h2>
-                <p>Ocorrido dia 09/11</p>
-                <p>Confira os vencedores do campeonato de duplas.</p>
-                <a href="campeonato-duplas.html">Ver Detalhes</a>
-            </div>
-        </div>
+        <!-- Card do Campeonato Duplas -->
+        <a href="campeonato-duplas.html" class="card">
+            <h2><span class="dupla-icon">👥🏆</span>Campeonato Duplas</h2>
+            <p>Ocorrido dia 09/11</p>
+            <p>Confira os vencedores do campeonato de duplas.</p>
+        </a>
     </div>
+
 </body>
 </html>
