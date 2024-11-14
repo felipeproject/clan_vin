@@ -3,194 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Pontuação - Campeonato de Solos</title>
+    <title>Clan Os Vingadores - Campeonato</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1c1c1c; /* fundo escuro */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #e0e0e0; /* texto em tom de creme */
-        }
-
-        .container {
-            width: 80%;
-            max-width: 800px;
-            background-color: #2a2a2a; /* fundo mais escuro para a caixa */
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7); /* sombra mais forte */
-            overflow: hidden;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        h1 {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
             text-align: center;
-            font-size: 2.5rem;
-            color: #00ff00; /* verde neon */
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            padding-top: 50px;
         }
-
+        h1, h2 {
+            color: #258f25;
+        }
         table {
-            width: 100%;
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
         }
-
         th, td {
-            padding: 12px;
+            padding: 10px;
             text-align: center;
-            border: 1px solid #333; /* borda escura */
+            border: 1px solid #fff;
         }
-
         th {
-            background-color: #00ff00; /* verde neon */
-            color: #1c1c1c; /* texto escuro nas células de cabeçalho */
+            background-color: #333;
         }
-
-        tr:nth-child(even) {
-            background-color: #333; /* fundo das linhas pares mais escuro */
+        td {
+            background-color: #444;
         }
-
-        tr:nth-child(odd) {
-            background-color: #2a2a2a; /* fundo das linhas ímpares mais claro */
+        .button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
         }
-
-        tr:hover {
-            background-color: #444; /* cor de hover */
+        .button:hover {
+            background-color: #258f25
         }
-
-        .rank {
-            font-weight: bold;
-            color: #00ff00; /* verde neon */
-        }
-
-        .kills {
-            color: #ff5722; /* cor para o número de kills (laranja) */
-        }
-
-        .pontos {
-            color: #ff9800; /* cor para os pontos (amarelo-alaranjado) */
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            table {
-                font-size: 0.9rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
+        .content {
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Campeonato de Solos</h1>
-        <table id="rankingTable">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Jogador</th>
-                    <th>Kills</th>
-                    <th>Pontos</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="rank">1</td>
-                    <td>Tauzudu</td>
-                    <td class="kills">2</td>
-                    <td class="pontos"></td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td>xCHUMELAx</td>
-                    <td class="kills">0</td>
-                    <td class="pontos"></td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td>SALOMON_BR</td>
-                    <td class="kills">2</td>
-                    <td class="pontos"></td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td>PESADO-GAMEPLAY</td>
-                    <td class="kills">0</td>
-                    <td class="pontos"></td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td>xA_N_D_R_Ex</td>
-                    <td class="kills">0</td>
-                    <td class="pontos"></td>
-                </tr>
-                <!-- Adicione aqui mais jogadores para completar a pontuação:
-                <tr>
-                    <td class="rank">0</td>
-                    <td>Nick</td>
-                    <td class="kills">0</td>
-                    <td class="pontos"></td>
-                </tr> 
-                -->
-            </tbody>
+    <a href="index.html"><button class="button">Voltar para a Página Inicial</button></a>
+
+    <h1>Clan Os Vingadores - Campeonato de Solos</h1>
+
+    <div class="content">
+        <h2>Pontuação Geral do Campeonato de Solos</h2>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Total Jogo 1</th>
+                <th>Total Jogo 2</th>
+                <th>Pontuação Total</th>
+            </tr>
+            <tr>
+                <td><strong>PESADO-GAMEPLAY</strong></td>
+                <td>7</td>
+                <td>14</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td><strong>Tauzudu</strong></td>
+                <td>12</td>
+                <td>0</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><strong>SALOMON_BR</strong></td>
+                <td>10</td>
+                <td>0</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>LandersSA</td>
+                <td>0</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>xCHUMELAx</td>
+                <td>9</td>
+                <td>0</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>Doomed_Aim</td>
+                <td>0</td>
+                <td>9</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>xA_N_D_R_Ex</td>
+                <td>6</td>
+                <td>5</td>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>TEXAS3006</td>
+                <td>0</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>EdlyCruz</td>
+                <td>0</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>nokyamlavor</td>
+                <td>0</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
         </table>
+
+        <h2>Pontuação por Jogo</h2>
+
+        <h3>Jogo 1: Sanhok</h3>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Nome</th>
+                <th>Kills</th>
+                <th>Pontuação Posicional</th>
+                <th>Total Jogo 1</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Tauzudu</td>
+                <td>2</td>
+                <td>10</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>xCHUMELAx</td>
+                <td>0</td>
+                <td>9</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>SALOMON_BR</td>
+                <td>2</td>
+                <td>8</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PESADO-GAMEPLAY</td>
+                <td>0</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>xA_N_D_R_Ex</td>
+                <td>0</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+        </table>
+
+        <h3>Jogo 2: Erangel</h3>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Nome</th>
+                <th>Kills</th>
+                <th>Pontuação Posicional</th>
+                <th>Total Jogo 2</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>PESADO-GAMEPLAY</td>
+                <td>4</td>
+                <td>10</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>LandersSA</td>
+                <td>1</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Doomed_Aim</td>
+                <td>1</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>TEXAS3006</td>
+                <td>0</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>EdlyCruz</td>
+                <td>0</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>xA_N_D_R_Ex</td>
+                <td>0</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>nokyamlavor</td>
+                <td>0</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+        </table>
+
+        <h2>Sistema de Pontuação</h2>
+        <p><strong>Classificação Geral:</strong></p>
+        <ul>
+            <li><strong>1ª posição:</strong> 10 pontos</li>
+            <li><strong>2ª posição:</strong> 9 pontos</li>
+            <li><strong>3ª posição:</strong> 8 pontos</li>
+            <li><strong>4ª posição:</strong> 7 pontos</li>
+            <li><strong>5ª posição:</strong> 6 pontos</li>
+            <li><strong>6ª posição:</strong> 5 pontos</li>
+            <li><strong>7ª posição:</strong> 4 pontos</li>
+            <li><strong>8ª posição:</strong> 3 pontos</li>
+            <li><strong>9ª posição:</strong> 2 pontos</li>
+            <li><strong>10ª posição:</strong> 1 ponto</li>
+            <li><strong>11ª posição em diante:</strong> 0 pontos</li>
+        </ul>
+        <p><strong>Kills:</strong> Cada kill = 1 ponto extra.</p>
+
     </div>
-
-    <script>
-        // Função para calcular a pontuação com base na posição e kills
-        function calcularPontuacao() {
-            const pontuacoesPosicao = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];  // Pontuação para os top 10 (1º até 10º)
-            const players = [];
-            
-            const rows = document.querySelectorAll('#rankingTable tbody tr');
-            
-            rows.forEach((row, index) => {
-                const playerName = row.querySelector('td:nth-child(2)').textContent;
-                const kills = parseInt(row.querySelector('.kills').textContent);
-                
-                // Calculando a pontuação com base na posição e nas kills
-                let pontosPosicao = pontuacoesPosicao[index] || 0;
-                let pontosTotais = pontosPosicao + kills;
-                
-                players.push({
-                    nome: playerName,
-                    kills: kills,
-                    pontos: pontosTotais,
-                    rank: index + 1  // Armazenamos a posição inicial para ordenação posterior
-                });
-            });
-
-            // Ordenar os jogadores pela pontuação (em ordem decrescente)
-            players.sort((a, b) => b.pontos - a.pontos);
-
-            // Atualizar a tabela com os jogadores classificados corretamente
-            const tbody = document.querySelector('#rankingTable tbody');
-            tbody.innerHTML = ''; // Limpar a tabela atual
-
-            players.forEach((player, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = ` 
-                    <td class="rank">${index + 1}</td>
-                    <td>${player.nome}</td>
-                    <td class="kills">${player.kills}</td>
-                    <td class="pontos">${player.pontos}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Chama a função para calcular a pontuação ao carregar a página
-        calcularPontuacao();
-    </script>
 
 </body>
 </html>
