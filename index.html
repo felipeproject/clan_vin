@@ -36,16 +36,27 @@
             color: var(--cor-texto-principal);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 0 20px;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 10px;
+            overflow-x: hidden;
+        }
+
+        /* Header com logo */
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header img {
+            max-width: 250px;
+            height: auto;
         }
 
         /* Título principal */
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             color: var(--cor-texto-principal);
             text-align: center;
             margin-bottom: 30px;
@@ -56,37 +67,36 @@
 
         /* Banner */
         .banner {
-            width: 40%;
-            max-height: 400px;
-            /* Define a altura máxima do banner */
+            width: 100%;
+            max-height: 300px;
             object-fit: cover;
-            /* Faz com que a imagem cubra a área sem distorcer */
-            margin-bottom: px;
-            /* Espaço entre o banner e o título */
+            margin-bottom: 30px;
         }
 
         /* Container dos Cards */
         .card-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-            max-width: 1200px;
+            margin-top: 20px;
             width: 100%;
+            max-width: 1200px;
+            padding: 0 10px;
         }
 
-        /* Card Comum */
+        /* Card */
         .card {
             background: linear-gradient(135deg, #2d3436, #0b2035);
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
-            width: 300px;
+            width: 280px; /* Tamanho fixo para desktop */
             max-width: 100%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: var(--cor-texto-card);
+            position: relative;
         }
 
         .card:hover {
@@ -101,7 +111,7 @@
         }
 
         .card h2 {
-            font-size: 1.8em;
+            font-size: 1.6em;
             margin-bottom: 15px;
             font-weight: bold;
             color: var(--cor-titulo-card);
@@ -112,7 +122,7 @@
         }
 
         .card p {
-            font-size: 1.1em;
+            font-size: 1em;
             margin-bottom: 15px;
             color: var(--cor-texto-secundario-card);
         }
@@ -142,73 +152,94 @@
         }
 
         /* Responsividade */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .card-container {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
 
             .card {
-                width: 90%;
+                width: 230px; /* Reduz um pouco a largura dos cards em tablets */
+            }
+
+            .banner {
+                max-height: 250px; /* Ajuste para telas menores */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
                 margin-bottom: 20px;
             }
 
+            .banner {
+                max-height: 200px; /* Ajusta a altura do banner para telas pequenas */
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+            }
+
+            .card {
+                width: 90%; /* Os cards ocupam mais largura em dispositivos móveis */
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.4em;
+            }
+
+            .card p {
+                font-size: 1em;
+            }
+
+            .em-andamento {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
             h1 {
-                font-size: 2.5em;
+                font-size: 2em; /* Ajuste do tamanho do título para telas muito pequenas */
+            }
+
+            .card {
+                width: 100%; /* Cards ocupando toda a largura da tela */
+            }
+
+            .card h2 {
+                font-size: 1.3em;
+            }
+
+            .card p {
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- <h1>Clan [VIN] </h1> -->
+    <!-- Área superior com logo -->
+    <div class="header">
+        <img src="logo.png" alt="Logo do Clan Os Vingadores"> <!-- Substitua 'logo.png' pelo caminho correto da sua imagem -->
+    </div>
+
     <!-- Banner da página -->
     <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
 
     <!-- Cards -->
     <div class="card-container">
-        <a href="campeonato-solos.html" class="card card-em-andamento"
-            style="text-decoration: none; color: inherit; position: relative;">
+        <a href="campeonato-solos.html" class="card card-em-andamento" style="text-decoration: none; color: inherit; position: relative;">
             <h2><span class="solo-icon">👤🥇</span>Campeonato Solo</h2>
             <p><strong>Iniciado dia 13/11</strong></p>
             <p>Acompanhe a tabela do campeonato de Solo.</p>
-            <div class="em-andamento">Em andamento</div> <!-- Faixa com o texto "Em andamento" -->
+            <div class="em-andamento">Em andamento</div>
         </a>
-
-        <style>
-            /* Animação de piscar */
-            @keyframes piscar {
-                0% {
-                    opacity: 1;
-                }
-
-                50% {
-                    opacity: 0;
-                }
-
-                100% {
-                    opacity: 1;
-                }
-            }
-
-            /* Estilos para a faixa "Em andamento" */
-            .em-andamento {
-                position: absolute;
-                top: 0;
-                left: 0;
-                background-color: rgba(255, 0, 0, 0.418);
-                /* Cor de fundo vermelha translúcida */
-                color: white;
-                padding: 5px 10px;
-                font-weight: bold;
-                font-size:15px;
-                text-transform: uppercase;
-                z-index: 10;
-                /* Garante que a faixa apareça sobre o conteúdo */
-                animation: piscar 2s infinite;
-                /* Aplica a animação de piscar */
-            }
-        </style>
 
         <!-- Card do Campeonato Duplas -->
         <a href="campeonato-duplas.html" class="card">
@@ -217,9 +248,9 @@
             <p>Confira os vencedores do campeonato de duplas.</p>
         </a>
         <a href="index.html" class="card">
-            <h2><span class="dupla-icon">👥👥🏆</span>Campeonato Squads</h2>
+            <h2><span class="dupla-icon">👥<br>👥🏆</span>Campeonato Squads</h2>
             <p>Dezembro</p>
-            <p>Datas ainda sendo defidas!</p>
+            <p>Datas ainda sendo definidas!</p>
         </a>
     </div>
 </body>
