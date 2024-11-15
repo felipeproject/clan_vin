@@ -1,219 +1,243 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clan Os Vingadores - Campeonato Duplas - TTP</title>
-    <style>
-        /* Estilos Gerais da Página */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1b1b1b;
-            color: #ecf0f1;
-            padding: 20px;
-            margin: 0;
-        }
-
-        /* Estilo do botão de voltar */
-        .button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #1abc9c;
-            color: #2c3e50;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #16a085;
-        }
-
-        /* Estilo para o título principal */
-        h1 {
-            text-align: center;
-            color: #ecf0f1;
-        }
-
-        /* Estilo das tabelas */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: #34495e;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #bdc3c7;
-        }
-
-        th {
-            background-color: #1abc9c;
-            color: #2c3e50;
-        }
-
-        tr:nth-child(even) {
-            background-color: #7f8c8d;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #95a5a6;
-        }
-
-        td {
-            color: #ecf0f1;
-        }
-
-        tr:hover {
-            background-color: #16a085;
-        }
-
-        /* Estilo para o conteúdo das tabelas e seções */
-        .content {
-            margin-top: 40px;
-        }
-
-        h2 {
-            color: #ecf0f1;
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            color: #ecf0f1;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            color: #ecf0f1;
-            margin: 5px 0;
-        }
-
-        /* Personalização para os títulos da seção */
-        p {
-            font-size: 16px;
-        }
-    </style>
+    <title>Campeonato de Duplas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <!-- Botão de Voltar -->
-    <a href="index.html"><button class="button">Voltar para a Página Inicial</button></a>
-
-    <h1>Clan Os Vingadores - Campeonato de Solos - TTP</h1>
-
-    <div
-        style="background-color: #ffc800; color: #333; padding: 15px; font-family: Arial, sans-serif; border: 1px solid #e0a800; border-radius: 5px; width: 100%; text-align: center; font-size: 16px;">
-        <strong>🚧Atensão: <br>Tabela está sendo revisada. 🔧 Aguarde... 🔄</strong> 
+    <h1>Campeonato de Duplas</h1>
+    
+    <!-- Tabela de Classificação Geral -->
+    <div id="classificacao">
+        <h2>Classificação Geral</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Kills</th>
+                    <th>Partidas Disputadas</th>
+                    <th>Total Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="classificacao-body">
+                <!-- A tabela será preenchida dinamicamente -->
+            </tbody>
+        </table>
     </div>
 
-    <div class="content">
-        <h2>Pontuação Geral do Campeonato de Solos - TTP</h2>
-        <table>
-            <tr>
-                <th>⭐ Rank</th>
-                <th>👤 Jogador</th>
-                <th>☠︎ Kills</th>
-                <th>🏆Pontuação Total</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <!-- Tabela de Top 3 Kills -->
-        <h2>Top 3 Kills ☠︎</h2>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Total de Kills</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h2>Pontuação por Jogo</h2>
-
-        <h3>Jogo 1: Sanhok</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 1</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 2: Erangel</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 2</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 3: Miramar</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 3</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 4: Vikendi</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 4</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h2>Sistema de Pontuação</h2>
-        <p><strong>Classificação Geral:</strong></p>
-        <ul>
-            <li><strong>1ª posição:</strong> 10 pontos</li>
-            <li><strong>2ª posição:</strong> 9 pontos</li>
-            <li><strong>3ª posição:</strong> 8 pontos</li>
-            <li><strong>4ª posição:</strong> 7 pontos</li>
-            <li><strong>5ª posição:</strong> 6 pontos</li>
-            <li><strong>6ª posição:</strong> 5 pontos</li>
-            <li><strong>7ª posição:</strong> 4 pontos</li>
-            <li><strong>8ª posição:</strong> 3 pontos</li>
-            <li><strong>9ª posição:</strong> 2 pontos</li>
-            <li><strong>10ª posição:</strong> 1 ponto</li>
-            <li><strong>11ª posição em diante:</strong> 0 pontos</li>
-        </ul>
-        <p><strong>Kills:</strong> Cada kill = 1 ponto extra.</p>
-        <p><strong>Critério de Desempate:</strong> Número total de partidas disputadas pelo participante.</p>
+    <!-- Navegação entre as tabelas -->
+    <div id="nav-buttons">
+        <button id="prev-btn" onclick="navigateTable(-1)" disabled>← Anterior</button>
+        <button id="next-btn" onclick="navigateTable(1)">Próximo →</button>
     </div>
 
+    <!-- Tabelas de Resultados dos Jogos -->
+    <div id="tables"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Carregar a lista de partidas CSV do arquivo JSON
+            fetch('partidas.json')
+                .then(response => response.json()) // Lê o arquivo JSON
+                .then(data => {
+                    const csvFiles = data.partidas || [];  // Obter a lista de arquivos CSV
+                    const tablesContainer = document.getElementById('tables');
+                    const classificacaoBody = document.getElementById('classificacao-body');
+                    let jogadores = {}; // Armazenará dados de jogadores
+                    let tables = []; // Array para armazenar as tabelas das partidas
+                    let currentTableIndex = 0; // Índice da tabela atual
+
+                    // Sistema de pontuação
+                    const pontuacaoPosicional = {
+                        1: 10,
+                        2: 9,
+                        3: 8,
+                        4: 7,
+                        5: 6,
+                        6: 5,
+                        7: 4,
+                        8: 3,
+                        9: 2,
+                        10: 1
+                    };
+
+                    // Processar os arquivos CSV conforme a ordem no JSON
+                    csvFiles.forEach((file, index) => {
+                        fetch(file)
+                            .then(response => response.text()) // Lê o arquivo CSV como texto
+                            .then(csvData => {
+                                Papa.parse(csvData, {
+                                    header: true, // Diz que a primeira linha é o cabeçalho
+                                    skipEmptyLines: true, // Ignora linhas vazias
+                                    complete: function(results) {
+                                        // Processa os dados da partida
+                                        results.data.forEach((rowData, i) => {
+                                            const jogador = rowData['Name']; // Nome do jogador
+                                            const kills = parseInt(rowData['Kills'], 10) || 0; // Kills do jogador
+                                            const posicao = i + 1; // Posição do jogador na partida (index + 1)
+                                            const pontosPosicionais = pontuacaoPosicional[posicao] || 0; // Pontuação posicional
+                                            const totalPontos = kills + pontosPosicionais; // Total de pontos (kills + posição)
+
+                                            // Atualiza os dados do jogador
+                                            if (!jogadores[jogador]) {
+                                                jogadores[jogador] = {
+                                                    kills: 0,
+                                                    pontos: 0,
+                                                    partidas: 0
+                                                };
+                                            }
+
+                                            jogadores[jogador].kills += kills;
+                                            jogadores[jogador].pontos += totalPontos;
+                                            jogadores[jogador].partidas += 1; // Incrementa a quantidade de partidas disputadas
+                                        });
+
+                                        // Gerar a tabela do jogo e adicioná-la ao array
+                                        const tableElement = generateTable(results.data, file, index + 1);
+                                        tables.push(tableElement);
+                                        tablesContainer.appendChild(tableElement);
+
+                                        // Inicializa a primeira tabela
+                                        if (index === 0) {
+                                            tableElement.style.display = 'block'; // Exibe a primeira tabela
+                                        } else {
+                                            tableElement.style.display = 'none'; // Mantém as outras tabelas ocultas
+                                        }
+                                    },
+                                    error: function(error) {
+                                        console.error('Erro ao processar o CSV:', error);
+                                    }
+                                });
+                            })
+                            .catch(err => console.error('Erro ao carregar o CSV:', err));
+                    });
+
+                    // Função para navegar entre as tabelas
+                    function navigateTable(direction) {
+                        // Esconde a tabela atual
+                        tables[currentTableIndex].style.display = 'none';
+
+                        // Atualiza o índice da tabela atual
+                        currentTableIndex += direction;
+
+                        // Exibe a nova tabela
+                        tables[currentTableIndex].style.display = 'block';
+
+                        // Atualiza os botões de navegação
+                        document.getElementById('prev-btn').disabled = currentTableIndex === 0;
+                        document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
+                    }
+
+                    // Expondo a função para navegação
+                    window.navigateTable = navigateTable;
+
+                    // Quando todos os arquivos CSV forem processados, atualiza a classificação geral
+                    setTimeout(() => {
+                        updateClassificacao(jogadores);
+                    }, 1000);
+                })
+                .catch(err => console.error('Erro ao carregar o arquivo JSON:', err));
+        });
+
+        // Função para atualizar a tabela de classificação geral
+        function updateClassificacao(jogadores) {
+            const classificacaoBody = document.getElementById('classificacao-body');
+            
+            // Ordena os jogadores por total de pontos (em ordem decrescente)
+            const jogadoresOrdenados = Object.keys(jogadores)
+                .map(jogador => ({
+                    jogador,
+                    kills: jogadores[jogador].kills,
+                    pontos: jogadores[jogador].pontos,
+                    partidas: jogadores[jogador].partidas
+                }))
+                .sort((a, b) => b.pontos - a.pontos || b.kills - a.kills || b.partidas - a.partidas); // Ordena por pontos, kills e partidas
+
+            // Limpa a tabela de classificação
+            classificacaoBody.innerHTML = '';
+
+            // Preenche a tabela com os jogadores e seus pontos
+            jogadoresOrdenados.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                const tdRank = document.createElement('td');
+                tdRank.textContent = index + 1; // Rank
+                const tdName = document.createElement('td');
+                tdName.textContent = item.jogador;
+                const tdKills = document.createElement('td');
+                tdKills.textContent = item.kills;
+                const tdPartidas = document.createElement('td');
+                tdPartidas.textContent = item.partidas;
+                const tdPontos = document.createElement('td');
+                tdPontos.textContent = item.pontos;
+
+                tr.appendChild(tdRank);
+                tr.appendChild(tdName);
+                tr.appendChild(tdKills);
+                tr.appendChild(tdPartidas);
+                tr.appendChild(tdPontos);
+                classificacaoBody.appendChild(tr);
+            });
+        }
+
+        // Função para gerar a tabela HTML
+        function generateTable(data, fileName, jogoIndex) {
+            const table = document.createElement('table');
+            const headerRow = document.createElement('tr');
+            
+            if (data.length > 0) {
+                const headers = Object.keys(data[0]);
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    headerRow.appendChild(th);
+                });
+                table.appendChild(headerRow);
+
+                data.forEach(rowData => {
+                    const tr = document.createElement('tr');
+                    headers.forEach(header => {
+                        const td = document.createElement('td');
+                        td.textContent = rowData[header];
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+            }
+
+            const title = document.createElement('h2');
+            const fileNameWithoutExtension = fileName.split('/').pop().replace('.csv', '');
+            const mapa = fileNameWithoutExtension.split('_')[0]; // Extrai o nome do mapa
+            title.textContent = `Jogo #${jogoIndex} ${mapa.charAt(0).toUpperCase() + mapa.slice(1)}`;
+            table.insertBefore(title, table.firstChild);
+
+            return table;
+        }
+    </script>
 </body>
-
 </html>
+
+
+
+<h2>Sistema de Pontuação</h2>
+<p><strong>Classificação Geral:</strong></p>
+<ul>
+    <li><strong>1ª posição:</strong> 10 pontos</li>
+    <li><strong>2ª posição:</strong> 9 pontos</li>
+    <li><strong>3ª posição:</strong> 8 pontos</li>
+    <li><strong>4ª posição:</strong> 7 pontos</li>
+    <li><strong>5ª posição:</strong> 6 pontos</li>
+    <li><strong>6ª posição:</strong> 5 pontos</li>
+    <li><strong>7ª posição:</strong> 4 pontos</li>
+    <li><strong>8ª posição:</strong> 3 pontos</li>
+    <li><strong>9ª posição:</strong> 2 pontos</li>
+    <li><strong>10ª posição:</strong> 1 ponto</li>
+    <li><strong>11ª posição em diante:</strong> 0 pontos</li>
+</ul>
+<p><strong>Kills:</strong> Cada kill = 1 ponto extra.</p>
+<p><strong>Critério de Desempate:</strong> Número total de partidas disputadas pelo participante.</p>
+</div>

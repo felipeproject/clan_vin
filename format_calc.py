@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 from tkinter import messagebox
 import pandas as pd
+import json
 from datetime import datetime, timedelta
 
 # Função para calcular a pontuação posicional e a pontuação total
@@ -71,6 +72,9 @@ def extrair_colunas_csv(caminho_entrada, caminho_saida):
         df.to_csv(caminho_saida_arquivo, index=False)
 
         messagebox.showinfo("Sucesso", f"Arquivo '{nome_arquivo_novo}' formatado e pontuado com sucesso!")
+
+        # Atualizar o arquivo JSON com o caminho do novo arquivo gerado
+        atualizar_json(nome_arquivo_novo)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao processar o arquivo: {e}")
@@ -78,7 +82,7 @@ def extrair_colunas_csv(caminho_entrada, caminho_saida):
 # Função para listar os arquivos CSV na pasta
 def listar_arquivos_csv():
     # Caminho da pasta
-    pasta_csv = './partidas_csv'
+    pasta_csv = './pubglookup'
     
     # Listar arquivos CSV na pasta
     if not os.path.exists(pasta_csv):
@@ -87,13 +91,35 @@ def listar_arquivos_csv():
     arquivos_csv = [f for f in os.listdir(pasta_csv) if f.endswith('.csv')]
     return arquivos_csv
 
+# Função para atualizar o arquivo JSON com os novos caminhos dos arquivos
+def atualizar_json(caminho_arquivo):
+    try:
+        json_path = './partidas.json'
+
+        # Verificar se o arquivo JSON existe
+        if os.path.exists(json_path):
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+        else:
+            data = {"partidas": []}
+
+        # Adicionar o novo arquivo à lista de partidas
+        data["partidas"].append(f"dados/{caminho_arquivo}")
+        
+        # Salvar o arquivo JSON
+        with open(json_path, 'w') as f:
+            json.dump(data, f, indent=4)
+
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao atualizar o arquivo JSON: {e}")
+
 # Função para processar o arquivo selecionado
 def processar_arquivo_selecionado(nome_arquivo):
     # Caminho completo do arquivo selecionado
-    caminho_entrada = os.path.join('./partidas_csv', nome_arquivo)
+    caminho_entrada = os.path.join('./pubglookup', nome_arquivo)
 
-    # Criar a pasta de saída /partidas_csv_formatadas, caso não exista
-    caminho_saida = './partidas_csv_formatadas'
+    # Criar a pasta de saída /dados, caso não exista
+    caminho_saida = './dados'
     if not os.path.exists(caminho_saida):
         os.makedirs(caminho_saida)
 
