@@ -3,8 +3,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #1b1b1b;
     color: #ecf0f1;
-    padding: 20px;
-    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,16 +32,13 @@ body {
 h1 {
     text-align: center;
     color: #ecf0f1;
-    margin-bottom: 30px;
 }
 
 /* Estilo das tabelas */
 table {
-    width: 90%;
     max-width: 1000px;  /* Limita o tamanho máximo das tabelas */
     border-collapse: collapse;
     margin: 20px auto;  /* Centraliza a tabela e adiciona margem superior e inferior */
-    background-color: #34495e;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -56,7 +51,7 @@ th, td {
 
 th {
     background-color: #1abc9c;
-    color: #2c3e50;
+    color: #161c22;
 }
 
 tr:nth-child(even) {
@@ -115,4 +110,16 @@ h2, h3 {
     width: 90%;
     max-width: 1000px; /* Limita o tamanho máximo da tabela de classificação */
     margin: 20px auto; /* Centraliza a tabela de classificação */
+}
+
+/* Layout Flexbox para as tabelas */
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
 }
