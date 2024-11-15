@@ -39,7 +39,6 @@ h1 {
 table {
     max-width: 1000px;  /* Limita o tamanho máximo das tabelas */
     border-collapse: collapse;
-    margin: 20px auto;  /* Centraliza a tabela e adiciona margem superior e inferior */
     border-radius: 8px;
     overflow: hidden;
 }
@@ -73,17 +72,14 @@ tr:hover {
 
 /* Estilo para o conteúdo das tabelas e seções */
 .content {
-    margin-top: 40px;
 }
 
 h2, h3 {
     color: #ecf0f1;
-    margin-bottom: 10px;
 }
 
 /* Estilo para a navegação de tabelas */
 #nav-buttons {
-    margin: 20px 0;
     text-align: center;
 }
 
@@ -107,10 +103,8 @@ h2, h3 {
 }
 
 #classificacao {
-    margin-bottom: 40px;
     width: 90%;
     max-width: 1000px; /* Limita o tamanho máximo da tabela de classificação */
-    margin: 20px auto; /* Centraliza a tabela de classificação */
 }
 
 /* Layout Flexbox para as tabelas */
