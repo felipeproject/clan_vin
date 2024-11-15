@@ -1,0 +1,63 @@
+
+---
+
+### ** #1 - Sanhok**:
+
+```csv
+"Name","Win Place","Kills","Map"
+"Tauzudu","1","2","Sanhok"
+"xCHUMELAx","2","0","Sanhok"
+"SALOMON_BR","3","2","Sanhok"
+"PESADO-GAMEPLAY","4","0","Sanhok"
+"xA_N_D_R_Ex","5","0","Sanhok"
+```
+
+---
+
+### ** #2 - Erangel**:
+
+```csv
+"Name","Win Place","Kills","Map"
+"PESADO-GAMEPLAY","1","4","Erangel"
+"LandersSA","2","1","Erangel"
+"TEXAS3006","3","0","Erangel"
+"EdlyCruz","4","0","Erangel"
+"Doomed_Aim","5","1","Erangel"
+"xA_N_D_R_Ex","6","0","Erangel"
+"nokyamlavor","7","0","Erangel"
+```
+
+---
+
+### ** #3 - Miramar**:
+
+```csv
+"Name","Win Place","Kills","Map"
+"PESADO-GAMEPLAY","1","4","Miramar"
+"LandersSA","2","1","Miramar"
+"TEXAS3006","3","0","Miramar"
+"EdlyCruz","4","0","Miramar"
+"Doomed_Aim","5","1","Miramar"
+"xA_N_D_R_Ex","6","0","Miramar"
+"nokyamlavor","7","0","Miramar"
+```
+
+---
+
+### ** #4 - Vikendi**:
+
+```csv
+"Name","Win Place","Kills","Map"
+"xA_N_D_R_Ex","1","4","Vikendi"
+"TEXAS3006","2","1","Vikendi"
+"Mateus_Sousa","3","1","Vikendi"
+"Gambin-Metaleiro","4","0","Vikendi"
+"GaroX-","5","1","Vikendi"
+"xCHUMELAx","6","1","Vikendi"
+"bruninhw","7","0","Vikendi"
+"SALOMON_BR","8","0","Vikendi"
+"WF_PROZIN","9","0","Vikendi"
+```
+
+---
+
