@@ -1,219 +1,248 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clan Os Vingadores - Campeonato Duplas - TTP</title>
+    <title>Clan Os Vingadores - Página Inicial</title>
     <style>
-        /* Estilos Gerais da Página */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1b1b1b;
-            color: #ecf0f1;
-            padding: 20px;
+        /* Variáveis de Cores */
+        :root {
+            --cor-fundo: #1b1b1b;
+            --cor-texto-principal: #ecf0f1;
+            --cor-texto-secundario: #b2bec3;
+            --cor-card-fundo: #2d3436;
+            --cor-card-hover: #636e72;
+            --cor-card-em-andamento-fundo: #00b894;
+            --cor-link: #00b894;
+            --cor-link-hover: #00cec9;
+            --cor-icone: #ffffff;
+            --cor-titulo-card: #ffffff;
+            --cor-texto-card: #ecf0f1;
+            --cor-texto-secundario-card: #dfe6e9;
+        }
+
+        /* Resetando margens e padding */
+        * {
             margin: 0;
-        }
-
-        /* Estilo do botão de voltar */
-        .button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #1abc9c;
-            color: #2c3e50;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #16a085;
-        }
-
-        /* Estilo para o título principal */
-        h1 {
-            text-align: center;
-            color: #ecf0f1;
-        }
-
-        /* Estilo das tabelas */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: #34495e;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #bdc3c7;
-        }
-
-        th {
-            background-color: #1abc9c;
-            color: #2c3e50;
-        }
-
-        tr:nth-child(even) {
-            background-color: #7f8c8d;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #95a5a6;
-        }
-
-        td {
-            color: #ecf0f1;
-        }
-
-        tr:hover {
-            background-color: #16a085;
-        }
-
-        /* Estilo para o conteúdo das tabelas e seções */
-        .content {
-            margin-top: 40px;
-        }
-
-        h2 {
-            color: #ecf0f1;
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            color: #ecf0f1;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        ul li {
-            color: #ecf0f1;
-            margin: 5px 0;
+        /* Corpo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+            overflow-x: hidden;
         }
 
-        /* Personalização para os títulos da seção */
-        p {
-            font-size: 16px;
+        /* Header com logo */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header img {
+            max-width: 50px;
+            height: auto;
+        }
+
+        /* Título principal */
+        h1 {
+            font-size: 2.5em;
+            color: var(--cor-texto-principal);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Banner */
+        .banner {
+            width: 50%;
+        }
+
+        /* Container dos Cards */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 10px;
+        }
+
+        /* Card */
+        .card {
+            background: linear-gradient(135deg, #2d3436, #0b2035);
+            padding: 20px;
+            border-radius: 10px;
+            width: 280px; /* Tamanho fixo para desktop */
+            max-width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--cor-texto-card);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card com destaque de andamento */
+        .card-em-andamento {
+            background: linear-gradient(135deg, #00b89338, #00ceb3c7);
+            color: var(--cor-texto-card);
+        }
+
+        .card h2 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--cor-titulo-card);
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: var(--cor-texto-secundario-card);
+        }
+
+        /* Ícones ao lado do título */
+        .solo-icon,
+        .dupla-icon {
+            font-size: 1.5em;
+            color: var(--cor-icone);
+        }
+
+        .card a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: var(--cor-link);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: var(--cor-link-hover);
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .card-container {
+                justify-content: center;
+            }
+
+            .card {
+            }
+
+            .banner {
+                max-height: 50px; /* Ajuste para telas menores */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+                margin-bottom: 20px;
+            }
+
+            .banner {
+                max-height: 200px; /* Ajusta a altura do banner para telas pequenas */
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+            }
+
+            .card {
+                width: 90%; /* Os cards ocupam mais largura em dispositivos móveis */
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.4em;
+            }
+
+            .card p {
+                font-size: 1em;
+            }
+
+            .em-andamento {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em; /* Ajuste do tamanho do título para telas muito pequenas */
+            }
+
+            .card {
+                width: 100%; /* Cards ocupando toda a largura da tela */
+            }
+
+            .card h2 {
+                font-size: 1.3em;
+            }
+
+            .card p {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Banner da página -->
+    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
 
-    <!-- Botão de Voltar -->
-    <a href="index.html"><button class="button">Voltar para a Página Inicial</button></a>
+    <!-- Cards -->
+    <div class="card-container">
+        <a href="campeonato-solos.html" class="card card-em-andamento" style="text-decoration: none; color: inherit; position: relative;">
+            <h2><span class="solo-icon">👤🥇</span>Campeonato Solo</h2>
+            <p><strong>Iniciado dia 13/11</strong></p>
+            <p>Acompanhe a tabela do campeonato de Solo.</p>
+            <div class="em-andamento">Em andamento</div>
+        </a>
 
-    <h1>Clan Os Vingadores - Campeonato de Solos - TTP</h1>
-
-    <div
-        style="background-color: #ffc800; color: #333; padding: 15px; font-family: Arial, sans-serif; border: 1px solid #e0a800; border-radius: 5px; width: 100%; text-align: center; font-size: 16px;">
-        <strong>🚧Atensão: <br>Tabela está sendo revisada. 🔧 Aguarde... 🔄</strong> 
+        <!-- Card do Campeonato Duplas -->
+        <a href="campeonato-duplas.html" class="card">
+            <h2><span class="dupla-icon">👥🏆</span>Campeonato Duplas</h2>
+            <p>Ocorrido dia 09/11</p>
+            <p>Confira os vencedores do campeonato de duplas.</p>
+        </a>
+        <a href="index.html" class="card">
+            <h2><span class="dupla-icon">👥<br>👥🏆</span>Campeonato Squads</h2>
+            <p>Dezembro</p>
+            <p>Datas ainda sendo definidas!</p>
+        </a>
     </div>
-
-    <div class="content">
-        <h2>Pontuação Geral do Campeonato de Solos - TTP</h2>
-        <table>
-            <tr>
-                <th>⭐ Rank</th>
-                <th>👤 Jogador</th>
-                <th>☠︎ Kills</th>
-                <th>🏆Pontuação Total</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <!-- Tabela de Top 3 Kills -->
-        <h2>Top 3 Kills ☠︎</h2>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Total de Kills</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h2>Pontuação por Jogo</h2>
-
-        <h3>Jogo 1: Sanhok</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 1</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 2: Erangel</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 2</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 3: Miramar</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 3</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h3>Jogo 4: Vikendi</h3>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Pontuação Posicional</th>
-                <th>Total Jogo 4</th>
-            </tr>
-            <!-- Tabela vazia -->
-        </table>
-
-        <h2>Sistema de Pontuação</h2>
-        <p><strong>Classificação Geral:</strong></p>
-        <ul>
-            <li><strong>1ª posição:</strong> 10 pontos</li>
-            <li><strong>2ª posição:</strong> 9 pontos</li>
-            <li><strong>3ª posição:</strong> 8 pontos</li>
-            <li><strong>4ª posição:</strong> 7 pontos</li>
-            <li><strong>5ª posição:</strong> 6 pontos</li>
-            <li><strong>6ª posição:</strong> 5 pontos</li>
-            <li><strong>7ª posição:</strong> 4 pontos</li>
-            <li><strong>8ª posição:</strong> 3 pontos</li>
-            <li><strong>9ª posição:</strong> 2 pontos</li>
-            <li><strong>10ª posição:</strong> 1 ponto</li>
-            <li><strong>11ª posição em diante:</strong> 0 pontos</li>
-        </ul>
-        <p><strong>Kills:</strong> Cada kill = 1 ponto extra.</p>
-        <p><strong>Critério de Desempate:</strong> Número total de partidas disputadas pelo participante.</p>
-    </div>
-
 </body>
 
 </html>
