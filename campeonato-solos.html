@@ -39,9 +39,7 @@
 
         <!-- Coluna para Top 5 e Rodadas -->
         <div class="flex-column">
-            <!-- Navegação entrae as tabelas de resultados de jogos -->
-    
-            <!-- Tabela de Rodadas -->
+            <!-- Navegação entre as tabelas de resultados de jogos -->
             <div id="nav-buttons">
                 <caption><strong>
                         <h1>Rodadas</h1>
@@ -49,6 +47,7 @@
                 <button id="prev-btn" onclick="navigateTable(-1)" disabled>←</button>
                 <button id="next-btn" onclick="navigateTable(1)"> →</button>
             </div>
+            <!-- Tabela de Rodadas -->
             <table id="tables">
                 <thead>
                 </thead>
@@ -59,7 +58,7 @@
             <!-- Tabela Top 5 Kills -->
             <table id="top5-table">
                 <caption>
-                    <h1>Top 5 Kills<h1>
+                    <h1>Top 5 Kills</h1>
                 </caption>
                 <thead>
                     <tr>
@@ -82,7 +81,11 @@
             fetch('partidas.json')
                 .then(response => response.json()) // Lê o arquivo JSON
                 .then(data => {
-                    const csvFiles = data.partidas || [];  // Obter a lista de arquivos CSV
+                    const partidas = data.partidas || [];
+
+                    // Inverter a ordem das partidas para começar com a última
+                    partidas.reverse();  // Inverte a ordem das partidas para começar pela última
+
                     const tablesContainer = document.getElementById('tables-body');
                     const classificacaoBody = document.getElementById('classificacao-body');
                     const top5Body = document.getElementById('top5-body');
@@ -104,9 +107,9 @@
                         10: 1
                     };
 
-                    // Processar os arquivos CSV conforme a ordem no JSON
-                    csvFiles.forEach((file, index) => {
-                        fetch(file)
+                    // Processar os arquivos CSV conforme a ordem invertida
+                    partidas.forEach((partida, index) => {
+                        fetch(partida.arquivo)
                             .then(response => response.text()) // Lê o arquivo CSV como texto
                             .then(csvData => {
                                 Papa.parse(csvData, {
@@ -136,7 +139,7 @@
                                         });
 
                                         // Gerar a tabela do jogo e adicioná-la ao array
-                                        const tableElement = generateTable(results.data, file, index + 1);
+                                        const tableElement = generateTable(results.data, partida.arquivo, partida.numero);
                                         tables.push(tableElement);
                                         tablesContainer.appendChild(tableElement);
 
@@ -280,18 +283,15 @@
                 });
             }
 
-            // Gerar título baseado no nome do arquivo CSV
+            // Gerar título baseado no número da partida
             const title = document.createElement('h3');
-            const fileNameWithoutExtension = fileName.split('/').pop().replace('.csv', '');
-            const mapa = fileNameWithoutExtension.split('_')[0];
-            const dataHora = fileNameWithoutExtension.split('_').slice(3).join(' ').replace('UTC', '');
-            const dataFormatada = dataHora.replace('_', '/').replace('_', ' ');
-            title.textContent = `Jogo #${jogoIndex} - ${mapa.charAt(0).toUpperCase() + mapa.slice(1)} (${dataFormatada})`;
+            title.textContent = `Jogo #${jogoIndex}`;  // Usa o número da partida
             table.insertBefore(title, table.firstChild);
 
             return table;
         }
     </script>
+
 </body>
 
 </html>
