@@ -1,0 +1,88 @@
+- **Rank**: A posição do jogador (Win Place).
+- **Jogador**: Nome do jogador.
+- **Kills**: O número de kills do jogador.
+- **Pontuação Posicional**: Pontuação da posição do jogador.
+- **Total Jogo 1**: A pontuação total do Jogo 1 (soma da pontuação posicional e kills).
+- **Total Jogo 2**: A pontuação total do Jogo 2 (soma da pontuação posicional e kills).
+- **Total Jogo 3**: A pontuação total do Jogo 3 (soma da pontuação posicional e kills).
+- E assim por diante.
+
+---
+
+### ** #1 - Sanhok**:
+
+```csv
+"Rank","Jogador","Kills","Pontuação Posicional","Total Jogo 1"
+"1","Tauzudu","2","10","12"
+"2","xCHUMELAx","0","9","9"
+"3","SALOMON_BR","2","8","10"
+"4","PESADO-GAMEPLAY","0","7","7"
+"5","xA_N_D_R_Ex","0","6","6"
+```
+
+---
+
+### ** #2 - Erangel**:
+
+```csv
+"Rank","Jogador","Kills","Pontuação Posicional","Total Jogo 2"
+"1","PESADO-GAMEPLAY","4","10","14"
+"2","LandersSA","1","9","10"
+"3","TEXAS3006","0","8","8"
+"4","EdlyCruz","0","7","7"
+"5","Doomed_Aim","1","6","7"
+"6","xA_N_D_R_Ex","0","5","5"
+"7","nokyamlavor","0","4","4"
+```
+
+---
+
+### ** #3 - Miramar**:
+
+```csv
+"Rank","Jogador","Kills","Pontuação Posicional","Total Jogo 3"
+"1","PESADO-GAMEPLAY","4","10","14"
+"2","LandersSA","1","9","10"
+"3","TEXAS3006","0","8","8"
+"4","EdlyCruz","0","7","7"
+"5","Doomed_Aim","1","6","7"
+"6","xA_N_D_R_Ex","0","5","5"
+"7","nokyamlavor","0","4","4"
+```
+
+---
+
+### ** #4 - Vikendi**:
+
+```csv
+"Rank","Jogador","Kills","Pontuação Posicional","Total Jogo 4"
+"1","xA_N_D_R_Ex","4","10","14"
+"2","TEXAS3006","1","9","10"
+"3","Mateus_Sousa","1","8","9"
+"4","Gambin-Metaleiro","0","7","7"
+"5","GaroX-","1","6","7"
+"6","xCHUMELAx","1","5","6"
+"7","bruninhw","0","4","4"
+"8","SALOMON_BR","0","3","3"
+"9","WF_PROZIN","0","2","2"
+```
+
+---
+
+Sistema de Pontuação
+Classificação Geral:
+
+1ª posição: 10 pontos
+2ª posição: 9 pontos
+3ª posição: 8 pontos
+4ª posição: 7 pontos
+5ª posição: 6 pontos
+6ª posição: 5 pontos
+7ª posição: 4 pontos
+8ª posição: 3 pontos
+9ª posição: 2 pontos
+10ª posição: 1 ponto
+11ª posição em diante: 0 pontos
+Kills: Cada kill = 1 ponto extra.
+
+Critério de Desempate: Número total de partidas disputadas pelo participante.
