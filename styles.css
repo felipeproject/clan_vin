@@ -32,6 +32,7 @@ body {
 h1 {
     text-align: center;
     color: #ecf0f1;
+    margin-bottom: px;
 }
 
 /* Estilo das tabelas */
@@ -115,6 +116,7 @@ h2, h3 {
 /* Layout Flexbox para as tabelas */
 .container {
     display: flex;
+    justify-content: space-between;
     gap: 20px;
 }
 
