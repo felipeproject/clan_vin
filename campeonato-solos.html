@@ -44,7 +44,7 @@
             <!-- Tabela de Rodadas -->
             <div id="nav-buttons">
                 <caption><strong>
-                        <h3>Rodadas</h3>
+                        <h1>Rodadas</h1>
                     </strong></caption>
                 <button id="prev-btn" onclick="navigateTable(-1)" disabled>←</button>
                 <button id="next-btn" onclick="navigateTable(1)"> →</button>
@@ -281,7 +281,7 @@
             }
 
             // Gerar título baseado no nome do arquivo CSV
-            const title = document.createElement('h2');
+            const title = document.createElement('h3');
             const fileNameWithoutExtension = fileName.split('/').pop().replace('.csv', '');
             const mapa = fileNameWithoutExtension.split('_')[0];
             const dataHora = fileNameWithoutExtension.split('_').slice(3).join(' ').replace('UTC', '');
