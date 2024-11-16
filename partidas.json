@@ -23,6 +23,10 @@
         {
             "numero": 6,
             "arquivo": "dados/Taego_normal_solo_2024_11_15_22h47h36_UTC.csv"
+        },
+        {
+            "numero": 7,
+            "arquivo": "dados/Sanhok_normal_solo_2024_11_16_01h02h45_UTC.csv"
         }
     ]
 }

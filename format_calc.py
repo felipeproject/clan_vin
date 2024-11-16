@@ -103,8 +103,15 @@ def atualizar_json(caminho_arquivo):
         else:
             data = {"partidas": []}
 
+        # Criar a entrada para a nova partida
+        numero_partida = len(data["partidas"]) + 1  # Número da partida é o tamanho atual + 1
+        nova_partida = {
+            "numero": numero_partida,
+            "arquivo": f"dados/{caminho_arquivo}"
+        }
+
         # Adicionar o novo arquivo à lista de partidas
-        data["partidas"].append(f"dados/{caminho_arquivo}")
+        data["partidas"].append(nova_partida)
         
         # Salvar o arquivo JSON
         with open(json_path, 'w') as f:
