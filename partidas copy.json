@@ -31,10 +31,6 @@
         {
             "numero": "#8 | Sanhok | 15/11 | 22:00h",
             "arquivo": "dados/Sanhok_normal_solo_2024_11_16_01h02h45_UTC.csv"
-        },
-        {
-            "numero": "#9 | Miramar - Semi Final | 16/11 | 19:30h",
-            "arquivo": "dados/Miramar_normal_solo_2024_11_16_22h48h07_UTC.csv"
         }
     ]
 }
