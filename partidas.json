@@ -1,35 +1,35 @@
 {
     "partidas": [
         {
-            "numero": "#1 | Sanhok | 11/13/2024 | 18:32h",
+            "numero": "#1 | Sanhok | 11/13/2024 | 18:30h",
             "arquivo": "dados/Sanhok_normal_solo_2024_11_13_21h32h24_UTC.csv"
         },
         {
-            "numero": "#2 | Erangel | 11/13/2024 | 21:07h",
+            "numero": "#2 | Erangel | 11/13/2024 | 21:00h",
             "arquivo": "dados/Erangel_normal_solo_2024_11_14_00h07h43_UTC.csv"
         },
         {
-            "numero": "#3 | Miramar | 11/14/2024 | 18:53h",
+            "numero": "#3 | Miramar | 11/14/2024 | 19:00h",
             "arquivo": "dados/Miramar_normal_solo_2024_11_14_21h53h22_UTC.csv"
         },
         {
-            "numero": "#4 | Vikendi | 11/14/2024 | 21:17h",
+            "numero": "#4 | Vikendi | 11/14/2024 | 21:00h",
             "arquivo": "dados/Vikendi_normal_solo_2024_11_15_00h17h46_UTC.csv"
         },
         {
-            "numero": "#5 | Rondo | 11/15/2024 | 19:10h",
+            "numero": "#5 | Rondo | 11/15/2024 | 19:00h",
             "arquivo": "dados/Rondo_normal_solo_2024_11_15_22h10h23_UTC.csv"
         },
         {
-            "numero": "#6 | Taego | 11/15/2024 | 19:47h",
+            "numero": "#6 | Taego | 11/15/2024 | 19:00h",
             "arquivo": "dados/Taego_normal_solo_2024_11_15_22h47h36_UTC.csv"
         },
         {
-            "numero": "#7 | Vikendi | 11/15/2024 | 21:08h",
+            "numero": "#7 | Vikendi | 11/15/2024 | 21:00h",
             "arquivo": "dados/Vikendi_normal_solo_2024_11_16_00h08h21_UTC.csv"
         },
         {
-            "numero": "#8 | Sanhok | 11/15/2024 | 22:02h",
+            "numero": "#8 | Sanhok | 11/15/2024 | 22:00h",
             "arquivo": "dados/Sanhok_normal_solo_2024_11_16_01h02h45_UTC.csv"
         }
     ]
