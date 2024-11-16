@@ -26,6 +26,10 @@
         },
         {
             "numero": 7,
+            "arquivo": "dados/Vikendi_normal_solo_2024_11_16_00h08h21_UTC.csv"
+        },
+        {
+            "numero": 8,
             "arquivo": "dados/Sanhok_normal_solo_2024_11_16_01h02h45_UTC.csv"
         }
     ]
