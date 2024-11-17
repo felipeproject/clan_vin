@@ -13,7 +13,7 @@
             --cor-texto-secundario: #b2bec3;
             --cor-card-fundo: #2d3436;
             --cor-card-hover: #636e72;
-            --cor-card-em-andamento-fundo: #00b894;
+            --cor-card-status-fundo: #00b894;
             --cor-link: #00b894;
             --cor-link-hover: #00cec9;
             --cor-icone: #ffffff;
@@ -86,7 +86,8 @@
             background: linear-gradient(135deg, #2d3436, #0b2035);
             padding: 20px;
             border-radius: 10px;
-            width: 280px; /* Tamanho fixo para desktop */
+            width: 280px;
+            /* Tamanho fixo para desktop */
             max-width: 100%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,7 +102,7 @@
         }
 
         /* Card com destaque de andamento */
-        .card-em-andamento {
+        .card-status {
             background: linear-gradient(135deg, #00b89338, #00ceb3c7);
             color: var(--cor-texto-card);
         }
@@ -153,11 +154,11 @@
                 justify-content: center;
             }
 
-            .card {
-            }
+            .card {}
 
             .banner {
-                max-height: 50px; /* Ajuste para telas menores */
+                max-height: 50px;
+                /* Ajuste para telas menores */
             }
         }
 
@@ -168,7 +169,8 @@
             }
 
             .banner {
-                max-height: 200px; /* Ajusta a altura do banner para telas pequenas */
+                max-height: 200px;
+                /* Ajusta a altura do banner para telas pequenas */
             }
 
             .card-container {
@@ -181,7 +183,8 @@
             }
 
             .card {
-                width: 90%; /* Os cards ocupam mais largura em dispositivos móveis */
+                width: 90%;
+                /* Os cards ocupam mais largura em dispositivos móveis */
                 margin-bottom: 15px;
             }
 
@@ -193,18 +196,20 @@
                 font-size: 1em;
             }
 
-            .em-andamento {
+            .status {
                 font-size: 12px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2em; /* Ajuste do tamanho do título para telas muito pequenas */
+                font-size: 2em;
+                /* Ajuste do tamanho do título para telas muito pequenas */
             }
 
             .card {
-                width: 100%; /* Cards ocupando toda a largura da tela */
+                width: 100%;
+                /* Cards ocupando toda a largura da tela */
             }
 
             .card h2 {
@@ -224,25 +229,33 @@
 
     <!-- Cards -->
     <div class="card-container">
-        <a href="campeonato-solos.html" class="card card-em-andamento" style="text-decoration: none; color: inherit; position: relative;">
+        <!-- Card do Campeonato Solo -->
+        <a href="campeonato-solos.html" class="card card-status"
+            style="text-decoration: none; color: inherit; position: relative;">
             <h2><span class="solo-icon">👤🥇</span>Campeonato Solo</h2>
-            <p><strong>Iniciado dia 13/11</strong></p>
-            <p>Acompanhe a tabela do campeonato de Solo.</p>
-            <div class="em-andamento">Em andamento</div>
+            <p><strong>Realizado entre 13 e 16 de novembro</strong></p>
+            <p>Consulte os vencedores do Campeonato Solo.</p>
+            <div class="status">🏁 Encerrado</div>
         </a>
 
         <!-- Card do Campeonato Duplas -->
         <a href="campeonato-duplas.html" class="card">
             <h2><span class="dupla-icon">👥🏆</span>Campeonato Duplas</h2>
-            <p>Ocorrido dia 09/11</p>
-            <p>Confira os vencedores do campeonato de duplas.</p>
+            <p>Realizado no dia 09 de novembro</p>
+            <p>Confira os vencedores do Campeonato de Duplas.</p>
+            <div class="status">🏁 Encerrado</div>
         </a>
+
+        <!-- Card do Campeonato Squads -->
         <a href="index.html" class="card">
             <h2><span class="dupla-icon">👥<br>👥🏆</span>Campeonato Squads</h2>
-            <p>Dezembro</p>
-            <p>Datas ainda sendo definidas!</p>
+            <p>Programado para dezembro</p>
+            <p>As datas ainda estão sendo definidas.</p>
+            <div class="status">⏳ Em votações</div>
         </a>
     </div>
+
+
 </body>
 
 </html>
