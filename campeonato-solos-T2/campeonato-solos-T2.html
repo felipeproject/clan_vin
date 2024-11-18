@@ -67,7 +67,7 @@
     </div>
 
     <script>
-        // Arquivos CSV fixos a serem carregados de "csv"
+        // Arquivos CSV fixos a serem carregados
         const arquivosCSV = [
             "partida-1-Erangel-2024-11-18-14-30.csv",
             "partida-2-Karakin-2024-11-18-15-00.csv",
@@ -87,6 +87,7 @@
         let jogadores = {}; // Armazenará dados de jogadores
         let tables = []; // Array para armazenar as tabelas das partidas
         let currentTableIndex = 0; // Índice da tabela atual
+        let hasValidData = false; // Flag para verificar se há dados válidos
 
         // Sistema de pontuação
         const pontuacaoPosicional = {
@@ -105,18 +106,29 @@
         // Criar um array de promessas para os arquivos CSV
         const csvPromises = arquivosCSV.map((arquivoNome, index) => {
             return fetch('csv/' + arquivoNome + '?timestamp=' + new Date().getTime())  // Força a não utilizar cache
-                .then(response => response.text()) // Lê o arquivo CSV como texto
+                .then(response => {
+                    if (!response.ok) {
+                        return Promise.reject('Arquivo não encontrado: ' + arquivoNome); // Se o arquivo não existir, rejeita a promessa
+                    }
+                    return response.text();
+                })
                 .then(csvData => {
                     return new Promise((resolve, reject) => {
                         Papa.parse(csvData, {
                             header: true, // Diz que a primeira linha é o cabeçalho
                             skipEmptyLines: true, // Ignora linhas vazias
                             complete: function (results) {
+                                if (results.data.length === 0) {
+                                    return resolve(); // Se não houver dados na rodada, ignora
+                                }
+
+                                hasValidData = true; // Marca que há dados válidos
+
                                 // Processa os dados da partida
-                                results.data.forEach((rowData) => {
+                                results.data.forEach((rowData, i) => {
                                     const jogador = rowData['Jogador']; // Nome do jogador
                                     const kills = parseInt(rowData['Kills'], 10) || 0; // Kills do jogador
-                                    const pontos = rowData['Pontos']; // Pontuação
+                                    const posicao = parseInt(rowData['Posição'], 10); // Posição do jogador (1º, 2º, etc)
 
                                     // Atualiza os dados do jogador
                                     if (!jogadores[jogador]) {
@@ -127,8 +139,14 @@
                                         };
                                     }
 
+                                    // Adiciona kills e a pontuação baseada na posição
                                     jogadores[jogador].kills += kills;
-                                    jogadores[jogador].pontos += pontos;
+
+                                    // Adiciona a pontuação de acordo com a posição
+                                    if (pontuacaoPosicional[posicao]) {
+                                        jogadores[jogador].pontos += pontuacaoPosicional[posicao];
+                                    }
+
                                     jogadores[jogador].partidas += 1; // Incrementa a quantidade de partidas disputadas
                                 });
 
@@ -157,8 +175,14 @@
 
         // Quando todos os arquivos CSV forem processados, atualiza a classificação geral
         Promise.all(csvPromises).then(() => {
-            updateClassificacao(jogadores);
-            updateTop5(jogadores);  // Atualiza a tabela de Top 5 Kills
+            if (hasValidData) { // Se houver dados válidos
+                updateClassificacao(jogadores);
+                updateTop5(jogadores);  // Atualiza a tabela de Top 5 Kills
+            } else {
+                // Se não houver dados válidos, esconder as tabelas
+                document.getElementById('classificacao-table').style.display = 'none';
+                document.getElementById('top5-table').style.display = 'none';
+            }
         }).catch(err => console.error('Erro ao carregar algum dos CSVs:', err));
 
         // Função para navegação entre as tabelas
@@ -179,9 +203,6 @@
             document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
         }
 
-        // Expondo a função para navegação
-        window.navigateTable = navigateTable;
-
         // Função para atualizar a classificação geral
         function updateClassificacao(jogadores) {
             const classificacaoBody = document.getElementById('classificacao-body');
@@ -192,7 +213,12 @@
                     pontos: jogadores[jogador].pontos,
                     partidas: jogadores[jogador].partidas
                 }))
-                .sort((a, b) => b.pontos - a.pontos); // Ordena por pontos
+                .sort((a, b) => {
+                    if (b.pontos === a.pontos) {
+                        return b.partidas - a.partidas; // Desempate por partidas
+                    }
+                    return b.pontos - a.pontos; // Ordena por pontos
+                });
 
             classificacaoBody.innerHTML = '';
 
@@ -233,12 +259,6 @@
             });
         }
 
-        // Função para formatar a data e hora (data-hora)
-        function formatDateTime(dataHora) {
-            const [date, time] = dataHora.split('-');
-            return `${date.replace(/(\d{4})(\d{2})(\d{2})/, '$3/$2/$1')} - ${time.substr(0, 2)}:${time.substr(2, 2)}h`;
-        }
-
         // Função para gerar a tabela de uma partida
         function generateTable(data, arquivoNome, numeroPartida) {
             const table = document.createElement('table');
@@ -247,12 +267,10 @@
             const partes = arquivoNome.split('-');
             const partida = partes[1]; // Número da partida
             const mapa = partes[2]; // Nome do mapa
-            const dataHora = partes.slice(3).join('-').replace('.csv', ''); // Data e hora
-            const dataFormatada = formatDateTime(dataHora);
 
-            // Cria o título no formato desejado
+            // Cria o título no formato desejado (somente número da partida e nome do mapa)
             const caption = document.createElement('caption');
-            caption.textContent = `Partida #${partida} - ${mapa} - ${dataFormatada}`;
+            caption.textContent = `Partida #${partida} - ${mapa}`;
             table.appendChild(caption);
 
             const thead = document.createElement('thead');
