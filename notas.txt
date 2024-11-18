@@ -1,0 +1,11 @@
+
+/campeonato-solos-T1
+├── campeonato-solos-T1.html  (arquivo HTML principal)
+├── campeonato-solos-T1.css   (arquivo CSS para estilos)
+└── dados
+    └── campeonato-solos-T2
+        ├── partidas.json     (arquivo JSON com informações das partidas)
+        ├── partida_1.csv     (arquivo CSV com os dados da partida 1)
+        ├── partida_2.csv     (arquivo CSV com os dados da partida 2)
+        ├── partida_3.csv     (arquivo CSV com os dados da partida 3)
+        └── ...               (outros arquivos CSV das partidas)

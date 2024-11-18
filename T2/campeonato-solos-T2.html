@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato de Solos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="campeonato-solos-T1.css"> <!-- Referência ao arquivo CSS externo -->
+</head>
+
+<body>
+
+    <!-- Botão de Voltar -->
+    <button class="button" onclick="window.history.back()">Voltar</button>
+
+    <h1>Campeonato de Solos</h1>
+
+    <!-- Container principal para as tabelas -->
+    <div class="container">
+        <!-- Tabela Geral (Classificação Geral) -->
+        <table id="classificacao-table">
+            <caption>Classificação Geral</caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Nome</th>
+                    <th>Kills</th>
+                    <th>Partidas Disputadas</th>
+                    <th>Total Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="classificacao-body">
+                <!-- Dados da classificação geral serão inseridos aqui -->
+            </tbody>
+        </table>
+
+        <!-- Coluna para Top 5 e Rodadas -->
+        <div class="flex-column">
+            <!-- Navegação entre as tabelas de resultados de jogos -->
+            <div id="nav-buttons">
+                <button id="prev-btn" onclick="navigateTable(-1)" disabled>←</button>
+                <button id="next-btn" onclick="navigateTable(1)"> →</button>
+            </div>
+            <!-- Tabela de Rodadas -->
+            <table id="tables">
+                <thead>
+                </thead>
+                <tbody id="tables-body">
+                    <!-- Dados das rodadas serão inseridos aqui -->
+                </tbody>
+            </table>
+            <!-- Tabela Top 5 Kills -->
+            <table id="top5-table">
+                <caption>Top 5 Kills</caption>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Nome</th>
+                        <th>Kills</th>
+                    </tr>
+                </thead>
+                <tbody id="top5-body">
+                    <!-- Dados do Top 5 Kills serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Carregar a lista de partidas do arquivo JSON
+            fetch('partidas.json?timestamp=' + new Date().getTime())  // Força o navegador a carregar a versão mais recente
+                .then(response => response.json()) // Lê o arquivo JSON
+                .then(data => {
+                    const partidas = data.partidas || [];
+
+                    // Inverter a ordem das partidas para começar com a última
+                    partidas.reverse();  // Inverte a ordem das partidas para começar pela última
+
+                    const tablesContainer = document.getElementById('tables-body');
+                    const classificacaoBody = document.getElementById('classificacao-body');
+                    const top5Body = document.getElementById('top5-body');
+                    let jogadores = {}; // Armazenará dados de jogadores
+                    let tables = []; // Array para armazenar as tabelas das partidas
+                    let currentTableIndex = 0; // Índice da tabela atual
+
+                    // Sistema de pontuação
+                    const pontuacaoPosicional = {
+                        1: 10,
+                        2: 9,
+                        3: 8,
+                        4: 7,
+                        5: 6,
+                        6: 5,
+                        7: 4,
+                        8: 3,
+                        9: 2,
+                        10: 1
+                    };
+
+                    // Processar os arquivos CSV conforme a ordem invertida
+                    partidas.forEach((partida, index) => {
+                        const arquivoNomeBasico = extractFileName(partida.arquivo); // Extrai o nome básico do arquivo
+
+                        fetch(partida.arquivo + '?timestamp=' + new Date().getTime())  // Força a não utilizar cache
+                            .then(response => response.text()) // Lê o arquivo CSV como texto
+                            .then(csvData => {
+                                Papa.parse(csvData, {
+                                    header: true, // Diz que a primeira linha é o cabeçalho
+                                    skipEmptyLines: true, // Ignora linhas vazias
+                                    complete: function (results) {
+                                        // Processa os dados da partida
+                                        results.data.forEach((rowData, i) => {
+                                            const jogador = rowData['Name']; // Nome do jogador
+                                            const kills = parseInt(rowData['Kills'], 10) || 0; // Kills do jogador
+                                            const posicao = i + 1; // Posição do jogador na partida (index + 1)
+                                            const pontosPosicionais = pontuacaoPosicional[posicao] || 0; // Pontuação posicional
+                                            const totalPontos = kills + pontosPosicionais; // Total de pontos (kills + posição)
+
+                                            // Atualiza os dados do jogador
+                                            if (!jogadores[jogador]) {
+                                                jogadores[jogador] = {
+                                                    kills: 0,
+                                                    pontos: 0,
+                                                    partidas: 0
+                                                };
+                                            }
+
+                                            jogadores[jogador].kills += kills;
+                                            jogadores[jogador].pontos += totalPontos;
+                                            jogadores[jogador].partidas += 1; // Incrementa a quantidade de partidas disputadas
+                                        });
+
+                                        // Gerar a tabela do jogo e adicioná-la ao array
+                                        const tableElement = generateTable(results.data, arquivoNomeBasico, partida.numero);
+                                        tables.push(tableElement);
+                                        tablesContainer.appendChild(tableElement);
+
+                                        // Inicializa a primeira tabela
+                                        if (index === 0) {
+                                            tableElement.style.display = 'block'; // Exibe a primeira tabela
+                                        } else {
+                                            tableElement.style.display = 'none'; // Mantém as outras tabelas ocultas
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Erro ao processar o CSV:', error);
+                                    }
+                                });
+                            })
+                            .catch(err => console.error('Erro ao carregar o CSV:', err));
+                    });
+
+                    // Função para navegar entre as tabelas
+                    function navigateTable(direction) {
+                        // Esconde a tabela atual
+                        tables[currentTableIndex].style.display = 'none';
+
+                        // Atualiza o índice da tabela atual
+                        currentTableIndex += direction;
+
+                        // Exibe a nova tabela
+                        tables[currentTableIndex].style.display = 'block';
+
+                        // Atualiza os botões de navegação
+                        document.getElementById('prev-btn').disabled = currentTableIndex === 0;
+                        document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
+                    }
+
+                    // Expondo a função para navegação
+                    window.navigateTable = navigateTable;
+
+                    // Quando todos os arquivos CSV forem processados, atualiza a classificação geral
+                    setTimeout(() => {
+                        updateClassificacao(jogadores);
+                        updateTop5(jogadores);  // Atualiza a tabela de Top 5 Kills
+                    }, 1000);
+                })
+                .catch(err => console.error('Erro ao carregar o arquivo JSON:', err));
+        });
+
+        // Função para extrair o nome básico do arquivo sem a data/hora
+        function extractFileName(arquivo) {
+            // Remove a parte do nome que é a data e hora (ex: "2024_11_13_21h32h24_UTC.csv")
+            const nomeBasico = arquivo.split('_')[0] + "_" + arquivo.split('_')[1] + "_" + arquivo.split('_')[2];
+            return nomeBasico;
+        }
+
+        // Função para atualizar a tabela de classificação geral
+        function updateClassificacao(jogadores) {
+            const classificacaoBody = document.getElementById('classificacao-body');
+
+            // Ordena os jogadores por total de pontos (em ordem decrescente)
+            const jogadoresOrdenados = Object.keys(jogadores)
+                .map(jogador => ({
+                    jogador,
+                    kills: jogadores[jogador].kills,
+                    pontos: jogadores[jogador].pontos,
+                    partidas: jogadores[jogador].partidas
+                }))
+                .sort((a, b) => b.pontos - a.pontos || b.kills - a.kills || b.partidas - a.partidas); // Ordena por pontos, kills e partidas
+
+            // Limpa a tabela de classificação
+            classificacaoBody.innerHTML = '';
+
+            // Preenche a tabela com os jogadores e seus pontos
+            jogadoresOrdenados.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                const tdRank = document.createElement('td');
+                tdRank.textContent = index + 1;
+                const tdName = document.createElement('td');
+                tdName.textContent = item.jogador;
+                const tdKills = document.createElement('td');
+                tdKills.textContent = item.kills;
+                const tdPartidas = document.createElement('td');
+                tdPartidas.textContent = item.partidas;
+                const tdPontos = document.createElement('td');
+                tdPontos.textContent = item.pontos;
+
+                tr.appendChild(tdRank);
+                tr.appendChild(tdName);
+                tr.appendChild(tdKills);
+                tr.appendChild(tdPartidas);
+                tr.appendChild(tdPontos);
+                classificacaoBody.appendChild(tr);
+            });
+        }
+
+        // Função para atualizar o Top 5 Kills
+        function updateTop5(jogadores) {
+            const top5Body = document.getElementById('top5-body');
+
+            // Ordena os jogadores por kills (em ordem decrescente)
+            const top5Kills = Object.keys(jogadores)
+                .map(jogador => ({
+                    jogador,
+                    kills: jogadores[jogador].kills
+                }))
+                .sort((a, b) => b.kills - a.kills); // Ordena por kills
+
+            // Limpa a tabela de Top 5 Kills
+            top5Body.innerHTML = '';
+
+            // Preenche a tabela com os top 5 jogadores
+            top5Kills.slice(0, 5).forEach((item, index) => {
+                const tr = document.createElement('tr');
+                const tdRank = document.createElement('td');
+                tdRank.textContent = index + 1;
+                const tdName = document.createElement('td');
+                tdName.textContent = item.jogador;
+                const tdKills = document.createElement('td');
+                tdKills.textContent = item.kills;
+
+                tr.appendChild(tdRank);
+                tr.appendChild(tdName);
+                tr.appendChild(tdKills);
+                top5Body.appendChild(tr);
+            });
+        }
+
+        // Função para gerar a tabela de resultados de uma partida
+        function generateTable(data, nomeBasico, numero) {
+            const table = document.createElement('table');
+            const caption = document.createElement('caption');
+            caption.textContent = `Partida ${numero} - ${nomeBasico}`;
+            table.appendChild(caption);
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const headers = ['Posição', 'Nome', 'Kills', 'Pontuação'];
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            const tbody = document.createElement('tbody');
+
+            data.forEach((rowData, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${rowData['Name']}</td>
+                    <td>${rowData['Kills']}</td>
+                    <td>${rowData['Kills'] + (10 - index)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            return table;
+        }
+    </script>
+
+</body>
+
+</html>
