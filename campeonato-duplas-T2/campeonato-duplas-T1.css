@@ -1,0 +1,139 @@
+/* estilos.css */
+
+/* Definições de cores */
+:root {
+    --cor-fundo: #1b1b1b;
+    --cor-texto-principal: #ecf0f1;
+    --cor-botao: #0082ce; /* Cor mais vibrante para os botões */
+    --cor-botao-hover: #006bb3; /* Cor de hover mais escura */
+    --cor-tabela-fundo: #34495e;
+    --cor-tabela-linha-odd: #2f3b44; /* Cor mais escura para linhas ímpares */
+    --cor-tabela-linha-even: #34495e;
+    --cor-tabela-hover: #c5b90c23; /* Cor de hover da tabela mais vibrante */
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    padding: 20px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Botão de voltar */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--cor-botao);
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: var(--cor-botao-hover);
+    transform: scale(1.05);
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    color: var(--cor-texto-principal);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: var(--cor-tabela-fundo);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #bdc3c7;
+    font-size: 1rem;
+}
+
+th {
+    background-color: var(--cor-botao);
+    color: #fff;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: var(--cor-tabela-linha-even);
+}
+
+tr:nth-child(odd) {
+    background-color: var(--cor-tabela-linha-odd);
+}
+
+td {
+    color: var(--cor-texto-principal);
+}
+
+tr:hover {
+    background-color: var(--cor-tabela-hover);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    table {
+        margin: 10px 0;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .back-button {
+        padding: 8px 18px;
+        font-size: 12px;
+    }
+}
