@@ -38,18 +38,18 @@
                 <thead></thead>
                 <tbody id="tables-body"></tbody>
             </table>
-            <table id="top5-table">
-                <caption>Top 5 Kills</caption>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Jogador</th>
-                        <th>Kills</th>
-                    </tr>
-                </thead>
-                <tbody id="top5-body"></tbody>
-            </table>
         </div>
+        <table id="top5-table">
+            <caption>Top 5 Kills</caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Kills</th>
+                </tr>
+            </thead>
+            <tbody id="top5-body"></tbody>
+        </table>
     </div>
 
     <script>
@@ -69,24 +69,12 @@
         const tablesContainer = document.getElementById('tables-body');
         const classificacaoBody = document.getElementById('classificacao-body');
         const top5Body = document.getElementById('top5-body');
-        let jogadores = {};
+        let jogadores = {}; // Armazena informações de jogadores
         let tables = [];
         let currentTableIndex = 0;
         let hasValidData = false;
 
-        const pontuacaoPosicional = {
-            1: 10,
-            2: 9,
-            3: 8,
-            4: 7,
-            5: 6,
-            6: 5,
-            7: 4,
-            8: 3,
-            9: 2,
-            10: 1
-        };
-
+        // Carregando todos os arquivos CSV
         const csvPromises = arquivosCSV.map((arquivoNome, index) => {
             return fetch('csv/' + arquivoNome + '?timestamp=' + new Date().getTime())
                 .then(response => {
@@ -107,11 +95,13 @@
 
                                 hasValidData = true;
 
-                                results.data.forEach((rowData, i) => {
+                                // Processando dados de cada partida
+                                results.data.forEach((rowData) => {
                                     const jogador = rowData['Jogador'];
                                     const kills = parseInt(rowData['Kills'], 10) || 0;
-                                    const posicao = parseInt(rowData['Posição'], 10);
+                                    const pontos = parseInt(rowData['Pontos'], 10) || 0;
 
+                                    // Inicializa o jogador caso não exista
                                     if (!jogadores[jogador]) {
                                         jogadores[jogador] = {
                                             kills: 0,
@@ -120,15 +110,13 @@
                                         };
                                     }
 
+                                    // Acumula kills e pontos
                                     jogadores[jogador].kills += kills;
-
-                                    if (pontuacaoPosicional[posicao]) {
-                                        jogadores[jogador].pontos += pontuacaoPosicional[posicao];
-                                    }
-
-                                    jogadores[jogador].partidas += 1;
+                                    jogadores[jogador].pontos += pontos;
+                                    jogadores[jogador].partidas += 1; // Conta as partidas disputadas
                                 });
 
+                                // Gerar a tabela de cada partida
                                 const tableElement = generateTable(results.data, arquivoNome, index + 1);
                                 tables.push(tableElement);
                                 tablesContainer.appendChild(tableElement);
@@ -150,6 +138,7 @@
                 .catch(err => console.error('Erro ao carregar o CSV:', err));
         });
 
+        // Espera todos os CSVs serem carregados antes de atualizar a classificação
         Promise.all(csvPromises).then(() => {
             if (hasValidData) {
                 updateClassificacao(jogadores);
@@ -160,21 +149,21 @@
             }
         }).catch(err => console.error('Erro ao carregar algum dos CSVs:', err));
 
+        // Função para navegar entre as partidas
         function navigateTable(direction) {
             if (tables[currentTableIndex]) {
                 tables[currentTableIndex].style.display = 'none';
             }
 
             currentTableIndex = Math.max(0, Math.min(currentTableIndex + direction, tables.length - 1));
-
             tables[currentTableIndex].style.display = 'block';
 
             document.getElementById('prev-btn').disabled = currentTableIndex === 0;
             document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
         }
 
+        // Atualiza a tabela de classificação geral
         function updateClassificacao(jogadores) {
-            const classificacaoBody = document.getElementById('classificacao-body');
             const classificacaoOrdenada = Object.keys(jogadores)
                 .map(jogador => ({
                     jogador,
@@ -190,7 +179,6 @@
                 });
 
             classificacaoBody.innerHTML = '';
-
             classificacaoOrdenada.forEach((item, index) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
@@ -203,8 +191,8 @@
             });
         }
 
+        // Atualiza a tabela do Top 5 de Kills
         function updateTop5(jogadores) {
-            const top5Body = document.getElementById('top5-body');
             const top5Ordenado = Object.keys(jogadores)
                 .map(jogador => ({
                     jogador,
@@ -214,7 +202,6 @@
                 .slice(0, 5);
 
             top5Body.innerHTML = '';
-
             top5Ordenado.forEach((item, index) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
@@ -225,6 +212,7 @@
             });
         }
 
+        // Gera a tabela de uma partida
         function generateTable(data, arquivoNome, numeroPartida) {
             const table = document.createElement('table');
 
@@ -264,7 +252,6 @@
 
             return table;
         }
-
     </script>
 </body>
 
