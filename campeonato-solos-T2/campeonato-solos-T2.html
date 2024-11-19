@@ -9,23 +9,11 @@
 
     <!-- CSS embutido -->
     <style>
-        /* Definindo as cores personalizadas */
-        :root {
-            --cor-fundo: #1b1b1b;
-            --cor-texto-principal: #ecf0f1;
-            --cor-status-em-andamento: #01331e;
-            --cor-status-em-votacao: #583a0a9d;
-            --cor-status-encerrado: #7f8c8d28;
-            --cor-link: #1cceaa; /* Cor do link */
-            --cor-link-hover: #00cec9; /* Cor do link ao passar o mouse */
-            --cor-borda: rgba(255, 255, 255, 0.1); /* Cor da borda */
-        }
-
-        /* Estilos Gerais da Página */
+        /* Estilos gerais da página */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: var(--cor-fundo); /* Cor de fundo */
-            color: var(--cor-texto-principal); /* Cor do texto principal */
+            background-color: #1b1b1b;
+            color: #ecf0f1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,12 +23,54 @@
             overflow-x: hidden;
         }
 
-        /* Estilo do botão de voltar */
+        h1 {
+            text-align: center;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            max-width: 1000px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.425);
+        }
+
+        th {
+            background-color: #583a0a9d;
+            color: #161c22;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7f8c8d9d;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #95a5a6da;
+        }
+
+        td {
+            color: #ecf0f1;
+        }
+
+        tr:hover {
+            background-color: #01331e;
+        }
+
         .back-button {
             position: fixed;
             top: 20px;
             left: 20px;
-            background-color: var(--cor-link); /* Cor personalizada */
+            background-color: #1cceaa;
             color: #2c3e50;
             padding: 10px 20px;
             border: none;
@@ -51,53 +81,7 @@
         }
 
         .back-button:hover {
-            background-color: var(--cor-link-hover); /* Cor de hover personalizada */
-        }
-
-        /* Estilo para o título principal */
-        h1 {
-            text-align: center;
-            color: var(--cor-texto-principal);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Estilo das tabelas */
-        table {
-            max-width: 1000px;
-            border-collapse: collapse;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid var(--cor-borda);
-        }
-
-        th {
-            background-color: var(--cor-status-em-votacao);
-            color: #161c22;
-        }
-
-        tr:nth-child(even) {
-            background-color: #7f8c8d;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #95a5a6;
-        }
-
-        td {
-            color: var(--cor-texto-principal);
-        }
-
-        tr:hover {
-            background-color: var(--cor-status-em-andamento);
+            background-color: #00cec9;
         }
 
         /* Layout Flexbox para as tabelas */
@@ -112,7 +96,6 @@
             flex-direction: column;
         }
 
-        /* Estilo para a navegação de tabelas */
         #nav-buttons {
             text-align: center;
         }
@@ -121,7 +104,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: var(--cor-link);
+            background-color: #1cceaa;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
@@ -133,7 +116,7 @@
         }
 
         #nav-buttons button:hover:not(:disabled) {
-            background-color: var(--cor-link-hover);
+            background-color: #00cec9;
         }
     </style>
 </head>
@@ -145,7 +128,9 @@
 
     <div class="container">
         <table id="classificacao-table">
-            <caption>Classificação Geral</caption>
+            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
+                Classificação Geral
+            </caption>
             <thead>
                 <tr>
                     <th>Rank</th>
@@ -163,14 +148,17 @@
                 <tbody id="tables-body"></tbody>
                 <thead></thead>
             </table>
-            <div id="nav-buttons">
+            <div id="nav-buttons" style="margin-top: 10px; text-align: center;">
                 <br>
                 <button id="prev-btn" onclick="navigateTable(-1)" disabled>←</button>
                 <button id="next-btn" onclick="navigateTable(1)"> →</button>
             </div>
         </div>
+
         <table id="top5-table">
-            <caption>Top 5 Kills</caption>
+            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
+                Top 5 Kills
+            </caption>
             <thead>
                 <tr>
                     <th>Rank</th>
@@ -296,6 +284,7 @@
         function updateClassificacao(jogadores) {
             const classificacaoOrdenada = Object.keys(jogadores)
                 .map(jogador => ({
+
                     jogador,
                     kills: jogadores[jogador].kills,
                     pontos: jogadores[jogador].pontos,
