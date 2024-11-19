@@ -17,7 +17,6 @@
             --cor-destaque: #0082ce;
             --cor-link: #1cceaa;
             --cor-link-hover: #00cec9;
-            --cor-borda: #2d3436;
         }
 
         /* Resetando margens e padding */
@@ -36,36 +35,36 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
             overflow-x: hidden;
-            background: #141414;
         }
 
         /* Título principal */
         h1 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             color: var(--cor-texto-principal);
             text-align: center;
             margin-bottom: 30px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* Banner */
         .banner {
             width: 100%;
-            max-width: 1000px;
-            margin-bottom: 20px;
-            border-radius: 10px;
+            max-width: 500px;
+            margin-bottom: 30px;
         }
 
         /* Lista de Campeonatos */
         .campeonatos-lista {
             width: 100%;
-            max-width: 1000px;
-            padding: 0 10px;
-            margin-bottom: 50px;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         /* Linhas dos Campeonatos */
@@ -73,59 +72,59 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--cor-borda);
+            background: #2d3436;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
             color: var(--cor-texto-principal);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             overflow: hidden;
         }
 
         .campeonato-linha:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         }
 
+        /* Detalhes do Campeonato */
         .campeonato-linha h2 {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
             color: var(--cor-texto-principal);
             display: flex;
             align-items: center;
             gap: 10px;
+            text-align: left;
         }
 
         .campeonato-linha p {
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: var(--cor-texto-secundario);
             margin-top: 5px;
         }
 
         /* Status dos Campeonatos */
         .status {
+            font-size: 1.2em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
             font-weight: bold;
-            padding: 5px 15px;
-            border-radius: 25px;
-            text-transform: uppercase;
         }
 
         .status-em-andamento {
             background-color: var(--cor-status-em-andamento);
-            color: white;
             animation: piscar 1.5s infinite alternate;
         }
 
         .status-em-votacao {
             background-color: var(--cor-status-em-votacao);
-            color: white;
         }
 
         .status-encerrado {
             background-color: var(--cor-status-encerrado);
-            color: white;
         }
 
         /* Efeito de Piscar */
@@ -135,7 +134,7 @@
             }
 
             50% {
-                opacity: 0.3;
+                opacity: 0.2;
             }
 
             100% {
@@ -148,15 +147,15 @@
             border: none;
             height: 1px;
             background-color: var(--cor-texto-secundario);
-            opacity: 0.5;
             margin: 20px 0;
+            opacity: 0.5;
         }
 
         /* Títulos das seções (Atual, Futuro, Passado) */
         h2 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: var(--cor-texto-principal);
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: center;
             text-transform: uppercase;
         }
@@ -166,6 +165,7 @@
             .campeonato-linha {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 20px;
             }
 
             .campeonato-linha h2 {
@@ -180,11 +180,16 @@
                 font-size: 1em;
                 margin-top: 10px;
             }
+
+            .imagem-campeonato {
+                width: 180px;
+                height: 100px;
+            }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
 
             .campeonato-linha {
@@ -202,30 +207,19 @@
             .status {
                 font-size: 0.9em;
             }
+
+            .imagem-campeonato {
+                width: 150px;
+                height: 90px;
+            }
         }
 
         /* Estilo para as imagens representativas dos campeonatos */
         .imagem-campeonato {
-            width: 220px;
-            height: 130px;
-            border-radius: 12px;
+            width: 200px;
+            height: 120px;
+            border-radius: 10%;
             object-fit: cover;
-        }
-
-        /* Ajustes no layout das informações e imagens */
-        .detalhes {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .detalhes > div {
-            flex: 1;
-        }
-
-        .imagem-campeonato-container {
-            flex-shrink: 0;
             margin-left: 20px;
         }
     </style>
@@ -233,62 +227,86 @@
 
 <body>
     <!-- Banner da página -->
-    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
-
+    
+    
     <!-- Título principal -->
-    <h1>Campeonatos</h1>
+    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
+    <h1>Campeonatos internos do clan [VIN]</h1>
 
     <!-- Lista de Campeonatos -->
     <div class="campeonatos-lista">
         <!-- Seção Atual -->
         <h2>🔥 Ocorrendo</h2>
         <hr class="separador">
-        <a href="campeonato-solos-T2/campeonato-solos-T2.html" class="campeonato-linha">
+        <a href="campeonato-solos-T2/campeonato-solos-T2.html" class="campeonato-linha"
+            onclick="checkPageExistence(event, 'campeonato-solos-T2/campeonato-solos-T2.html')">
             <div class="detalhes">
-                <div>
-                    <h2><span>👤🥇</span>Campeonato Solo #2 - Temporada</h2>
-                    <p><strong>Início hoje</strong></p>
-                    <p>Consulte os melhores do Campeonato Solo: 1º, 2º e 3º Lugar.</p>
-                    <div class="status status-em-andamento">✅ Em andamento..</div>
-                </div>
-                <div class="imagem-campeonato-container">
-                    <img src="campeonato-solo.png" alt="Imagem Campeonato Solo" class="imagem-campeonato">
-                </div>
+                <h2><span>👤🥇</span>Campeonato Solo #2 - Temporada</h2>
+                <p><strong>Início hoje</strong></p>
+                <p>Consulte os melhores do Campeonato Solo: 1º, 2º e 3º Lugar.</p>
+                <img src="campeonato-solo.png" alt="Imagem Campeonato Solo" class="imagem-campeonato">
+                <div class="status status-em-andamento">✅ Em andamento</div>
             </div>
         </a>
 
+        <!-- Seção Próximos -->
         <h2>⚡ Próximos</h2>
         <hr class="separador">
-        <a href="campeonato-duplas-T2/campeonato-duplas-T2.html" class="campeonato-linha">
+        <a href="campeonato-duplas-T2/campeonato-duplas-T2.html" class="campeonato-linha"
+            onclick="checkPageExistence(event, 'campeonato-duplas-T2.html')">
             <div class="detalhes">
-                <div>
-                    <h2><span>👥🏆</span>Campeonato Duplas #2 - Temporada</h2>
-                    <p>Programado para início em 25/11</p>
-                    <p>Horários e datas ainda estão sendo definidas.</p>
-                    <div class="status status-em-votacao">⏳ Em votação</div>
-                </div>
-                <div class="imagem-campeonato-container">
-                    <img src="campeonato-duplas.png" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
-                </div>
+                <h2><span>👥🏆</span>Campeonato Duplas #2 - Temporada</h2>
+                <p>Programado para início em 25/11</p>
+                <p>Horários e datas ainda estão sendo definidas.</p>
+                <img src="campeonato-duplas.png" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
+                <div class="status status-em-votacao">⏳ Em votação</div>
             </div>
         </a>
 
+        <!-- Seção Encerrados -->
         <h2>🏁 Encerrados</h2>
         <hr class="separador">
-        <a href="campeonato-solos-T1/campeonato-solos-T1.html" class="campeonato-linha">
+        <a href="campeonato-solos-T1/campeonato-solos-T1.html" class="campeonato-linha"
+            onclick="checkPageExistence(event, 'campeonato-solos-T1/campeonato-solos-T1.html')">
             <div class="detalhes">
-                <div>
-                    <h2><span>👤🥇</span>Campeonato Solo #1 - Temporada</h2>
-                    <p><strong>Realizado entre 6 a 9 de novembro</strong></p>
-                    <p>Veja os resultados do campeonato solo anterior.</p>
-                    <div class="status status-encerrado">🏆 Vencedor: xA_N_D_R_Ex</div>
-                </div>
-                <div class="imagem-campeonato-container">
-                    <img src="campeonato-solo.png" alt="Imagem Campeonato Solo" class="imagem-campeonato">
-                </div>
+                <h2><span>👤🥇</span>Campeonato Solo #1 - Temporada</h2>
+                <p><strong>Realizado entre 6 a 9 de novembro</strong></p>
+                <p>Veja os resultados do campeonato solo anterior.</p>
+                <img src="campeonato-solo.png" alt="Imagem Campeonato Solo" class="imagem-campeonato">
+                <div class="status status-encerrado">🏆 Vencedor: xA_N_D_R_Ex</div>
+            </div>
+        </a>
+
+        <a href="campeonato-duplas-T1/campeonato-duplas-T1.html" class="campeonato-linha"
+            onclick="checkPageExistence(event, 'campeonato-duplas-T1/campeonato-duplas-T1.html')">
+            <div class="detalhes">
+                <h2><span>👥🏆</span>Campeonato Duplas #1 - Temporada</h2>
+                <p>Realizado no dia 09 de novembro</p>
+                <p>Confira a dupla vencedora.</p>
+                <img src="campeonato-duplas.png" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
+                <div class="status status-encerrado">🏆 Vencedores: gabrielhoffmann, Kisaki121</div>
             </div>
         </a>
     </div>
+
+    <script>
+        // Função para verificar se o arquivo existe
+        function checkPageExistence(event, url) {
+            event.preventDefault(); // Impede o redirecionamento imediato
+
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = url; // Se o arquivo existir, redireciona
+                    } else {
+                        alert('Página indisponível ou não encontrada!'); // Caso contrário, exibe uma mensagem
+                    }
+                })
+                .catch(() => {
+                    alert('Página indisponível ou não encontrada!');
+                });
+        }
+    </script>
 </body>
 
 </html>
