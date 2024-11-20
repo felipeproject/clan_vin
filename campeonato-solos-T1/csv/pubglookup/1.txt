@@ -1,0 +1,11 @@
+Data (Horário de Brasília) - Arquivo
+2024-11-13 18:32:24 - Sanhok_normal_solo_2024_11_13_21h32h24_UTC.csv
+2024-11-13 21:07:43 - Erangel_normal_solo_2024_11_14_00h07h43_UTC.csv
+2024-11-14 18:53:22 - Miramar_normal_solo_2024_11_14_21h53h22_UTC.csv
+2024-11-14 21:17:46 - Vikendi_normal_solo_2024_11_15_00h17h46_UTC.csv
+2024-11-15 19:10:23 - Rondo_normal_solo_2024_11_15_22h10h23_UTC.csv
+2024-11-15 19:47:36 - Taego_normal_solo_2024_11_15_22h47h36_UTC.csv
+2024-11-15 21:08:21 - Vikendi_normal_solo_2024_11_16_00h08h21_UTC.csv
+2024-11-15 22:02:45 - Sanhok_normal_solo_2024_11_16_01h02h45_UTC.csv
+2024-11-16 19:48:07 - Miramar_normal_solo_2024_11_16_22h48h07_UTC.csv
+2024-11-16 21:06:39 - Erangel_normal_solo_2024_11_17_00h06h39_UTC.csv

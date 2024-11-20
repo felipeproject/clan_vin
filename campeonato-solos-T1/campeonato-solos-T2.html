@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato de Solos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <!-- CSS embutido -->
+    <style>
+        /* Estilos gerais da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1b1b1b;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            max-width: 1000px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.425);
+        }
+
+        th {
+            background-color: #583a0a9d;
+            color: #161c22;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7f8c8d9d;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #95a5a6da;
+        }
+
+        td {
+            color: #ecf0f1;
+        }
+
+        tr:hover {
+            background-color: #01331e;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #1cceaa;
+            color: #2c3e50;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #00cec9;
+        }
+
+        /* Layout Flexbox para as tabelas */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #nav-buttons {
+            text-align: center;
+        }
+
+        #nav-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #1cceaa;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #nav-buttons button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        #nav-buttons button:hover:not(:disabled) {
+            background-color: #00cec9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="back-button" onclick="window.history.back();">Voltar</button>
+    <h1>Campeonato de Solos</h1>
+
+    <div class="container">
+        <table id="classificacao-table">
+            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
+                Classificação Geral
+            </caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Kills</th>
+                    <th>Partidas Disputadas</th>
+                    <th>Total Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="classificacao-body"></tbody>
+        </table>
+
+        <div class="flex-column">
+            <table id="tables">
+                <tbody id="tables-body"></tbody>
+                <thead></thead>
+            </table>
+            <div id="nav-buttons" style="margin-top: 10px; text-align: center;">
+                <br>
+                <button id="prev-btn" onclick="navigateTable(-1)" disabled>←</button>
+                <button id="next-btn" onclick="navigateTable(1)"> →</button>
+            </div>
+        </div>
+
+        <table id="top5-table">
+            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
+                Top 5 Kills
+            </caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Kills</th>
+                </tr>
+            </thead>
+            <tbody id="top5-body"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const arquivosCSV = [
+            "partida-1-Sanhok.csv",
+            "partida-2-Erangel.csv",
+            "partida-3-Miramar.csv",
+            "partida-4-Vikendi.csv",
+            "partida-5-Rondo.csv",
+            "partida-6-Taego.csv",
+            "partida-7-Vikendi.csv",
+            "partida-8-Sanhok.csv",
+            "partida-9-Miramar.csv",
+            "partida-10-Erangel.csv"
+        ];
+
+        const tablesContainer = document.getElementById('tables-body');
+        const classificacaoBody = document.getElementById('classificacao-body');
+        const top5Body = document.getElementById('top5-body');
+        let jogadores = {}; // Armazena informações de jogadores
+        let tables = [];
+        let currentTableIndex = 0;
+        let hasValidData = false;
+
+        // Carregando todos os arquivos CSV
+        const csvPromises = arquivosCSV.map((arquivoNome, index) => {
+            return fetch('csv/' + arquivoNome + '?timestamp=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) {
+                        return Promise.reject('Arquivo não encontrado: ' + arquivoNome);
+                    }
+                    return response.text();
+                })
+                .then(csvData => {
+                    return new Promise((resolve, reject) => {
+                        Papa.parse(csvData, {
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: function (results) {
+                                if (results.data.length === 0) {
+                                    return resolve();
+                                }
+
+                                hasValidData = true;
+
+                                // Processando dados de cada partida
+                                results.data.forEach((rowData) => {
+                                    const jogador = rowData['Jogador'];
+                                    const kills = parseInt(rowData['Kills'], 10) || 0;
+                                    const pontos = parseInt(rowData['Pontos'], 10) || 0;
+
+                                    // Inicializa o jogador caso não exista
+                                    if (!jogadores[jogador]) {
+                                        jogadores[jogador] = {
+                                            kills: 0,
+                                            pontos: 0,
+                                            partidas: 0
+                                        };
+                                    }
+
+                                    // Acumula kills e pontos
+                                    jogadores[jogador].kills += kills;
+                                    jogadores[jogador].pontos += pontos;
+                                    jogadores[jogador].partidas += 1; // Conta as partidas disputadas
+                                });
+
+                                // Gerar a tabela de cada partida
+                                const tableElement = generateTable(results.data, arquivoNome, index + 1);
+                                tables.push(tableElement);
+                                tablesContainer.appendChild(tableElement);
+
+                                if (index === 0) {
+                                    tableElement.style.display = 'block';
+                                } else {
+                                    tableElement.style.display = 'none';
+                                }
+
+                                resolve();
+                            },
+                            error: function (error) {
+                                reject(error);
+                            }
+                        });
+                    });
+                })
+                .catch(err => console.error('Erro ao carregar o CSV:', err));
+        });
+
+        // Espera todos os CSVs serem carregados antes de atualizar a classificação
+        Promise.all(csvPromises).then(() => {
+            if (hasValidData) {
+                updateClassificacao(jogadores);
+                updateTop5(jogadores);
+            } else {
+                document.getElementById('classificacao-table').style.display = 'none';
+                document.getElementById('top5-table').style.display = 'none';
+            }
+        }).catch(err => console.error('Erro ao carregar algum dos CSVs:', err));
+
+        // Função para navegar entre as partidas
+        function navigateTable(direction) {
+            if (tables[currentTableIndex]) {
+                tables[currentTableIndex].style.display = 'none';
+            }
+
+            currentTableIndex = Math.max(0, Math.min(currentTableIndex + direction, tables.length - 1));
+            tables[currentTableIndex].style.display = 'block';
+
+            document.getElementById('prev-btn').disabled = currentTableIndex === 0;
+            document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
+        }
+
+        // Atualiza a tabela de classificação geral
+        function updateClassificacao(jogadores) {
+            const classificacaoOrdenada = Object.keys(jogadores)
+                .map(jogador => ({
+
+                    jogador,
+                    kills: jogadores[jogador].kills,
+                    pontos: jogadores[jogador].pontos,
+                    partidas: jogadores[jogador].partidas
+                }))
+                .sort((a, b) => {
+                    if (b.pontos === a.pontos) {
+                        return b.partidas - a.partidas;
+                    }
+                    return b.pontos - a.pontos;
+                });
+
+            classificacaoBody.innerHTML = '';
+            classificacaoOrdenada.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML =
+                    `<td>${index + 1}</td>
+                    <td>${item.jogador}</td>
+                    <td>${item.kills}</td>
+                    <td>${item.partidas}</td>
+                    <td>${item.pontos}</td>`;
+                classificacaoBody.appendChild(tr);
+            });
+        }
+
+        // Atualiza a tabela do Top 5 de Kills
+        function updateTop5(jogadores) {
+            const top5Ordenado = Object.keys(jogadores)
+                .map(jogador => ({
+                    jogador,
+                    kills: jogadores[jogador].kills
+                }))
+                .sort((a, b) => b.kills - a.kills)
+                .slice(0, 5);
+
+            top5Body.innerHTML = '';
+            top5Ordenado.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML =
+                    `<td>${index + 1}</td>
+                    <td>${item.jogador}</td>
+                    <td>${item.kills}</td>`;
+                top5Body.appendChild(tr);
+            });
+        }
+
+        // Gera a tabela de uma partida
+        function generateTable(data, arquivoNome, numeroPartida) {
+            const table = document.createElement('table');
+
+            // Remover a extensão '.csv' do nome do arquivo
+            const nomeSemExtensao = arquivoNome.replace('.csv', '');  // Remove a extensão '.csv'
+
+            // Dividir o nome do arquivo sem a extensão para extrair o número da partida e o mapa
+            const partes = nomeSemExtensao.split('-'); // Ex: "partida-2-Karakin"
+            const partida = partes[1]; // "2"
+            const mapa = partes[2]; // "Karakin"
+
+            const caption = document.createElement('caption');
+            caption.textContent = `Partida #${partida} - ${mapa}`;  // Exibir sem a extensão
+            table.appendChild(caption);
+
+            const thead = document.createElement('thead');
+            thead.innerHTML =
+                `<tr>
+            <th>Posição</th>
+            <th>Jogador</th>
+            <th>Kills</th>
+            <th>Pontos</th>
+        </tr>`;
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            data.forEach((rowData) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML =
+                    `<td>${rowData['Posição']}</td>
+            <td>${rowData['Jogador']}</td>
+            <td>${rowData['Kills']}</td>
+            <td>${rowData['Pontos']}</td>`;
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+
+            return table;
+        }
+    </script>
+</body>
+
+</html>
