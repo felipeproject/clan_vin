@@ -1,8 +1,4 @@
-criar um código Python moderno, eficiente e profissional que atenda à descrição solicitada
-
-**Descrição do código Python:**
-
-Este script Python tem como objetivo pedir o arquivo com tinker interface gerenciador de arquivos windows e ler um arquivo CSV fornecido, extrair três colunas específicas: "Win Place", "Name" e "Kills", e calcular uma nova coluna chamada "Points" com base em uma pontuação atribuída à coluna "Win Place". A pontuação será atribuída conforme as seguintes regras:
+# Sistema de Pontuação:
 
 - 1º lugar: 10 pontos
 - 2º lugar: 9 pontos
@@ -16,10 +12,8 @@ Este script Python tem como objetivo pedir o arquivo com tinker interface gerenc
 - 10º lugar: 1 ponto
 - A partir do 11º lugar: 0 pontos
 
-Após calcular a pontuação, o código irá gerar uma nova coluna chamada "Points", que será a soma de "Win Place" e "Kills". O arquivo CSV resultante será salvo no formato solicitado, incluindo as colunas: "Win Place", "Name", "Kills" e "Points".
 
-Exemplo de saída no formato CSV:
-Se o arquivo de entrada fosse:
+Saída no formato CSV:
 
 csv
 
@@ -27,7 +21,8 @@ csv
 1,"jogador6",3
 2,"jogador2",5
 3,"jogador1",1
-Após o processamento, o arquivo CSV gerado será:
+
+Após o processamento:
 
 csv
 
@@ -36,5 +31,3 @@ csv
 2#,"jogador2",5,14
 3#,"jogador1",1,9
 
-
----
