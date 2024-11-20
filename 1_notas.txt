@@ -32,9 +32,9 @@ Após o processamento, o arquivo CSV gerado será:
 csv
 
 "Posição","Jogador","Kills","Pontos"
-1,"jogador6",3,13
-2,"jogador2",5,14
-3,"jogador1",1,9
+1#,"jogador6",3,13
+2#,"jogador2",5,14
+3#,"jogador1",1,9
 
 
 ---

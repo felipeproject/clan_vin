@@ -10,33 +10,3 @@
 # 9º lugar = 2 pontos
 # 10º lugar = 1 ponto
 
-Jogador,Kills,Posição,Pontos
-Jogador1,5,1,10
-Jogador2,3,2,9
-Jogador3,7,3,8
-Jogador4,2,4,7
-Jogador5,8,5,6
-Jogador6,4,6,5
-Jogador7,1,7,4
-Jogador8,6,8,3
-Jogador9,9,9,2
-Jogador10,0,10,1
-
-
-
-
-
-
-
-
-
-/campeonato-solos-T1
-├── campeonato-solos-T1.html  (arquivo HTML principal)
-├── campeonato-solos-T1.css   (arquivo CSS para estilos)
-└── dados
-    └── campeonato-solos-T2
-        ├── partidas.json     (arquivo JSON com informações das partidas)
-        ├── partida_1.csv     (arquivo CSV com os dados da partida 1)
-        ├── partida_2.csv     (arquivo CSV com os dados da partida 2)
-        ├── partida_3.csv     (arquivo CSV com os dados da partida 3)
-        └── ...               (outros arquivos CSV das partidas)
