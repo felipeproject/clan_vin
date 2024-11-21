@@ -146,6 +146,7 @@
 
         /* Estilo do pop-up */
         #popup {
+            font-size: 18px;
             display: none;
             position: fixed;
             top: 0;
@@ -194,35 +195,35 @@
     <button class="back-button" onclick="window.history.back();">Voltar</button>
     <h2><span>👤🥇</span>Campeonato Solo #2 - Temporada</h2>
     <div class="container">
-        
+
         <table id="classificacao-table">
             <caption
-            style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
-            Classificação Geral
-        </caption>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Jogador</th>
-                <th>Kills</th>
-                <th>Partidas Disputadas</th>
-                <th>Total Pontuação</th>
-            </tr>
-            <!-- Botões no canto superior direito -->
-            <div class="popup-button-container">
-                <button class="popup-button" onclick="openPopup('participar')">Como Participar</button><br><br>
-                <button class="popup-button" onclick="openPopup('regras')">Regras do Campeonato</button><br><br>
-                <button class="popup-button" onclick="openPopup('premiacao')">Valor da Premiação</button><br><br>
-            </div>
-        
-            <!-- Pop-up -->
-            <div id="popup">
-                <div id="popup-content">
-                    <button class="popup-close" onclick="closePopup()">X</button>
-                    <h2 id="popup-title">Título</h2>
-                    <div id="popup-body">Conteúdo</div>
+                style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border: 10px solid rgb(39, 39, 39); padding: 15px;">
+                Classificação Geral
+            </caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Kills</th>
+                    <th>Partidas Disputadas</th>
+                    <th>Total Pontuação</th>
+                </tr>
+                <!-- Botões no canto superior direito -->
+                <div class="popup-button-container">
+                    <button class="popup-button" onclick="openPopup('participar')">Como Participar</button><br><br>
+                    <button class="popup-button" onclick="openPopup('regras')">Regras do Campeonato</button><br><br>
+                    <button class="popup-button" onclick="openPopup('premiacao')">Valor da Premiação</button><br><br>
                 </div>
-            </div>
+
+                <!-- Pop-up -->
+                <div id="popup">
+                    <div id="popup-content">
+                        <button class="popup-close" onclick="closePopup()">X</button>
+                        <h2 id="popup-title">Título</h2>
+                        <div id="popup-body">Conteúdo</div>
+                    </div>
+                </div>
             </thead>
             <tbody id="classificacao-body"></tbody>
         </table>
@@ -470,20 +471,72 @@
         };
         // Função para abrir o pop-up
         function openPopup(tipo) {
-            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popup').style.display = 'block'; // Exibe o pop-up
             const title = document.getElementById('popup-title');
             const body = document.getElementById('popup-body');
+
+            // Define o conteúdo do pop-up com base no tipo
             if (tipo === 'participar') {
                 title.textContent = 'Como Participar';
-                body.innerHTML = '<p>Aqui estão as instruções sobre como participar do campeonato...</p>';
+                body.innerHTML = '<p>Para participar do campeonato de solos, basta estar no clã com a insignia [VIN] no nome e fazer parte do grupo no WhatsApp. As partidas acontecem diariamente, às 19:30h, com dois confrontos consecutivos por dia, iniciando na segunda-feira, 18/11, e indo até a sexta-feira, 22/11, quando será realizada a final.</p>';
             } else if (tipo === 'regras') {
                 title.textContent = 'Regras do Campeonato';
-                body.innerHTML = '<p>Aqui estão as regras detalhadas do campeonato...</p>';
+                body.innerHTML = '<p>Qualquer jogador pode entrar em qualquer dia de jogo, mas é importante seguir as regras:</p>' +
+                    '<ul>' +
+                        '<li>Apenas jogadores do clã [VIN] são permitidos participar do campeonato.</li>' +
+                    '<li>Uso de cheats ou qualquer outra abordagem que viole as regras será banido imediatamente.</li>' +
+                    '<li>Comportamento antiético ou inadequado durante as partidas resultará em desqualificação.</li>' +
+                    '</ul>' +
+                    '<h3>Programação da Semana</h3>' +
+                    '<p><strong>Pontos Corridos - Nova Fase!</strong></p>' +
+                    '<p><strong>Início:</strong> Amanhã, 18/11, às 19:30h!</p>' +
+
+                    '<h4>Segunda-feira:</h4>' +
+                    '<ul>' +
+                    '<li><strong>Jogo 1:</strong> 19:30 (Mapa: Erangel)</li>' +
+                    '<li><strong>Jogo 2:</strong> Após o primeiro jogo (Mapa: Karakin)</li>' +
+                    '</ul>' +
+
+                    '<h4>Terça-feira:</h4>' +
+                    '<ul>' +
+                    '<li><strong>Jogo 3:</strong> 19:30 (Mapa: Sanhok)</li>' +
+                    '<li><strong>Jogo 4:</strong> Após o primeiro jogo (Mapa: Deston)</li>' +
+                    '</ul>' +
+
+                    '<h4>Quarta-feira:</h4>' +
+                    '<ul>' +
+                    '<li><strong>Jogo 5:</strong> 19:30 (Mapa: Miramar)</li>' +
+                    '<li><strong>Jogo 6:</strong> Após o primeiro jogo (Mapa: Taego)</li>' +
+                    '</ul>' +
+
+                    '<h4>Quinta-feira:</h4>' +
+                    '<ul>' +
+                    '<li><strong>Jogo 7:</strong> 19:30 (Mapa: Vikendi)</li>' +
+                    '<li><strong>Jogo 8:</strong> Após o primeiro jogo (Mapa: Paramo)</li>' +
+                    '</ul>' +
+
+                    '<h4>Sexta-feira:</h4>' +
+                    '<ul>' +
+                    '<li><strong>Jogo 9:</strong> 19:30 (Mapa: Taego)</li>' +
+                    '<li><strong>Jogo 10:</strong> Após o primeiro jogo (Mapa: Miramar)</li>' +
+                    '</ul>' +
+
+                    '<h3>OBSERVAÇÕES:</h3>' +
+                    '<ul>' +
+                    '<li>Todos os jogos começam às 19:30, com o segundo jogo acontecendo logo após o primeiro.</li>' +
+                    '<li>A programação é válida de segunda a sexta-feira, com sábado e domingo livres para preparação para a próxima semana, que será o campeonato de duos.</li>' +
+                    '</ul>';
             } else if (tipo === 'premiacao') {
                 title.textContent = 'Valor da Premiação';
-                body.innerHTML = '<p>Aqui está o valor da premiação para os vencedores...</p>';
+                body.innerHTML = '<p>O vencedor do campeonato receberá a premiação de acordo com o valor arrecadado, que atualmente é de R$00,00.</p><p>Para contribuir com o fundo de premiação, utilize o PIX:</p>' +'<p><strong>Chave PIX:</strong> 54992767447</p>';
             }
         }
+
+        // Função para fechar o pop-up
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none'; // Esconde o pop-up
+        }
+
 
         // Função para fechar o pop-up
         function closePopup() {
