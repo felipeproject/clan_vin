@@ -271,6 +271,47 @@
             "partida-1-Erangel.csv"
         ];
 
+        // Mapear jogadores para a URL das fotos
+        const jogadoresFotos = {
+            "Jogador1": "url_da_foto1.jpg",
+            "Jogador2": "url_da_foto2.jpg",
+            "Jogador3": "url_da_foto3.jpg",
+            "Jogador4": "url_da_foto4.jpg",
+            "Jogador5": "url_da_foto5.jpg",
+            // Adicione mais jogadores conforme necessário
+        };
+        // Atualiza a tabela do Top 5 de Kills
+        function updateTop5(jogadores) {
+            const top5Ordenado = Object.keys(jogadores)
+                .map(jogador => ({
+                    jogador,
+                    kills: jogadores[jogador].kills
+                }))
+                .sort((a, b) => b.kills - a.kills)
+                .slice(0, 5);
+
+            top5Body.innerHTML = ''; // Limpa o corpo da tabela
+
+            top5Ordenado.forEach((item, index) => {
+                const tr = document.createElement('tr');
+
+                // Verifica se há uma foto associada ao jogador
+                const fotoJogador = jogadoresFotos[item.jogador] || "default.jpg"; // Coloque uma foto padrão, caso não haja imagem
+
+                // Cria o HTML para a linha da tabela
+                tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>
+                <img src="${fotoJogador}" alt="${item.jogador}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                ${item.jogador}
+            </td>
+            <td>${item.kills}</td>
+        `;
+
+                top5Body.appendChild(tr); // Adiciona a linha à tabela
+            });
+        }
+
         const tablesContainer = document.getElementById('tables-body');
         const classificacaoBody = document.getElementById('classificacao-body');
         const top5Body = document.getElementById('top5-body');
