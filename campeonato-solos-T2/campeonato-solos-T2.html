@@ -375,10 +375,15 @@
             return table;
         }
         window.onload = function () {
-            // Clique no botão para exibir a tabela
-            document.getElementById('next-btn').click();  // Ou 'prev-btn' dependendo de qual você quer clicar ao carregar a página
-            document.getElementById('prev-btn').click();  // Ou 'prev-btn' dependendo de qual você quer clicar ao carregar a página
+            // Clique no botão 'next-btn' imediatamente ao carregar a página
+            document.getElementById('next-btn').click();
+
+            // Clique no botão 'prev-btn' após 2 segundos
+            setTimeout(function () {
+                document.getElementById('prev-btn').click();
+            }, 2000); // 2000 milissegundos = 2 segundos
         };
+
 
     </script>
 </body>
