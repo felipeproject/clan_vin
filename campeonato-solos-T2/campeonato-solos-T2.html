@@ -195,7 +195,7 @@
         let currentTableIndex = 0;
         let hasValidData = false;
 
-        // Carregando todos os arquivos CSV
+        // Carregando todos os arquivos CSV a partir da ordem mais recente
         const csvPromises = arquivosCSV.map((arquivoNome, index) => {
             return fetch('csv/' + arquivoNome + '?timestamp=' + new Date().getTime())
                 .then(response => {
@@ -211,7 +211,7 @@
                             skipEmptyLines: true,
                             complete: function (results) {
                                 if (results.data.length === 0) {
-                                    return resolve();
+                                    return resolve(); // Ignora se não houver dados válidos
                                 }
 
                                 hasValidData = true;
@@ -304,10 +304,10 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML =
                     `<td>${index + 1}</td>
-                    <td>${item.jogador}</td>
-                    <td>${item.kills}</td>
-                    <td>${item.partidas}</td>
-                    <td>${item.pontos}</td>`;
+            <td>${item.jogador}</td>
+            <td>${item.kills}</td>
+            <td>${item.partidas}</td>
+            <td>${item.pontos}</td>`;
                 classificacaoBody.appendChild(tr);
             });
         }
@@ -327,8 +327,8 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML =
                     `<td>${index + 1}</td>
-                    <td>${item.jogador}</td>
-                    <td>${item.kills}</td>`;
+            <td>${item.jogador}</td>
+            <td>${item.kills}</td>`;
                 top5Body.appendChild(tr);
             });
         }
@@ -352,11 +352,11 @@
             const thead = document.createElement('thead');
             thead.innerHTML =
                 `<tr>
-            <th>Posição</th>
-            <th>Jogador</th>
-            <th>Kills</th>
-            <th>Pontos</th>
-        </tr>`;
+        <th>Posição</th>
+        <th>Jogador</th>
+        <th>Kills</th>
+        <th>Pontos</th>
+    </tr>`;
             table.appendChild(thead);
 
             const tbody = document.createElement('tbody');
@@ -364,9 +364,9 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML =
                     `<td>${rowData['Posição']}</td>
-            <td>${rowData['Jogador']}</td>
-            <td>${rowData['Kills']}</td>
-            <td>${rowData['Pontos']}</td>`;
+        <td>${rowData['Jogador']}</td>
+        <td>${rowData['Kills']}</td>
+        <td>${rowData['Pontos']}</td>`;
                 tbody.appendChild(tr);
             });
             table.appendChild(tbody);
@@ -385,7 +385,6 @@
                 navigateTable(-1);  // Chama a função de tabela anterior
             }, 2000); // 2000 milissegundos = 2 segundos
         };
-
 
 
     </script>
