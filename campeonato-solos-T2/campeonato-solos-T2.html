@@ -173,6 +173,7 @@
     </div>
 
     <script>
+
         const arquivosCSV = [
             "partida-10-Miramar.csv",
             "partida-9-Taego.csv",
@@ -185,7 +186,6 @@
             "partida-2-Karakin.csv",
             "partida-1-Erangel.csv"
         ];
-
 
         const tablesContainer = document.getElementById('tables-body');
         const classificacaoBody = document.getElementById('classificacao-body');
@@ -287,7 +287,6 @@
         function updateClassificacao(jogadores) {
             const classificacaoOrdenada = Object.keys(jogadores)
                 .map(jogador => ({
-
                     jogador,
                     kills: jogadores[jogador].kills,
                     pontos: jogadores[jogador].pontos,
@@ -374,15 +373,19 @@
 
             return table;
         }
-        window.onload = function () {
-            // Clique no botão 'next-btn' imediatamente ao carregar a página
-            document.getElementById('next-btn').click();
 
-            // Clique no botão 'prev-btn' após 2 segundos
+        window.onload = function () {
+            // Chama a função 'navigateTable(1)' para avançar para a próxima tabela
             setTimeout(function () {
-                document.getElementById('prev-btn').click();
+                navigateTable(1);  // Chama a função de próxima tabela
+            }, 1000); // 1000 milissegundos = 1 segundo
+
+            // Chama a função 'navigateTable(-1)' para voltar para a tabela anterior após 2 segundos
+            setTimeout(function () {
+                navigateTable(-1);  // Chama a função de tabela anterior
             }, 2000); // 2000 milissegundos = 2 segundos
         };
+
 
 
     </script>
