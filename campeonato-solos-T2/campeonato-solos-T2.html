@@ -257,7 +257,6 @@
     </div>
 
     <script>
-
         const arquivosCSV = [
             "partida-10-Miramar.csv",
             "partida-9-Taego.csv",
@@ -271,61 +270,27 @@
             "partida-1-Erangel.csv"
         ];
 
-        // Mapear jogadores para a URL das fotos
         const jogadoresFotos = {
             "Jogador1": "url_da_foto1.jpg",
             "Jogador2": "url_da_foto2.jpg",
             "Jogador3": "url_da_foto3.jpg",
             "Jogador4": "url_da_foto4.jpg",
-            "Jogador5": "url_da_foto5.jpg",
-            // Adicione mais jogadores conforme necessário
+            "Jogador5": "url_da_foto5.jpg"
         };
-        // Atualiza a tabela do Top 5 de Kills
-        function updateTop5(jogadores) {
-            const top5Ordenado = Object.keys(jogadores)
-                .map(jogador => ({
-                    jogador,
-                    kills: jogadores[jogador].kills
-                }))
-                .sort((a, b) => b.kills - a.kills)
-                .slice(0, 5);
-
-            top5Body.innerHTML = ''; // Limpa o corpo da tabela
-
-            top5Ordenado.forEach((item, index) => {
-                const tr = document.createElement('tr');
-
-                // Verifica se há uma foto associada ao jogador
-                const fotoJogador = jogadoresFotos[item.jogador] || "default.jpg"; // Coloque uma foto padrão, caso não haja imagem
-
-                // Cria o HTML para a linha da tabela
-                tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>
-                <img src="${fotoJogador}" alt="${item.jogador}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-                ${item.jogador}
-            </td>
-            <td>${item.kills}</td>
-        `;
-
-                top5Body.appendChild(tr); // Adiciona a linha à tabela
-            });
-        }
 
         const tablesContainer = document.getElementById('tables-body');
         const classificacaoBody = document.getElementById('classificacao-body');
         const top5Body = document.getElementById('top5-body');
-        let jogadores = {}; // Armazena informações de jogadores
+        let jogadores = {};
         let tables = [];
         let currentTableIndex = 0;
         let hasValidData = false;
 
-        // Carregando todos os arquivos CSV a partir da ordem mais recente
         const csvPromises = arquivosCSV.map((arquivoNome, index) => {
-            return fetch('csv/' + arquivoNome + '?timestamp=' + new Date().getTime())
+            return fetch(`csv/${arquivoNome}?timestamp=${new Date().getTime()}`)
                 .then(response => {
                     if (!response.ok) {
-                        return Promise.reject('Arquivo não encontrado: ' + arquivoNome);
+                        throw new Error(`Arquivo não encontrado: ${arquivoNome}`);
                     }
                     return response.text();
                 })
@@ -335,56 +300,32 @@
                             header: true,
                             skipEmptyLines: true,
                             complete: function (results) {
-                                if (results.data.length === 0) {
-                                    return resolve(); // Ignora se não houver dados válidos
-                                }
-
+                                if (results.data.length === 0) return resolve();
                                 hasValidData = true;
-
-                                // Processando dados de cada partida
-                                results.data.forEach((rowData) => {
+                                results.data.forEach(rowData => {
                                     const jogador = rowData['Jogador'];
                                     const kills = parseInt(rowData['Kills'], 10) || 0;
                                     const pontos = parseInt(rowData['Pontos'], 10) || 0;
-
-                                    // Inicializa o jogador caso não exista
                                     if (!jogadores[jogador]) {
-                                        jogadores[jogador] = {
-                                            kills: 0,
-                                            pontos: 0,
-                                            partidas: 0
-                                        };
+                                        jogadores[jogador] = { kills: 0, pontos: 0, partidas: 0 };
                                     }
-
-                                    // Acumula kills e pontos
                                     jogadores[jogador].kills += kills;
                                     jogadores[jogador].pontos += pontos;
-                                    jogadores[jogador].partidas += 1; // Conta as partidas disputadas
+                                    jogadores[jogador].partidas += 1;
                                 });
-
-                                // Gerar a tabela de cada partida
                                 const tableElement = generateTable(results.data, arquivoNome, index + 1);
                                 tables.push(tableElement);
                                 tablesContainer.appendChild(tableElement);
-
-                                if (index === 0) {
-                                    tableElement.style.display = 'block';
-                                } else {
-                                    tableElement.style.display = 'none';
-                                }
-
+                                tableElement.style.display = index === 0 ? 'block' : 'none';
                                 resolve();
                             },
-                            error: function (error) {
-                                reject(error);
-                            }
+                            error: reject
                         });
                     });
                 })
                 .catch(err => console.error('Erro ao carregar o CSV:', err));
         });
 
-        // Espera todos os CSVs serem carregados antes de atualizar a classificação
         Promise.all(csvPromises).then(() => {
             if (hasValidData) {
                 updateClassificacao(jogadores);
@@ -393,22 +334,18 @@
                 document.getElementById('classificacao-table').style.display = 'none';
                 document.getElementById('top5-table').style.display = 'none';
             }
-        }).catch(err => console.error('Erro ao carregar algum dos CSVs:', err));
+        }).catch(err => console.error('Erro ao carregar os CSVs:', err));
 
-        // Função para navegar entre as partidas
         function navigateTable(direction) {
             if (tables[currentTableIndex]) {
                 tables[currentTableIndex].style.display = 'none';
             }
-
             currentTableIndex = Math.max(0, Math.min(currentTableIndex + direction, tables.length - 1));
             tables[currentTableIndex].style.display = 'block';
-
             document.getElementById('prev-btn').disabled = currentTableIndex === 0;
             document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
         }
 
-        // Atualiza a tabela de classificação geral
         function updateClassificacao(jogadores) {
             const classificacaoOrdenada = Object.keys(jogadores)
                 .map(jogador => ({
@@ -417,81 +354,46 @@
                     pontos: jogadores[jogador].pontos,
                     partidas: jogadores[jogador].partidas
                 }))
-                .sort((a, b) => {
-                    if (b.pontos === a.pontos) {
-                        return b.partidas - a.partidas;
-                    }
-                    return b.pontos - a.pontos;
-                });
+                .sort((a, b) => b.pontos === a.pontos ? b.partidas - a.partidas : b.pontos - a.pontos);
 
             classificacaoBody.innerHTML = '';
             classificacaoOrdenada.forEach((item, index) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML =
-                    `<td>${index + 1}</td>
-            <td>${item.jogador}</td>
-            <td>${item.kills}</td>
-            <td>${item.partidas}</td>
-            <td>${item.pontos}</td>`;
+                tr.innerHTML = `<td>${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td><td>${item.partidas}</td><td>${item.pontos}</td>`;
                 classificacaoBody.appendChild(tr);
             });
         }
 
-        // Atualiza a tabela do Top 5 de Kills
         function updateTop5(jogadores) {
             const top5Ordenado = Object.keys(jogadores)
-                .map(jogador => ({
-                    jogador,
-                    kills: jogadores[jogador].kills
-                }))
+                .map(jogador => ({ jogador, kills: jogadores[jogador].kills }))
                 .sort((a, b) => b.kills - a.kills)
                 .slice(0, 5);
 
             top5Body.innerHTML = '';
             top5Ordenado.forEach((item, index) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML =
-                    `<td>${index + 1}</td>
-            <td>${item.jogador}</td>
-            <td>${item.kills}</td>`;
+                tr.innerHTML = `<td>${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td>`;
                 top5Body.appendChild(tr);
             });
         }
 
-        // Gera a tabela de uma partida
         function generateTable(data, arquivoNome, numeroPartida) {
             const table = document.createElement('table');
-
-            // Remover a extensão '.csv' do nome do arquivo
-            const nomeSemExtensao = arquivoNome.replace('.csv', '');  // Remove a extensão '.csv'
-
-            // Dividir o nome do arquivo sem a extensão para extrair o número da partida e o mapa
-            const partes = nomeSemExtensao.split('-'); // Ex: "partida-2-Karakin"
-            const partida = partes[1]; // "2"
-            const mapa = partes[2]; // "Karakin"
-
+            const nomeSemExtensao = arquivoNome.replace('.csv', '');
+            const [, partida, mapa] = nomeSemExtensao.split('-');
             const caption = document.createElement('caption');
-            caption.textContent = `Partida #${partida} - ${mapa}`;  // Exibir sem a extensão
+            caption.textContent = `Partida #${partida} - ${mapa}`;
             table.appendChild(caption);
 
             const thead = document.createElement('thead');
-            thead.innerHTML =
-                `<tr>
-        <th>Posição</th>
-        <th>Jogador</th>
-        <th>Kills</th>
-        <th>Pontos</th>
-    </tr>`;
+            thead.innerHTML = `<tr><th>Posição</th><th>Jogador</th><th>Kills</th><th>Pontos</th></tr>`;
             table.appendChild(thead);
 
             const tbody = document.createElement('tbody');
-            data.forEach((rowData) => {
+            data.forEach(rowData => {
                 const tr = document.createElement('tr');
-                tr.innerHTML =
-                    `<td>${rowData['Posição']}</td>
-        <td>${rowData['Jogador']}</td>
-        <td>${rowData['Kills']}</td>
-        <td>${rowData['Pontos']}</td>`;
+                tr.innerHTML = `<td>${rowData['Posição']}</td><td>${rowData['Jogador']}</td><td>${rowData['Kills']}</td><td>${rowData['Pontos']}</td>`;
                 tbody.appendChild(tr);
             });
             table.appendChild(tbody);
@@ -500,102 +402,55 @@
         }
 
         window.onload = function () {
-            // Chama a função 'navigateTable(1)' para avançar para a próxima tabela
-            setTimeout(function () {
-                navigateTable(1);  // Chama a função de próxima tabela
-            }, 1000); // 1000 milissegundos = 1 segundo
-
-            // Chama a função 'navigateTable(-1)' para voltar para a tabela anterior após 2 segundos
-            setTimeout(function () {
-                navigateTable(-1);  // Chama a função de tabela anterior
-            }, 2000); // 2000 milissegundos = 2 segundos
+            setTimeout(() => navigateTable(1), 1000);
+            setTimeout(() => navigateTable(-1), 2000);
         };
-        // Função para abrir o pop-up
+
         function openPopup(tipo) {
-            document.getElementById('popup').style.display = 'block'; // Exibe o pop-up
+            const popup = document.getElementById('popup');
             const title = document.getElementById('popup-title');
             const body = document.getElementById('popup-body');
+            popup.style.display = 'block';
 
-            // Define o conteúdo do pop-up com base no tipo
             if (tipo === 'participar') {
                 title.textContent = 'Como Participar';
-                body.innerHTML = '<p>Para participar do campeonato de solos, siga os passos abaixo:</p>' +
-                    '<ul>' +
-                    '<li><strong>1. Inscrição no Clã:</strong> Certifique-se de que o seu nome contém a insignia <strong>[VIN]</strong> para ser identificado como membro do clã.</li><br>' +
-                    '<li><strong>2. Entrada no WhatsApp:</strong> Junte-se ao <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank" style="color: #007BFF; font-weight: bold;">grupo oficial do WhatsApp</a>, onde serão compartilhadas informações sobre partidas e atualizações.</li><br>' +
-                    '<li><strong>3. Participação nas Partidas:</strong> As partidas acontecem diariamente às <strong>19:30h</strong>, com dois confrontos consecutivos por dia.</li><br>' +
-                    '<li><strong>4. Cronograma:</strong> O campeonato começa na <strong>segunda-feira, 18/11</strong>, e vai até <strong>sexta-feira, 22/11</strong>, quando ocorrerá a final.</li>' +
-                    '</ul><br>' +
-                    '<p>Prepare-se para competir e se divertir enquanto coloca suas habilidades à prova!</p>';
+                body.innerHTML = `
+                    <p>Para participar do campeonato de solos, siga os passos abaixo:</p>
+                    <ul>
+                        <li><strong>1. Inscrição no Clã:</strong> Certifique-se de que o seu nome contém a insignia <strong>[VIN]</strong> para ser identificado como membro do clã.</li><br>
+                        <li><strong>2. Entrada no WhatsApp:</strong> Junte-se ao <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank" style="color: #007BFF; font-weight: bold;">grupo oficial do WhatsApp</a>, onde serão compartilhadas informações sobre partidas e atualizações.</li><br>
+                        <li><strong>3. Participação nas Partidas:</strong> As partidas acontecem diariamente às <strong>19:30h</strong>, com dois confrontos consecutivos por dia.</li><br>
+                        <li><strong>4. Cronograma:</strong> O campeonato começa na <strong>segunda-feira, 18/11</strong>, e vai até <strong>sexta-feira, 22/11</strong>, quando ocorrerá a final.</li>
+                    </ul><br>
+                    <p>Prepare-se para competir e se divertir enquanto coloca suas habilidades à prova!</p>
+                `;
             } else if (tipo === 'regras') {
                 title.textContent = 'Regras do Campeonato';
-                body.innerHTML = '<p>Qualquer jogador pode entrar em qualquer dia de jogo, mas é importante seguir as regras:</p>' +
-                    '<ul>' +
-                    '<li>Apenas jogadores do clã [VIN] são permitidos participar do campeonato.</li>' +
-                    '<li>Uso de cheats ou qualquer outra abordagem que viole as regras será banido imediatamente.</li>' +
-                    '<li>Comportamento antiético ou inadequado durante as partidas resultará em desqualificação.</li>' +
-                    '</ul>' +
-                    '<h3>Programação da Semana</h3>' +
-                    '<p><strong>Pontos Corridos - Nova Fase!</strong></p>' +
-                    '<p><strong>Início:</strong> Amanhã, 18/11, às 19:30h!</p>' +
-
-                    '<h4>Segunda-feira:</h4>' +
-                    '<ul>' +
-                    '<li><strong>Jogo 1:</strong> 19:30 (Mapa: Erangel)</li>' +
-                    '<li><strong>Jogo 2:</strong> Após o primeiro jogo (Mapa: Karakin)</li>' +
-                    '</ul>' +
-
-                    '<h4>Terça-feira:</h4>' +
-                    '<ul>' +
-                    '<li><strong>Jogo 3:</strong> 19:30 (Mapa: Sanhok)</li>' +
-                    '<li><strong>Jogo 4:</strong> Após o primeiro jogo (Mapa: Deston)</li>' +
-                    '</ul>' +
-
-                    '<h4>Quarta-feira:</h4>' +
-                    '<ul>' +
-                    '<li><strong>Jogo 5:</strong> 19:30 (Mapa: Miramar)</li>' +
-                    '<li><strong>Jogo 6:</strong> Após o primeiro jogo (Mapa: Taego)</li>' +
-                    '</ul>' +
-
-                    '<h4>Quinta-feira:</h4>' +
-                    '<ul>' +
-                    '<li><strong>Jogo 7:</strong> 19:30 (Mapa: Vikendi)</li>' +
-                    '<li><strong>Jogo 8:</strong> Após o primeiro jogo (Mapa: Paramo)</li>' +
-                    '</ul>' +
-
-                    '<h4>Sexta-feira:</h4>' +
-                    '<ul>' +
-                    '<li><strong>Jogo 9:</strong> 19:30 (Mapa: Taego)</li>' +
-                    '<li><strong>Jogo 10:</strong> Após o primeiro jogo (Mapa: Miramar)</li>' +
-                    '</ul>' +
-
-                    '<h3>OBSERVAÇÕES:</h3>' +
-                    '<ul>' +
-                    '<li>Todos os jogos começam às 19:30, com o segundo jogo acontecendo logo após o primeiro.</li>' +
-                    '<li>A programação é válida de segunda a sexta-feira, com sábado e domingo livres para preparação para a próxima semana, que será o campeonato de duos.</li>' +
-                    '</ul>';
-            } else if (tipo === 'premiacao') {
-                title.textContent = 'Valor da Premiação 🏆';
-                body.innerHTML = '<p>O vencedor do campeonato receberá a premiação de acordo com o valor arrecadado, que atualmente é de <strong>R$35,00 💰</strong>.</p>' +
-                    '<p>Para contribuir com o fundo de premiação, utilize o <span style="color: #007BFF; font-weight: bold;">PIX</span></p>' +
-                    '<p><strong>Chave PIX:</strong> <span style="color: #28a745; font-weight: bold;">54992767447</span></p>';
+                body.innerHTML = `
+                    <p>Qualquer jogador pode entrar em qualquer dia de jogo, mas é importante seguir as regras:</p>
+                    <ul>
+                        <li>Apenas jogadores do clã [VIN] são permitidos participar do campeonato.</li>
+                        <li>Uso de cheats ou qualquer outra abordagem que viole as regras será banido imediatamente.</li>
+                        <li>Comportamento antiético ou inadequado durante as partidas resultará em desqualificação.</li>
+                    </ul>
+                    <h3>Programação da Semana</h3>
+                    <p><strong>Pontos Corridos - Nova Fase!</strong></p>
+                    <p><strong>Início:</strong> Amanhã, 18/11, às 19:30h!</p>
+                    <h4>Segunda-feira:</h4>
+                    <ul>
+                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Miramar</strong></li>
+                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Taego</strong></li>
+                    </ul>
+                    <p>As próximas datas serão compartilhadas no grupo de WhatsApp, e todos os jogadores deverão participar da final na sexta-feira (22/11). Boa sorte!</p>
+                `;
             }
-            ;
-        }
+        };
 
-        // Função para fechar o pop-up
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none'; // Esconde o pop-up
-        }
-
-
-        // Função para fechar o pop-up
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-
-
     </script>
+
 </body>
 
 </html>
