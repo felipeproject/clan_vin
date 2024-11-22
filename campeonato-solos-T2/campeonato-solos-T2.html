@@ -444,18 +444,7 @@
             var title = '';
             var bodyContent = '';
 
-            // Definir conteúdo baseado no tipo de popup
-            if (tipo === 'participar') {
-                title = 'Como Participar';
-                bodyContent = '<p>Para participar do campeonato, basta se inscrever na página de inscrição e seguir as regras do evento. Fique atento às datas de inscrição e aos requisitos para poder competir.</p>';
-            } else if (tipo === 'regras') {
-                title = 'Regras do Campeonato';
-                bodyContent = '<ul><li>O campeonato será realizado em rodadas eliminatórias.</li><li>Cada jogador deve completar a partida dentro do tempo limite.</li><li>Não é permitido o uso de cheats ou bugs no jogo.</li></ul>';
-            } else if (tipo === 'premiacao') {
-                title = 'Valor da Premiação';
-                bodyContent = '<p>A premiação para o vencedor será de R$ 5.000,00. Os segundo e terceiro colocados receberão prêmios em dinheiro, além de troféus e medalhas.</p>';
-            }
-
+            
             // Atualiza o título e o conteúdo do pop-up
             document.getElementById('popup-title').textContent = title;
             document.getElementById('popup-body').innerHTML = bodyContent;
