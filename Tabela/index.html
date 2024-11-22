@@ -3,15 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo Pop-up</title>
-    <script type="text/javascript">
-        function abrirJanela() {
-            window.open("https://www.exemplo.com", "_blank", "width=600,height=400");
-        }
-    </script>
+    <title>Página 1 - Alterar Pontos</title>
 </head>
 <body>
-    <h1>Exemplo de Janela Pop-up</h1>
-    <button onclick="abrirJanela()">Abrir Janela</button>
+    <h1>Alterar Pontos dos Participantes</h1>
+    
+    <!-- Formulário para adicionar/alterar os pontos -->
+    <form id="formPontos">
+        <label for="nomeParticipante">Nome do Participante:</label>
+        <input type="text" id="nomeParticipante" placeholder="Nome do Participante" required><br><br>
+        
+        <label for="pontos">Pontos:</label>
+        <input type="number" id="pontos" placeholder="Pontos" required><br><br>
+        
+        <button type="submit">Salvar Pontos</button>
+    </form>
+    
+    <br><br>
+    <button onclick="abrirPopup()">Abrir Tabela do Campeonato</button>
+    
+    <h2>Pontuação Atual</h2>
+    <ul id="listaParticipantes"></ul>
+
+    <script>
+        // Função para salvar os pontos no localStorage
+        function salvarPontos(event) {
+            event.preventDefault(); // Evita o comportamento padrão do formulário (recarregar a página)
+            
+            var nome = document.getElementById("nomeParticipante").value;
+            var pontos = parseInt(document.getElementById("pontos").value);
+            
+            // Carregar a lista de participantes do localStorage ou inicializar com um array vazio
+            var participantes = JSON.parse(localStorage.getItem("participantes")) || [];
+
+            // Verificar se o participante já existe e atualizar os pontos, caso contrário, adicionar um novo
+            var participanteExistente = participantes.find(p => p.nome === nome);
+            if (participanteExistente) {
+                participanteExistente.pontos += pontos; // Atualiza os pontos
+            } else {
+                participantes.push({ nome: nome, pontos: pontos }); // Adiciona novo participante
+            }
+
+            // Salvar novamente no localStorage
+            localStorage.setItem("participantes", JSON.stringify(participantes));
+            
+            // Limpar os campos do formulário
+            document.getElementById("nomeParticipante").value = '';
+            document.getElementById("pontos").value = '';
+
+            // Atualizar a lista de participantes na página
+            carregarListaParticipantes();
+        }
+
+        // Função para abrir a Página 2 em uma janela pop-up
+        function abrirPopup() {
+            var largura = 600;
+            var altura = 400;
+            var esquerda = (window.innerWidth - largura) / 2;
+            var topo = (window.innerHeight - altura) / 2;
+            window.open('pagina2.html', 'popup', `width=${largura},height=${altura},top=${topo},left=${esquerda}`);
+        }
+
+        // Função para carregar a lista de participantes
+        function carregarListaParticipantes() {
+            var participantes = JSON.parse(localStorage.getItem("participantes")) || [];
+            var lista = document.getElementById("listaParticipantes");
+            lista.innerHTML = ""; // Limpar a lista atual
+            
+            // Exibir cada participante com seus pontos
+            participantes.forEach(participante => {
+                var li = document.createElement("li");
+                li.textContent = `${participante.nome}: ${participante.pontos} pontos`;
+                lista.appendChild(li);
+            });
+        }
+
+        // Carregar a lista de participantes ao carregar a página
+        carregarListaParticipantes();
+
+        // Adicionar a função de salvar ao formulário
+        document.getElementById("formPontos").addEventListener("submit", salvarPontos);
+    </script>
 </body>
 </html>
