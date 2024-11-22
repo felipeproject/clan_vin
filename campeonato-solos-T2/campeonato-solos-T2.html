@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campeonato de Solos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
     <!-- CSS embutido -->
@@ -196,16 +197,17 @@
     <div class="container">
 
         <table id="classificacao-table">
-            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31);padding: 15px;">
+            <caption
+                style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31);padding: 15px;">
                 Classificação Geral
             </caption>
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>Jogador</th>
-                    <th>Kills</th>
-                    <th>Partidas Disputadas</th>
-                    <th>Total Pontuação</th>
+                    <th><i class="fas fa-trophy"></i> Rank</th>
+                    <th><i class="fas fa-user"></i> Jogador</th>
+                    <th><i class="fas fa-crosshairs"></i> Kills</th>
+                    <th><i class="fas fa-gamepad"></i> Partidas</th>
+                    <th><i class="fas fa-chart-line"></i> Pontuação</th>
                 </tr>
                 <!-- Botões no canto superior direito -->
                 <div class="popup-button-container">
@@ -239,14 +241,15 @@
         </div>
 
         <table id="top5-table">
-            <caption style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31); padding: 15px;">
+            <caption
+                style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31); padding: 15px;">
                 Top 5 Kills
             </caption>
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>Jogador</th>
-                    <th>Kills</th>
+                    <th><i class="fas fa-trophy"></i> Rank</th>
+                    <th><i class="fas fa-user"></i> Jogador</th>
+                    <th><i class="fas fa-crosshairs"></i> Kills</th>
                 </tr>
             </thead>
             <tbody id="top5-body"></tbody>
@@ -444,7 +447,7 @@
             var title = '';
             var bodyContent = '';
 
-            
+
             // Atualiza o título e o conteúdo do pop-up
             document.getElementById('popup-title').textContent = title;
             document.getElementById('popup-body').innerHTML = bodyContent;
