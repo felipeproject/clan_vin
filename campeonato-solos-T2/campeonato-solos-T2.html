@@ -121,22 +121,11 @@
         }
 
         /* Botões no canto superior direito */
-
-        #btn-participar,
-        #btn-regras,
-        #btn-premiacao {
-            display: block;
-            /* Garanta que os botões estejam visíveis inicialmente */
-            transition: all 0.3s ease;
-            /* Para uma transição suave */
-        }
-
         .popup-button-container {
             top: 20px;
             right: 20px;
             flex-direction: column;
             position: fixed;
-
         }
 
         .popup-button {
@@ -265,153 +254,157 @@
             <tbody id="top5-body"></tbody>
         </table>
     </div>
+</body>
 
-    <script>
-        const arquivosCSV = [
-            "partida-10-Miramar.csv",
-            "partida-9-Taego.csv",
-            "partida-8-Paramo.csv",
-            "partida-7-Vikendi.csv",
-            "partida-6-Taego.csv",
-            "partida-5-Miramar.csv",
-            "partida-4-Deston.csv",
-            "partida-3-Sanhok.csv",
-            "partida-2-Karakin.csv",
-            "partida-1-Erangel.csv"
-        ];
+</html>
 
-        const jogadoresFotos = {
-            "Jogador1": "url_da_foto1.jpg",
-            "Jogador2": "url_da_foto2.jpg",
-            "Jogador3": "url_da_foto3.jpg",
-            "Jogador4": "url_da_foto4.jpg",
-            "Jogador5": "url_da_foto5.jpg"
+
+<script>
+    const arquivosCSV = [
+        "partida-10-Miramar.csv",
+        "partida-9-Taego.csv",
+        "partida-8-Paramo.csv",
+        "partida-7-Vikendi.csv",
+        "partida-6-Taego.csv",
+        "partida-5-Miramar.csv",
+        "partida-4-Deston.csv",
+        "partida-3-Sanhok.csv",
+        "partida-2-Karakin.csv",
+        "partida-1-Erangel.csv"
+    ];
+
+    const jogadoresFotos = {
+        "Jogador1": "url_da_foto1.jpg",
+        "Jogador2": "url_da_foto2.jpg",
+        "Jogador3": "url_da_foto3.jpg",
+        "Jogador4": "url_da_foto4.jpg",
+        "Jogador5": "url_da_foto5.jpg"
+    };
+
+    const tablesContainer = document.getElementById('tables-body');
+    const classificacaoBody = document.getElementById('classificacao-body');
+    const top5Body = document.getElementById('top5-body');
+    let jogadores = {};
+    let tables = [];
+    let currentTableIndex = 0;
+    let hasValidData = false;
+
+    const csvPromises = arquivosCSV.map((arquivoNome, index) => {
+        return fetch(`csv/${arquivoNome}?timestamp=${new Date().getTime()}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Arquivo não encontrado: ${arquivoNome}`);
+                }
+                return response.text();
+            })
+            .then(csvData => {
+                return new Promise((resolve, reject) => {
+                    Papa.parse(csvData, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function (results) {
+                            if (results.data.length === 0) return resolve();
+                            hasValidData = true;
+                            results.data.forEach(rowData => {
+                                const jogador = rowData['Jogador'];
+                                const kills = parseInt(rowData['Kills'], 10) || 0;
+                                const pontos = parseInt(rowData['Pontos'], 10) || 0;
+                                if (!jogadores[jogador]) {
+                                    jogadores[jogador] = { kills: 0, pontos: 0, partidas: 0 };
+                                }
+                                jogadores[jogador].kills += kills;
+                                jogadores[jogador].pontos += pontos;
+                                jogadores[jogador].partidas += 1;
+                            });
+                            const tableElement = generateTable(results.data, arquivoNome, index + 1);
+                            tables.push(tableElement);
+                            tablesContainer.appendChild(tableElement);
+                            tableElement.style.display = index === 0 ? 'block' : 'none';
+                            resolve();
+                        },
+                        error: reject
+                    });
+                });
+            })
+            .catch(err => console.error('Erro ao carregar o CSV:', err));
+    });
+
+    Promise.all(csvPromises).then(() => {
+        if (hasValidData) {
+            updateClassificacao(jogadores);
+            updateTop5(jogadores);
+        } else {
+            document.getElementById('classificacao-table').style.display = 'none';
+            document.getElementById('top5-table').style.display = 'none';
+        }
+    }).catch(err => console.error('Erro ao carregar os CSVs:', err));
+
+    function navigateTable(direction) {
+        if (tables[currentTableIndex]) {
+            tables[currentTableIndex].style.display = 'none';
+        }
+        currentTableIndex = Math.max(0, Math.min(currentTableIndex + direction, tables.length - 1));
+        tables[currentTableIndex].style.display = 'block';
+        document.getElementById('prev-btn').disabled = currentTableIndex === 0;
+        document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
+    }
+
+    function updateClassificacao(jogadores) {
+        const classificacaoOrdenada = Object.keys(jogadores)
+            .map(jogador => ({
+                jogador,
+                kills: jogadores[jogador].kills,
+                pontos: jogadores[jogador].pontos,
+                partidas: jogadores[jogador].partidas
+            }))
+            .sort((a, b) => b.pontos === a.pontos ? b.partidas - a.partidas : b.pontos - a.pontos);
+
+        classificacaoBody.innerHTML = '';
+        classificacaoOrdenada.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td><td>${item.partidas}</td><td>${item.pontos}</td>`;
+            classificacaoBody.appendChild(tr);
+        });
+    }
+
+    function updateTop5(jogadores) {
+        const top5Ordenado = Object.keys(jogadores)
+            .map(jogador => ({ jogador, kills: jogadores[jogador].kills }))
+            .sort((a, b) => b.kills - a.kills)
+            .slice(0, 5);
+
+        top5Body.innerHTML = '';
+        top5Ordenado.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td>`;
+            top5Body.appendChild(tr);
+        });
+    }
+
+    function generateTable(data, arquivoNome, numeroPartida) {
+        const table = document.createElement('table');
+        const nomeSemExtensao = arquivoNome.replace('.csv', '');
+        const [, partida, mapa] = nomeSemExtensao.split('-');
+
+        // Mapeamento dos mapas para as URLs das imagens externas
+        const mapasImagens = {
+            "Erangel": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/9b5d63e.jpg",
+            "Miramar": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b5c3c7f.jpg",
+            "Taego": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/0d771c0.jpg",
+            "Vikendi": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/1bee462.jpg",
+            "Paramo": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/e74fdcd.jpg",
+            "Sanhok": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/3ab566e.jpg",
+            "Karakin": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/ce6fe02.jpg",
+            "Deston": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b2d4a73.jpg"
         };
 
-        const tablesContainer = document.getElementById('tables-body');
-        const classificacaoBody = document.getElementById('classificacao-body');
-        const top5Body = document.getElementById('top5-body');
-        let jogadores = {};
-        let tables = [];
-        let currentTableIndex = 0;
-        let hasValidData = false;
+        // Criação da imagem do mapa usando o mapeamento
+        const mapaImagemUrl = mapasImagens[mapa] || "https://example.com/default-map.jpg"; // Imagem padrão caso o mapa não seja encontrado
 
-        const csvPromises = arquivosCSV.map((arquivoNome, index) => {
-            return fetch(`csv/${arquivoNome}?timestamp=${new Date().getTime()}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Arquivo não encontrado: ${arquivoNome}`);
-                    }
-                    return response.text();
-                })
-                .then(csvData => {
-                    return new Promise((resolve, reject) => {
-                        Papa.parse(csvData, {
-                            header: true,
-                            skipEmptyLines: true,
-                            complete: function (results) {
-                                if (results.data.length === 0) return resolve();
-                                hasValidData = true;
-                                results.data.forEach(rowData => {
-                                    const jogador = rowData['Jogador'];
-                                    const kills = parseInt(rowData['Kills'], 10) || 0;
-                                    const pontos = parseInt(rowData['Pontos'], 10) || 0;
-                                    if (!jogadores[jogador]) {
-                                        jogadores[jogador] = { kills: 0, pontos: 0, partidas: 0 };
-                                    }
-                                    jogadores[jogador].kills += kills;
-                                    jogadores[jogador].pontos += pontos;
-                                    jogadores[jogador].partidas += 1;
-                                });
-                                const tableElement = generateTable(results.data, arquivoNome, index + 1);
-                                tables.push(tableElement);
-                                tablesContainer.appendChild(tableElement);
-                                tableElement.style.display = index === 0 ? 'block' : 'none';
-                                resolve();
-                            },
-                            error: reject
-                        });
-                    });
-                })
-                .catch(err => console.error('Erro ao carregar o CSV:', err));
-        });
+        // Criar o elemento de legenda (caption) com a imagem
+        const caption = document.createElement('caption');
 
-        Promise.all(csvPromises).then(() => {
-            if (hasValidData) {
-                updateClassificacao(jogadores);
-                updateTop5(jogadores);
-            } else {
-                document.getElementById('classificacao-table').style.display = 'none';
-                document.getElementById('top5-table').style.display = 'none';
-            }
-        }).catch(err => console.error('Erro ao carregar os CSVs:', err));
-
-        function navigateTable(direction) {
-            if (tables[currentTableIndex]) {
-                tables[currentTableIndex].style.display = 'none';
-            }
-            currentTableIndex = Math.max(0, Math.min(currentTableIndex + direction, tables.length - 1));
-            tables[currentTableIndex].style.display = 'block';
-            document.getElementById('prev-btn').disabled = currentTableIndex === 0;
-            document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
-        }
-
-        function updateClassificacao(jogadores) {
-            const classificacaoOrdenada = Object.keys(jogadores)
-                .map(jogador => ({
-                    jogador,
-                    kills: jogadores[jogador].kills,
-                    pontos: jogadores[jogador].pontos,
-                    partidas: jogadores[jogador].partidas
-                }))
-                .sort((a, b) => b.pontos === a.pontos ? b.partidas - a.partidas : b.pontos - a.pontos);
-
-            classificacaoBody.innerHTML = '';
-            classificacaoOrdenada.forEach((item, index) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td><td>${item.partidas}</td><td>${item.pontos}</td>`;
-                classificacaoBody.appendChild(tr);
-            });
-        }
-
-        function updateTop5(jogadores) {
-            const top5Ordenado = Object.keys(jogadores)
-                .map(jogador => ({ jogador, kills: jogadores[jogador].kills }))
-                .sort((a, b) => b.kills - a.kills)
-                .slice(0, 5);
-
-            top5Body.innerHTML = '';
-            top5Ordenado.forEach((item, index) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td>`;
-                top5Body.appendChild(tr);
-            });
-        }
-
-        function generateTable(data, arquivoNome, numeroPartida) {
-            const table = document.createElement('table');
-            const nomeSemExtensao = arquivoNome.replace('.csv', '');
-            const [, partida, mapa] = nomeSemExtensao.split('-');
-
-            // Mapeamento dos mapas para as URLs das imagens externas
-            const mapasImagens = {
-                "Erangel": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/9b5d63e.jpg",
-                "Miramar": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b5c3c7f.jpg",
-                "Taego": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/0d771c0.jpg",
-                "Vikendi": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/1bee462.jpg",
-                "Paramo": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/e74fdcd.jpg",
-                "Sanhok": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/3ab566e.jpg",
-                "Karakin": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/ce6fe02.jpg",
-                "Deston": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b2d4a73.jpg"
-            };
-
-            // Criação da imagem do mapa usando o mapeamento
-            const mapaImagemUrl = mapasImagens[mapa] || "https://example.com/default-map.jpg"; // Imagem padrão caso o mapa não seja encontrado
-
-            // Criar o elemento de legenda (caption) com a imagem
-            const caption = document.createElement('caption');
-
-            caption.innerHTML = `
+        caption.innerHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="font-size: 24px; color: #ffffff; background-color: #007BFF; padding: 10px; text-align: center; border-radius: 8px; border: 2px solid #0056b3;">
                 Partida #${partida} - ${mapa}
@@ -420,56 +413,158 @@
         </div>
     `;
 
-            table.appendChild(caption);
+        table.appendChild(caption);
 
-            const thead = document.createElement('thead');
-            thead.innerHTML = `<tr><th>Posição</th><th>Jogador</th><th>Kills</th><th>Pontos</th></tr>`;
-            table.appendChild(thead);
+        const thead = document.createElement('thead');
+        thead.innerHTML = `<tr><th>Posição</th><th>Jogador</th><th>Kills</th><th>Pontos</th></tr>`;
+        table.appendChild(thead);
 
-            const tbody = document.createElement('tbody');
-            data.forEach(rowData => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${rowData['Posição']}</td><td>${rowData['Jogador']}</td><td>${rowData['Kills']}</td><td>${rowData['Pontos']}</td>`;
-                tbody.appendChild(tr);
-            });
-            table.appendChild(tbody);
+        const tbody = document.createElement('tbody');
+        data.forEach(rowData => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${rowData['Posição']}</td><td>${rowData['Jogador']}</td><td>${rowData['Kills']}</td><td>${rowData['Pontos']}</td>`;
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
 
-            return table;
+        return table;
+    }
+
+
+    window.onload = function () {
+        setTimeout(() => navigateTable(1), 1000);
+        setTimeout(() => navigateTable(-1), 2000);
+    };
+
+    // Função para esconder os botões ao rolar a página
+    window.addEventListener('scroll', function () {
+        const btnParticipar = document.getElementById('btn-participar');
+        const btnRegras = document.getElementById('btn-regras');
+        const btnPremiacao = document.getElementById('btn-premiacao');
+        // Função para abrir o pop-up com conteúdo dinâmico
+        function openPopup(tipo) {
+            var title = '';
+            var bodyContent = '';
+
+            // Definir conteúdo baseado no tipo de popup
+            if (tipo === 'participar') {
+                title = 'Como Participar';
+                bodyContent = '<p>Para participar do campeonato, basta se inscrever na página de inscrição e seguir as regras do evento. Fique atento às datas de inscrição e aos requisitos para poder competir.</p>';
+            } else if (tipo === 'regras') {
+                title = 'Regras do Campeonato';
+                bodyContent = '<ul><li>O campeonato será realizado em rodadas eliminatórias.</li><li>Cada jogador deve completar a partida dentro do tempo limite.</li><li>Não é permitido o uso de cheats ou bugs no jogo.</li></ul>';
+            } else if (tipo === 'premiacao') {
+                title = 'Valor da Premiação';
+                bodyContent = '<p>A premiação para o vencedor será de R$ 5.000,00. Os segundo e terceiro colocados receberão prêmios em dinheiro, além de troféus e medalhas.</p>';
+            }
+
+            // Atualiza o título e o conteúdo do pop-up
+            document.getElementById('popup-title').textContent = title;
+            document.getElementById('popup-body').innerHTML = bodyContent;
+
+            // Exibe o pop-up
+            document.getElementById('popup').style.display = 'block';
         }
 
+        // Função para fechar o pop-up
+        function closePopup() {
+            // Esconde o pop-up
+            document.getElementById('popup').style.display = 'none';
+        }
 
+        // Navegação nas tabelas
+        let currentPage = 1; // Página inicial
+        let itemsPerPage = 10; // Itens por página
+
+        // Função para navegar entre as tabelas
+        function navigateTable(direction) {
+            currentPage += direction;
+
+            // Ativar/desativar os botões de navegação
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage * itemsPerPage >= totalItems;
+
+            updateTable(); // Atualiza a tabela com os novos dados
+        }
+
+        // Função para atualizar o conteúdo da tabela
+        function updateTable() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = currentPage * itemsPerPage;
+
+            // Aqui você pode carregar e mostrar os dados da tabela, com base no intervalo (startIndex, endIndex)
+            // Atualizar a tabela de classificação
+            const classificacaoBody = document.getElementById('classificacao-body');
+            classificacaoBody.innerHTML = ''; // Limpa o conteúdo da tabela antes de adicionar novos dados
+
+            // Aqui seria o código para preencher a tabela com os dados reais
+
+            // Atualiza o botão de navegação
+            document.getElementById('prev-btn').disabled = startIndex === 0;
+            document.getElementById('next-btn').disabled = endIndex >= totalItems;
+        }
+
+        // Função para popular a tabela com dados de exemplo (exemplo básico)
+        const totalItems = 50; // Número total de itens (exemplo)
+        function populateTable() {
+            const data = [];
+
+            // Exemplo de como criar um conjunto de dados fictício
+            for (let i = 1; i <= totalItems; i++) {
+                data.push({
+                    rank: i,
+                    jogador: 'Jogador ' + i,
+                    kills: Math.floor(Math.random() * 50),
+                    partidas: Math.floor(Math.random() * 10),
+                    pontuacao: Math.floor(Math.random() * 5000)
+                });
+            }
+
+            // Agora vamos adicionar os dados à tabela
+            const classificacaoBody = document.getElementById('classificacao-body');
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${item.rank}</td>
+            <td>${item.jogador}</td>
+            <td>${item.kills}</td>
+            <td>${item.partidas}</td>
+            <td>${item.pontuacao}</td>
+        `;
+                classificacaoBody.appendChild(row);
+            });
+
+            // Atualiza a tabela ao carregar
+            updateTable();
+        }
+
+        // Chama a função para popular a tabela ao carregar a página
         window.onload = function () {
-            setTimeout(() => navigateTable(1), 1000);
-            setTimeout(() => navigateTable(-1), 2000);
+            populateTable();
         };
 
-        // Função para esconder os botões ao rolar a página
-        window.addEventListener('scroll', function () {
-            const btnParticipar = document.getElementById('btn-participar');
-            const btnRegras = document.getElementById('btn-regras');
-            const btnPremiacao = document.getElementById('btn-premiacao');
 
-            // Verificar se a página foi rolada para baixo
-            if (window.scrollY > 100) {  // Altere 100 para o valor que desejar, dependendo de quando deseja que os botões desapareçam
-                if (btnParticipar) btnParticipar.style.display = 'none';
-                if (btnRegras) btnRegras.style.display = 'none';
-                if (btnPremiacao) btnPremiacao.style.display = 'none';
-            } else {
-                if (btnParticipar) btnParticipar.style.display = 'block';
-                if (btnRegras) btnRegras.style.display = 'block';
-                if (btnPremiacao) btnPremiacao.style.display = 'block';
-            }
-        });
+        // Verificar se a página foi rolada para baixo
+        if (window.scrollY > 100) {  // Altere 100 para o valor que desejar, dependendo de quando deseja que os botões desapareçam
+            if (btnParticipar) btnParticipar.style.display = 'none';
+            if (btnRegras) btnRegras.style.display = 'none';
+            if (btnPremiacao) btnPremiacao.style.display = 'none';
+        } else {
+            if (btnParticipar) btnParticipar.style.display = 'block';
+            if (btnRegras) btnRegras.style.display = 'block';
+            if (btnPremiacao) btnPremiacao.style.display = 'block';
+        }
+    });
 
-        function openPopup(tipo) {
-            const popup = document.getElementById('popup');
-            const title = document.getElementById('popup-title');
-            const body = document.getElementById('popup-body');
-            popup.style.display = 'block';
+    function openPopup(tipo) {
+        const popup = document.getElementById('popup');
+        const title = document.getElementById('popup-title');
+        const body = document.getElementById('popup-body');
+        popup.style.display = 'block';
 
-            if (tipo === 'participar') {
-                title.textContent = 'Como Participar';
-                body.innerHTML = `
+        if (tipo === 'participar') {
+            title.textContent = 'Como Participar';
+            body.innerHTML = `
                     <p>Para participar do campeonato de solos, siga os passos abaixo:</p>
                     <ul>
                         <li><strong>1. Inscrição no Clã:</strong> Certifique-se de que o seu nome contém a insignia <strong>[VIN]</strong> para ser identificado como membro do clã.</li><br>
@@ -479,9 +574,9 @@
                     </ul><br>
                     <p>Prepare-se para competir e se divertir enquanto coloca suas habilidades à prova!</p>
                 `;
-            } else if (tipo === 'regras') {
-                title.textContent = 'Regras do Campeonato';
-                body.innerHTML = `
+        } else if (tipo === 'regras') {
+            title.textContent = 'Regras do Campeonato';
+            body.innerHTML = `
                     <p>Qualquer jogador pode entrar em qualquer dia de jogo, mas é importante seguir as regras:</p>
                     <ul>
                         <li>Apenas jogadores do clã [VIN] são permitidos participar do campeonato.</li>
@@ -508,13 +603,13 @@
                     </ul>
                     <p>As próximas datas serão compartilhadas no grupo de WhatsApp, e todos os jogadores deverão participar da final na sexta-feira (22/11). Boa sorte!</p>
                 `;
-            }
-        };
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
         }
-    </script>
+    };
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 
 </body>
 
