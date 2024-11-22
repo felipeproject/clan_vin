@@ -121,6 +121,16 @@
         }
 
         /* Botões no canto superior direito */
+
+        #btn-participar,
+        #btn-regras,
+        #btn-premiacao {
+            display: block;
+            /* Garanta que os botões estejam visíveis inicialmente */
+            transition: all 0.3s ease;
+            /* Para uma transição suave */
+        }
+
         .popup-button-container {
             top: 20px;
             right: 20px;
@@ -359,7 +369,7 @@
             classificacaoBody.innerHTML = '';
             classificacaoOrdenada.forEach((item, index) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td><td>${item.partidas}</td><td>${item.pontos}</td>`;
+                tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td><td>${item.partidas}</td><td>${item.pontos}</td>`;
                 classificacaoBody.appendChild(tr);
             });
         }
@@ -373,7 +383,7 @@
             top5Body.innerHTML = '';
             top5Ordenado.forEach((item, index) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td>`;
+                tr.innerHTML = `<td>#${index + 1}</td><td>${item.jogador}</td><td>${item.kills}</td>`;
                 top5Body.appendChild(tr);
             });
         }
@@ -382,8 +392,34 @@
             const table = document.createElement('table');
             const nomeSemExtensao = arquivoNome.replace('.csv', '');
             const [, partida, mapa] = nomeSemExtensao.split('-');
+
+            // Mapeamento dos mapas para as URLs das imagens externas
+            const mapasImagens = {
+                "Erangel": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/9b5d63e.jpg",
+                "Miramar": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b5c3c7f.jpg",
+                "Taego": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/0d771c0.jpg",
+                "Vikendi": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/1bee462.jpg",
+                "Paramo": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/e74fdcd.jpg",
+                "Sanhok": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/3ab566e.jpg",
+                "Karakin": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/ce6fe02.jpg",
+                "Deston": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b2d4a73.jpg"
+            };
+
+            // Criação da imagem do mapa usando o mapeamento
+            const mapaImagemUrl = mapasImagens[mapa] || "https://example.com/default-map.jpg"; // Imagem padrão caso o mapa não seja encontrado
+
+            // Criar o elemento de legenda (caption) com a imagem
             const caption = document.createElement('caption');
-            caption.textContent = `Partida #${partida} - ${mapa}`;
+
+            caption.innerHTML = `
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div style="font-size: 24px; color: #ffffff; background-color: #007BFF; padding: 10px; text-align: center; border-radius: 8px; border: 2px solid #0056b3;">
+                Partida #${partida} - ${mapa}
+            </div>
+            <img src="${mapaImagemUrl}" alt="${mapa}" style="max-width: 100%; max-height: 400px; width: auto; height: auto; border: 4px solid #0056b3; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); margin-top: 20px;">
+        </div>
+    `;
+
             table.appendChild(caption);
 
             const thead = document.createElement('thead');
@@ -401,10 +437,29 @@
             return table;
         }
 
+
         window.onload = function () {
             setTimeout(() => navigateTable(1), 1000);
             setTimeout(() => navigateTable(-1), 2000);
         };
+
+        // Função para esconder os botões ao rolar a página
+        window.addEventListener('scroll', function () {
+            const btnParticipar = document.getElementById('btn-participar');
+            const btnRegras = document.getElementById('btn-regras');
+            const btnPremiacao = document.getElementById('btn-premiacao');
+
+            // Verificar se a página foi rolada para baixo
+            if (window.scrollY > 100) {  // Altere 100 para o valor que desejar, dependendo de quando deseja que os botões desapareçam
+                if (btnParticipar) btnParticipar.style.display = 'none';
+                if (btnRegras) btnRegras.style.display = 'none';
+                if (btnPremiacao) btnPremiacao.style.display = 'none';
+            } else {
+                if (btnParticipar) btnParticipar.style.display = 'block';
+                if (btnRegras) btnRegras.style.display = 'block';
+                if (btnPremiacao) btnPremiacao.style.display = 'block';
+            }
+        });
 
         function openPopup(tipo) {
             const popup = document.getElementById('popup');
@@ -440,6 +495,16 @@
                     <ul>
                         <li><strong>Jogo 1:</strong> 19:30h - <strong>Miramar</strong></li>
                         <li><strong>Jogo 2:</strong> 21:30h - <strong>Taego</strong></li>
+                    </ul>
+                    <h4>Terça-feira:</h4>
+                    <ul>
+                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Paramo</strong></li>
+                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Vikendi</strong></li>
+                    </ul>
+                    <h4>Quarta-feira:</h4>
+                    <ul>
+                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Taego</strong></li>
+                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Miramar</strong></li>
                     </ul>
                     <p>As próximas datas serão compartilhadas no grupo de WhatsApp, e todos os jogadores deverão participar da final na sexta-feira (22/11). Boa sorte!</p>
                 `;
