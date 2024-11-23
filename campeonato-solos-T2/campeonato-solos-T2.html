@@ -190,12 +190,10 @@
         }
     </style>
 </head>
-
 <body>
     <button class="back-button" onclick="window.history.back();">Voltar</button>
     <h2><span>👤🥇</span>Campeonato Solo #2 - Temporada</h2>
     <div class="container">
-
         <table id="classificacao-table">
             <caption
                 style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31);padding: 15px;">
@@ -209,13 +207,6 @@
                     <th><i class="fas fa-gamepad"></i> Partidas</th>
                     <th><i class="fas fa-chart-line"></i> Pontuação</th>
                 </tr>
-                <!-- Botões no canto superior direito -->
-                <div class="popup-button-container">
-                    <button class="popup-button" onclick="openPopup('participar')">Como Participar</button><br><br>
-                    <button class="popup-button" onclick="openPopup('regras')">Regras do Campeonato</button><br><br>
-                    <button class="popup-button" onclick="openPopup('premiacao')">Valor da Premiação</button><br><br>
-                </div>
-
                 <!-- Pop-up -->
                 <div id="popup">
                     <div id="popup-content">
@@ -227,7 +218,6 @@
             </thead>
             <tbody id="classificacao-body"></tbody>
         </table>
-
         <div class="flex-column">
             <table id="tables">
                 <tbody id="tables-body"></tbody>
@@ -239,7 +229,6 @@
                 <button id="next-btn" onclick="navigateTable(1)"> →</button>
             </div>
         </div>
-
         <table id="top5-table">
             <caption
                 style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31); padding: 15px;">
@@ -255,17 +244,13 @@
             <tbody id="top5-body"></tbody>
         </table>
     </div>
-
 </body>
-
 </html>
-
 <div id="popup"
     style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: white; border: 1px solid black; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
     <p>Este é o seu pop-up!</p>
     <button onclick="fecharPopup()">Fechar</button>
 </div>
-
 <script>
     // Exibir o pop-up 2 segundos após a página ser carregada
     window.onload = function () {
@@ -279,7 +264,6 @@
         document.getElementById('popup').style.display = 'none';
     }
 </script>
-
 <script>
     const arquivosCSV = [
         "partida-10-Miramar.csv",
@@ -293,7 +277,6 @@
         "partida-2-Karakin.csv",
         "partida-1-Erangel.csv"
     ];
-
     const jogadoresFotos = {
         "Jogador1": "url_da_foto1.jpg",
         "Jogador2": "url_da_foto2.jpg",
@@ -301,7 +284,6 @@
         "Jogador4": "url_da_foto4.jpg",
         "Jogador5": "url_da_foto5.jpg"
     };
-
     const tablesContainer = document.getElementById('tables-body');
     const classificacaoBody = document.getElementById('classificacao-body');
     const top5Body = document.getElementById('top5-body');
@@ -309,7 +291,6 @@
     let tables = [];
     let currentTableIndex = 0;
     let hasValidData = false;
-
     const csvPromises = arquivosCSV.map((arquivoNome, index) => {
         return fetch(`csv/${arquivoNome}?timestamp=${new Date().getTime()}`)
             .then(response => {
@@ -349,7 +330,6 @@
             })
             .catch(err => console.error('Erro ao carregar o CSV:', err));
     });
-
     Promise.all(csvPromises).then(() => {
         if (hasValidData) {
             updateClassificacao(jogadores);
@@ -369,7 +349,6 @@
         document.getElementById('prev-btn').disabled = currentTableIndex === 0;
         document.getElementById('next-btn').disabled = currentTableIndex === tables.length - 1;
     }
-
     function updateClassificacao(jogadores) {
         const classificacaoOrdenada = Object.keys(jogadores)
             .map(jogador => ({
@@ -379,7 +358,6 @@
                 partidas: jogadores[jogador].partidas
             }))
             .sort((a, b) => b.pontos === a.pontos ? b.partidas - a.partidas : b.pontos - a.pontos);
-
         classificacaoBody.innerHTML = '';
         classificacaoOrdenada.forEach((item, index) => {
             const tr = document.createElement('tr');
@@ -387,7 +365,6 @@
             classificacaoBody.appendChild(tr);
         });
     }
-
     function updateTop5(jogadores) {
         const top5Ordenado = Object.keys(jogadores)
             .map(jogador => ({ jogador, kills: jogadores[jogador].kills }))
@@ -401,12 +378,10 @@
             top5Body.appendChild(tr);
         });
     }
-
     function generateTable(data, arquivoNome, numeroPartida) {
         const table = document.createElement('table');
         const nomeSemExtensao = arquivoNome.replace('.csv', '');
         const [, partida, mapa] = nomeSemExtensao.split('-');
-
         // Mapeamento dos mapas para as URLs das imagens externas
         const mapasImagens = {
             "Erangel": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/9b5d63e.jpg",
@@ -418,15 +393,10 @@
             "Karakin": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/ce6fe02.jpg",
             "Deston": "https://wstatic-prod.pubg.com/web/live/main_eb92790/img/b2d4a73.jpg"
         };
-
         // Criação da imagem do mapa usando o mapeamento
         const mapaImagemUrl = mapasImagens[mapa] || "https://example.com/default-map.jpg"; // Imagem padrão caso o mapa não seja encontrado
-
         // Criar o elemento de legenda (caption) com a imagem
         const caption = document.createElement('caption');
-
-
-
         caption.innerHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="font-size: 25px; color: rgb(255, 255, 255); background-color: rgb(31, 31, 31); padding: 15px;">
@@ -435,13 +405,10 @@
             <img src="${mapaImagemUrl}" alt="${mapa}" style="max-width: 100%; max-height: 400px; width: auto; height: auto; box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); margin-top: 1px;">
         </div>
     `;
-
         table.appendChild(caption);
-
         const thead = document.createElement('thead');
         thead.innerHTML = `<th><i class="fas fa-trophy"></i> Posição</th><th><i class="fas fa-user"></i> Jogador</th><th><i class="fas fa-crosshairs"></i> Kills</th><th><i class="fas fa-chart-line"></i> Pontos</th></tr>`;
         table.appendChild(thead);
-
         const tbody = document.createElement('tbody');
         data.forEach(rowData => {
             const tr = document.createElement('tr');
@@ -449,16 +416,12 @@
             tbody.appendChild(tr);
         });
         table.appendChild(tbody);
-
         return table;
     }
-
-
     window.onload = function () {
         setTimeout(() => navigateTable(1), 1000);
         setTimeout(() => navigateTable(-1), 2000);
     };
-
     // Função para esconder os botões ao rolar a página
     window.addEventListener('scroll', function () {
         const btnParticipar = document.getElementById('btn-participar');
@@ -468,8 +431,6 @@
         function openPopup(tipo) {
             var title = '';
             var bodyContent = '';
-
-
             // Atualiza o título e o conteúdo do pop-up
             document.getElementById('popup-title').textContent = title;
             document.getElementById('popup-body').innerHTML = bodyContent;
@@ -477,45 +438,37 @@
             // Exibe o pop-up
             document.getElementById('popup').style.display = 'block';
         }
-
         // Função para fechar o pop-up
         function closePopup() {
             // Esconde o pop-up
             document.getElementById('popup').style.display = 'none';
         }
-
         // Navegação nas tabelas
         let currentPage = 1; // Página inicial
         let itemsPerPage = 10; // Itens por página
-
         // Função para navegar entre as tabelas
         function navigateTable(direction) {
             currentPage += direction;
-
             // Ativar/desativar os botões de navegação
             document.getElementById('prev-btn').disabled = currentPage === 1;
             document.getElementById('next-btn').disabled = currentPage * itemsPerPage >= totalItems;
 
             updateTable(); // Atualiza a tabela com os novos dados
         }
-
         // Função para atualizar o conteúdo da tabela
         function updateTable() {
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = currentPage * itemsPerPage;
-
             // Aqui você pode carregar e mostrar os dados da tabela, com base no intervalo (startIndex, endIndex)
             // Atualizar a tabela de classificação
             const classificacaoBody = document.getElementById('classificacao-body');
             classificacaoBody.innerHTML = ''; // Limpa o conteúdo da tabela antes de adicionar novos dados
-
             // Aqui seria o código para preencher a tabela com os dados reais
 
             // Atualiza o botão de navegação
             document.getElementById('prev-btn').disabled = startIndex === 0;
             document.getElementById('next-btn').disabled = endIndex >= totalItems;
         }
-
         // Função para popular a tabela com dados de exemplo (exemplo básico)
         const totalItems = 50; // Número total de itens (exemplo)
         function populateTable() {
@@ -531,7 +484,6 @@
                     pontuacao: Math.floor(Math.random() * 5000)
                 });
             }
-
             // Agora vamos adicionar os dados à tabela
             const classificacaoBody = document.getElementById('classificacao-body');
             data.forEach((item, index) => {
@@ -549,13 +501,10 @@
             // Atualiza a tabela ao carregar
             updateTable();
         }
-
         // Chama a função para popular a tabela ao carregar a página
         window.onload = function () {
             populateTable();
         };
-
-
         // Verificar se a página foi rolada para baixo
         if (window.scrollY > 100) {  // Altere 100 para o valor que desejar, dependendo de quando deseja que os botões desapareçam
             if (btnParticipar) btnParticipar.style.display = 'none';
@@ -567,61 +516,7 @@
             if (btnPremiacao) btnPremiacao.style.display = 'block';
         }
     });
-
-    function openPopup(tipo) {
-        const popup = document.getElementById('popup');
-        const title = document.getElementById('popup-title');
-        const body = document.getElementById('popup-body');
-        popup.style.display = 'block';
-
-        if (tipo === 'participar') {
-            title.textContent = 'Como Participar';
-            body.innerHTML = `
-                    <p>Para participar do campeonato de solos, siga os passos abaixo:</p>
-                    <ul>
-                        <li><strong>1. Inscrição no Clã:</strong> Certifique-se de que o seu nome contém a insignia <strong>[VIN]</strong> para ser identificado como membro do clã.</li><br>
-                        <li><strong>2. Entrada no WhatsApp:</strong> Junte-se ao <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank" style="color: #007BFF; font-weight: bold;">grupo oficial do WhatsApp</a>, onde serão compartilhadas informações sobre partidas e atualizações.</li><br>
-                        <li><strong>3. Participação nas Partidas:</strong> As partidas acontecem diariamente às <strong>19:30h</strong>, com dois confrontos consecutivos por dia.</li><br>
-                        <li><strong>4. Cronograma:</strong> O campeonato começa na <strong>segunda-feira, 18/11</strong>, e vai até <strong>sexta-feira, 22/11</strong>, quando ocorrerá a final.</li>
-                    </ul><br>
-                    <p>Prepare-se para competir e se divertir enquanto coloca suas habilidades à prova!</p>
-                `;
-        } else if (tipo === 'regras') {
-            title.textContent = 'Regras do Campeonato';
-            body.innerHTML = `
-                    <p>Qualquer jogador pode entrar em qualquer dia de jogo, mas é importante seguir as regras:</p>
-                    <ul>
-                        <li>Apenas jogadores do clã [VIN] são permitidos participar do campeonato.</li>
-                        <li>Uso de cheats ou qualquer outra abordagem que viole as regras será banido imediatamente.</li>
-                        <li>Comportamento antiético ou inadequado durante as partidas resultará em desqualificação.</li>
-                    </ul>
-                    <h3>Programação da Semana</h3>
-                    <p><strong>Pontos Corridos - Nova Fase!</strong></p>
-                    <p><strong>Início:</strong> Amanhã, 18/11, às 19:30h!</p>
-                    <h4>Segunda-feira:</h4>
-                    <ul>
-                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Miramar</strong></li>
-                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Taego</strong></li>
-                    </ul>
-                    <h4>Terça-feira:</h4>
-                    <ul>
-                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Paramo</strong></li>
-                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Vikendi</strong></li>
-                    </ul>
-                    <h4>Quarta-feira:</h4>
-                    <ul>
-                        <li><strong>Jogo 1:</strong> 19:30h - <strong>Taego</strong></li>
-                        <li><strong>Jogo 2:</strong> 21:30h - <strong>Miramar</strong></li>
-                    </ul>
-                    <p>As próximas datas serão compartilhadas no grupo de WhatsApp, e todos os jogadores deverão participar da final na sexta-feira (22/11). Boa sorte!</p>
-                `;
-        }
-    };
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
 </script>
-
 </body>
 
 </html>
