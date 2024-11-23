@@ -255,10 +255,30 @@
             <tbody id="top5-body"></tbody>
         </table>
     </div>
+
 </body>
 
 </html>
 
+<div id="popup"
+    style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: white; border: 1px solid black; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
+    <p>Este é o seu pop-up!</p>
+    <button onclick="fecharPopup()">Fechar</button>
+</div>
+
+<script>
+    // Exibir o pop-up 2 segundos após a página ser carregada
+    window.onload = function () {
+        setTimeout(function () {
+            document.getElementById('popup').style.display = 'block';
+        }, 2000); // 2000 milissegundos = 2 segundos
+    };
+
+    // Função para fechar o pop-up
+    function fecharPopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 
 <script>
     const arquivosCSV = [
