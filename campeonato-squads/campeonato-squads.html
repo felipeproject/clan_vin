@@ -16,6 +16,8 @@
             --cor-fundo-cards: #2d3436;
             --cor-hover-card: rgba(0, 0, 0, 0.1);
             --cor-borda-card: rgba(255, 255, 255, 0.15);
+            --cor-verificado: #2ecc71;
+            --cor-espera: #f39c12;
         }
 
         /* Resetando margens e padding */
@@ -105,6 +107,24 @@
             margin: 5px 0;
         }
 
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .verificado {
+            color: var(--cor-verificado);
+            margin-left: 8px;
+        }
+
+        .espera {
+            color: var(--cor-espera);
+            margin-left: 8px;
+        }
+
         /* Adicionando Responsividade */
         @media (max-width: 768px) {
             .lista-times {
@@ -129,7 +149,7 @@
         <h2>Times Participantes</h2>
 
         <div class="lista-times">
-            <!-- Time 1 -->
+            <!-- Time 1 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #1</div>
                 <ul class="jogadores">
@@ -138,9 +158,12 @@
                     <li>xCHUMELAx</li>
                     <li>Gabrielhoffmann</li>
                 </ul>
+                <div class="status">
+                    Confirmado <span class="verificado">✔️</span>
+                </div>
             </div>
 
-            <!-- Time 2 -->
+            <!-- Time 2 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #2</div>
                 <ul class="jogadores">
@@ -149,9 +172,12 @@
                     <li>SALOMON_BR</li>
                     <li>dedel32010324</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 3 -->
+            <!-- Time 3 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #3</div>
                 <ul class="jogadores">
@@ -160,9 +186,12 @@
                     <li>Paulao23</li>
                     <li>TEXAS3006</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 4 -->
+            <!-- Time 4 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #4</div>
                 <ul class="jogadores">
@@ -171,9 +200,12 @@
                     <li>SubZroz</li>
                     <li>Al3Mrcs</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 5 -->
+            <!-- Time 5 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #5</div>
                 <ul class="jogadores">
@@ -182,9 +214,12 @@
                     <li>Bradok081</li>
                     <li>Kisaki121</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 6 -->
+            <!-- Time 6 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #6</div>
                 <ul class="jogadores">
@@ -193,9 +228,12 @@
                     <li>Mateus_Sousa</li>
                     <li>OrnelasRP</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 7 -->
+            <!-- Time 7 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #7</div>
                 <ul class="jogadores">
@@ -204,9 +242,12 @@
                     <li>PESADO-GAMEPLAY</li>
                     <li>Pavanelli-ZO</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 8 -->
+            <!-- Time 8 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #8</div>
                 <ul class="jogadores">
@@ -215,60 +256,82 @@
                     <li>Leonardo</li>
                     <li>Wfaolivera_</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 9 -->
+            <!-- Time 9 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #9</div>
                 <ul class="jogadores">
                     <li>FisherKiller02</li>
                     <li>Frontalsmile</li>
-                    <li>Weslleycxrloko</li>
-                    <li>JMarco</li>
+                    <li>Silva00111</li>
+                    <li>Ambarin49</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 10 -->
+            <!-- Time 10 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #10</div>
                 <ul class="jogadores">
-                    <li>Xx_mota_xX10</li>
-                    <li>Yuri2099</li>
-                    <li>babayaga</li>
-                    <li>Brock-br</li>
+                    <li>AlckminPlayz</li>
+                    <li>Julio_JF</li>
+                    <li>Vaz93</li>
+                    <li>Witcher-v9</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 11 -->
+            <!-- Time 11 (Confirmado) -->
             <div class="time">
                 <div class="nome-time">Team #11</div>
                 <ul class="jogadores">
-                    <li>erikao019</li>
-                    <li>iGxFiveStar</li>
-                    <li>berser_rs</li>
-                    <li>bruninhoww</li>
+                    <li>Trico-Cripto</li>
+                    <li>Walker23</li>
+                    <li>Lucas-1602</li>
+                    <li>Gustavo-Araujo</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
 
-            <!-- Time 12 -->
+            <!-- Time 12 (Esperando) -->
             <div class="time">
                 <div class="nome-time">Team #12</div>
                 <ul class="jogadores">
-                    <li>kaisNakoLover</li>
-                    <li>nokyamlavor</li>
-                    <li>taz020296</li>
-                    <li>wewfwfwf</li>
+                    <li>LucasGod</li>
+                    <li>Juliano-TAM</li>
+                    <li>DjVictor_x</li>
+                    <li>Macario_x</li>
                 </ul>
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
             </div>
-           <!-- Time 13 -->
-           <div class="time">
-               <div class="nome-time">Team #13</div>
-               <ul class="jogadores">
-                <li>fb-gg-MidiGamer</li>
-                <li>DuAlien</li>
-                <li>CARNEIRO007</li>
+
+            <!-- Time 13 (Confirmado) -->
+            <div class="time">
+                <div class="nome-time">Team #13</div>
+                <ul class="jogadores">
+                    <li>Feicorleone</li>
+                    <li>ThiagoRogers</li>
+                    <li>PauloRizzoli</li>
+                    <li>Lehson</li>
                 </ul>
-            </div>        
+                <div class="status">
+                    Esperando <span class="espera">⏳</span>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </body>
