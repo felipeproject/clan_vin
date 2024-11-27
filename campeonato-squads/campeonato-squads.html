@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonato Squads - Clan Os Vingadores</title>
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --cor-fundo: #1b1b1b;
+            --cor-texto-principal: #ecf0f1;
+            --cor-texto-secundario: #b2bec3;
+            --cor-borda: rgba(255, 255, 255, 0.1);
+            --cor-titulo: #ffffff;
+            --cor-fundo-cards: #2d3436;
+            --cor-hover-card: rgba(0, 0, 0, 0.1);
+            --cor-borda-card: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Resetando margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Título principal */
+        h1 {
+            font-size: 2.5em;
+            color: var(--cor-titulo);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Seção dos Times Participantes */
+        .secao {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+        }
+
+        .secao h2 {
+            font-size: 2em;
+            color: var(--cor-titulo);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Lista de Times */
+        .lista-times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .time {
+            background-color: var(--cor-fundo-cards);
+            border-radius: 12px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--cor-borda-card);
+        }
+
+        .time:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .nome-time {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-texto-principal);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .jogadores {
+            font-size: 1em;
+            color: var(--cor-texto-secundario);
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .jogadores li {
+            margin: 5px 0;
+        }
+
+        /* Adicionando Responsividade */
+        @media (max-width: 768px) {
+            .lista-times {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .time {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Campeonato Squads (FPP) - Interno</h1>
+
+    <!-- Seção de Times Participantes -->
+    <div class="secao">
+        <h2>Times Participantes</h2>
+
+        <div class="lista-times">
+            <!-- Time 1 -->
+            <div class="time">
+                <div class="nome-time">Team #1</div>
+                <ul class="jogadores">
+                    <li>Jogador 1</li>
+                    <li>Jogador 2</li>
+                    <li>Jogador 3</li>
+                    <li>Jogador 4</li>
+                </ul>
+            </div>
+
+            <!-- Time 2 -->
+            <div class="time">
+                <div class="nome-time">Team #2</div>
+                <ul class="jogadores">
+                    <li>Jogador 5</li>
+                    <li>Jogador 6</li>
+                    <li>Jogador 7</li>
+                    <li>Jogador 8</li>
+                </ul>
+            </div>
+
+            <!-- Time 3 -->
+            <div class="time">
+                <div class="nome-time">Team #3</div>
+                <ul class="jogadores">
+                    <li>Jogador 9</li>
+                    <li>Jogador 10</li>
+                    <li>Jogador 11</li>
+                    <li>Jogador 12</li>
+                </ul>
+            </div>
+
+            <!-- Time 4 -->
+            <div class="time">
+                <div class="nome-time">Team #4</div>
+                <ul class="jogadores">
+                    <li>Jogador 13</li>
+                    <li>Jogador 14</li>
+                    <li>Jogador 15</li>
+                    <li>Jogador 16</li>
+                </ul>
+            </div>
+
+            <!-- Time 5 -->
+            <div class="time">
+                <div class="nome-time">Team #5</div>
+                <ul class="jogadores">
+                    <li>Jogador 17</li>
+                    <li>Jogador 18</li>
+                    <li>Jogador 19</li>
+                    <li>Jogador 20</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
