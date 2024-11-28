@@ -79,8 +79,15 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: var(--cor-texto-principal);
+            min-height: 350px;
+            /* Altura mínima dos cards */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
         }
 
+        /* Ajuste no comportamento de hover */
         .campeonato-linha:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -113,51 +120,16 @@
             margin-top: 15px;
         }
 
-        .status-em-andamento {
-            background-color: var(--cor-status-em-andamento);
-            animation: piscar 1.1s infinite alternate;
-        }
-
-        .status-em-votacao {
-            background-color: var(--cor-status-em-votacao);
-        }
-
-        .status-encerrado {
-            background-color: var(--cor-status-encerrado);
-        }
-
-        /* Efeito de Piscar */
-        @keyframes piscar {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.2;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Separadores entre seções */
-        .separador {
-            border: none;
-            height: 1px;
-            background-color: var(--cor-texto-secundario);
-            margin: 30px 0;
-            opacity: 0.4;
-        }
-
-        /* Títulos das seções (Atual, Futuro, Passado) */
-        h2 {
-            font-size: 1.6em;
-            color: var(--cor-texto-principal);
-            margin-top: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Estilo para as imagens representativas dos campeonatos */
+        .imagem-campeonato {
+            width: 220px;
+            height: 130px;
+            border-radius: 10%;
+            object-fit: cover;
+            margin-top: 15px;
+            max-width: 100%;
+            /* Ajusta as imagens para não ultrapassarem o limite do card */
+            height: auto;
         }
 
         /* Responsividade */
@@ -208,36 +180,6 @@
                 height: 80px;
             }
         }
-
-        /* Estilo para as imagens representativas dos campeonatos */
-        .imagem-campeonato {
-            width: 220px;
-            height: 130px;
-            border-radius: 10%;
-            object-fit: cover;
-            margin-top: 15px;
-        }
-
-        /* Imagem do time ao lado do campeonato */
-        .time-imagem {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-left: 20px;
-        }
-
-        /* Estilo de Grid para colocar imagem do time e detalhes ao lado */
-        .campeonato-linha-flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .detalhes-campeonato {
-            max-width: 80%;
-        }
-
     </style>
 </head>
 
@@ -277,7 +219,8 @@
                 <div class="campeonato-linha-flex">
                     <div class="detalhes-campeonato">
                         <h2><span>👥🏆</span> Liga de Clãs PUBG - Campeonato</h2>
-                        <p>Mostre a força do seu clã e vença. Veja os detalhes abaixo <strong><br>Confira mais detalhes e atualizações no nosso servidor do Discord</strong> </p>
+                        <p>Mostre a força do seu clã e vença. Veja os detalhes abaixo <strong><br>Confira mais detalhes
+                                e atualizações no nosso servidor do Discord</strong> </p>
                         <ul>
                             <li><strong>Data de Início:</strong> Dezembro</li>
                             <li><strong>Formato:</strong> Em breve, será revelado</li>
