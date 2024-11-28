@@ -40,6 +40,36 @@
             overflow-x: hidden;
         }
 
+        /* Aba Superior (Header) */
+        .header {
+            width: 100%;
+            background-color: #333;
+            color: var(--cor-texto-principal);
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header a {
+            color: var(--cor-link);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        .header a:hover {
+            color: var(--cor-link-hover);
+        }
+
+        /* Ajuste o conteúdo da página para não ficar por baixo da aba */
+        .content {
+            margin-top: 80px;
+            /* Distância para não ficar por baixo da aba */
+        }
+
         /* Título principal */
         h1 {
             font-size: 2.5em;
@@ -62,7 +92,7 @@
         /* Lista de Campeonatos */
         .campeonatos-lista {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
 
@@ -184,72 +214,97 @@
 </head>
 
 <body>
-    <!-- Banner da página -->
-    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
-    <h2>Campeonatos Internos do Clan [VIN]</h2>
+    <!-- Aba Superior (Header) -->
+    <div class="header">
+        <a href="#">Início</a>
+        <a href="#">Eventos</a>
+        <a href="times.html">Times</a> <!-- Corrigido aqui -->
+    </div>
 
-    <!-- Lista de Campeonatos -->
-    <div class="campeonatos-lista">
-        <!-- Seção Atual -->
-        <div>
-            <h2>🔥 Esta semana</h2>
-            <hr class="separador">
-            <a href="campeonato-squads/campeonato-squads.html" class="campeonato-linha"
-                onclick="checkPageExistence(event, 'campeonato-squads/campeonato-squads.html')">
-                <div class="campeonato-linha-flex">
-                    <div class="detalhes-campeonato">
-                        <h2><span>👥🏆</span> Campeonato Squads - Interno</h2>
-                        <p>Informações do Campeonato:</p>
-                        <ul>
-                            <li>Data: Dezembro</li>
-                            <li>Número de partidas: </li>
-                            <li>Início:</li>
-                        </ul>
-                        <div class="status status-em-votacao">Equipes em organização.. ⭐</div>
-                    </div>
-                    <img src="sqads_c.jpg" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
-                </div>
-            </a>
-        </div>
-        <!-- Seção Próximos -->
-        <div>
-            <h2>⚡ Próximos</h2>
-            <hr class="separador">
-            <a href="https://discord.gg/gb6z7zyk" class="campeonato-linha" target="_blank">
-                <div class="campeonato-linha-flex">
-                    <div class="detalhes-campeonato">
-                        <h2><span>👥🏆</span> Liga de Clãs PUBG - Campeonato</h2>
-                        <p>Mostre a força do seu clã e vença. Veja os detalhes abaixo <strong><br>Confira mais detalhes
-                                e atualizações no nosso servidor do Discord</strong> </p>
-                        <ul>
-                            <li><strong>Data de Início:</strong> Dezembro</li>
-                            <li><strong>Formato:</strong> Em breve, será revelado</li>
-                            <li><strong>Número de Partidas:</strong> A ser definido</li>
-                            <li><strong>Horário de Início:</strong> Em breve, aguarde a confirmação</li>
-                        </ul>
-                        <div class="status status-em-votacao">⏳ Em votação</div>
-                    </div>
-                    <img src="campeonato-squads.png" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
-                </div>
-            </a>
-        </div>
+    <!-- Conteúdo da página -->
+    <div class="content">
+        <!-- Banner da página -->
+        <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
+        <h2>Eventos</h2>
 
-        <!-- Seção Encerrados -->
-        <div>
-            <h2>🏁 Encerrados</h2>
-            <hr class="separador">
-            <a href="campeonato-solos-T2/campeonato-solos-T2.html" class="campeonato-linha"
-                onclick="checkPageExistence(event, 'campeonato-solos-T2/campeonato-solos-T2.html')">
-                <div class="campeonato-linha-flex">
-                    <div class="detalhes-campeonato">
-                        <h2><span>👤🥇</span>Campeonato Solo #2 - Temporada</h2>
-                        <p><strong>Início 18/11</strong></p>
-                        <p>Consulte os melhores do Campeonato Solo: 1º, 2º e 3º Lugar.</p>
-                        <div class="status status-encerrado">🏆 Vencedor: WF_PROZIN - Prêmio: R$35 💰</div>
+        <!-- Lista de Campeonatos -->
+        <div class="campeonatos-lista">
+            <!-- Seção Atual -->
+            <div>
+                <h2>🔥 Esta semana</h2>
+                <hr class="separador">
+                <a href="" class="campeonato-linha" onclick="checkPageExistence(event, '')">
+                    <div class="campeonato-linha-flex">
+                        <div class="detalhes-campeonato">
+                            <h2><span>👥</span> Amistosos</h2>
+                            <p>Informações de salas personalisadas:</p>
+                            <ul>
+                                <li>hoje 28/11 e 29/11</li>
+                                <li>Início: 18:30h</li>
+                            </ul>
+                            <div class="status status-em-votacao">Equipes em organização.. ⭐</div>
+                        </div>
+                        <img src="amistoso.jpg" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
                     </div>
-                    <img src="campeonato-solo.png" alt="Imagem Campeonato Solo" class="imagem-campeonato">
-                </div>
-            </a>
+                </a>
+            </div>
+            <div>
+                <h2>🔥 Sábado</h2>
+                <hr class="separador">
+                <a href="" class="campeonato-linha" onclick="checkPageExistence(event, '')">
+                    <div class="campeonato-linha-flex">
+                        <div class="detalhes-campeonato">
+                            <h2><span>👥</span> Campeonato de squads</h2>
+                            <p>Informações do Campeonato:</p>
+                            <ul>
+                                <li>30/11</li>
+                                <li>Início: 18:30h</li>
+                            </ul>
+                            <div class="status status-em-votacao">Equipes em organização.. ⭐</div>
+                        </div>
+                        <img src="squads-2.jpg" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
+                    </div>
+                </a>
+            </div>
+            <!-- Seção Próximos -->
+            <div>
+                <h2>⚡ Próximos</h2>
+                <hr class="separador">
+                <a href="campeonato-squads/campeonato-squads.html" class="campeonato-linha"
+                    onclick="checkPageExistence(event, 'campeonato-squads/campeonato-squads.html')">
+                    <div class="campeonato-linha-flex"z>
+                        <div class="detalhes-campeonato">
+                            <h2><span>👥🏆</span> Campeonato Squads - Interno</h2>
+                            <p>Informações do Campeonato:</p>
+                            <ul>
+                                <li>Data: Dezembro</li>
+                                <li>Número de partidas: </li>
+                                <li>Início:</li>
+                            </ul>
+                            <div class="status status-em-votacao">Equipes em organização.. ⭐</div>
+                        </div>
+                        <img src="sqads_c.jpg" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
+                    </div>
+                </a>
+                <a href="https://discord.gg/gb6z7zyk" class="campeonato-linha" target="_blank">
+                    <div class="campeonato-linha-flex">
+                        <div class="detalhes-campeonato">
+                            <h2><span>👥🏆</span> Liga de Clãs PUBG - Campeonato</h2>
+                            <p>Mostre a força do seu clã e vença. Veja os detalhes abaixo <strong><br>Confira mais
+                                    detalhes
+                                    e atualizações no nosso servidor do Discord</strong> </p>
+                            <ul>
+                                <li><strong>Data de Início:</strong> Dezembro</li>
+                                <li><strong>Formato:</strong> Em breve, será revelado</li>
+                                <li><strong>Número de Partidas:</strong> A ser definido</li>
+                                <li><strong>Horário de Início:</strong> Em breve, aguarde a confirmação</li>
+                            </ul>
+                            <div class="status status-em-votacao">⏳ Em votação</div>
+                        </div>
+                        <img src="campeonato-squads.png" alt="Imagem Campeonato Duplas" class="imagem-campeonato">
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
