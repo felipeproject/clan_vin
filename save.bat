@@ -13,4 +13,3 @@ git push origin main
 :: git push origin sua-branch
 
 echo Atualização concluída!
-pause
