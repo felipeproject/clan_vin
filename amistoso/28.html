@@ -1,56 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amistosos</title>
+    <title>Tabela de Amistosos</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
+        /* Configuração do body */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0f0f0f;  /* Fundo preto */
-            color: #e0e0e0;  /* Cor do texto em um tom claro */
+            background-color: #121212;  /* Fundo escuro */
+            color: #e0e0e0;  /* Texto claro */
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+            overflow-y: auto;  /* Habilita a rolagem vertical */
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Estilo do título principal */
         h1 {
-            font-size: 28px;
-            color: #00FF00;  /* Verde gamer para o título */
+            font-size: 36px;
+            color: #00FF00;  /* Cor verde neon */
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Estilo para o contêiner de tabelas */
+        .tabelas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            overflow-y: auto;  /* Permite rolagem interna se necessário */
+        }
+
+        /* Estilo das tabelas */
+        .tabela {
+            background-color: #1a1a1a;  /* Fundo escuro para a tabela */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tabela:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #222222;  /* Fundo escuro da tabela */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
         }
 
         th,
         td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #333333;  /* Cor das bordas da tabela */
+            border-bottom: 1px solid #333;
         }
 
         th {
-            background-color: #444444;  /* Cor de fundo mais escura para os cabeçalhos */
-            color: #00FF00;  /* Verde gamer nos cabeçalhos */
+            background-color: #333;
+            color: #00FF00;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #262626;  /* Linhas alternadas com tom mais escuro */
         }
 
         tr:hover {
-            background-color: #333333;  /* Cor para linhas ao passar o mouse */
+            background-color: #444444;  /* Hover sobre as linhas */
         }
 
-        @media (max-width: 600px) {
+        /* Responsividade */
+        @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .tabelas-container {
+                grid-template-columns: 1fr;
             }
 
             table {
@@ -59,59 +102,64 @@
         }
     </style>
 </head>
-
 <body>
-    <h1>Tabela de rodadas</h1>
-    <div id="tabelaResultado"></div>
+    <h1>Tabela de Rodadas</h1>
+    <div class="tabelas-container" id="tabelaResultado"></div>
 
     <script>
+        // Definindo os arquivos CSV
         const arquivosCSV = [
             '28/erangel-normal-squad-fpp-2024-11-28t21_53_43+00_00.csv',
             '28/sanhok-normal-squad-fpp-2024-11-28t22_36_13+00_00.csv',
             '28/karakin-normal-squad-fpp-2024-11-28t23_03_24+00_00.csv',
             '28/vikendi-normal-squad-fpp-2024-11-28t23_25_47+00_00.csv'
         ];
+        // Nomes dos mapas
+        const nomesMapas = [
+            'Erangel',
+            'Sanhok',
+            'Karakin',
+            'Vikendi'
+        ];
 
         let dadosCSV = [];
 
-        // Função para ler um arquivo CSV
+        // Função para ler os arquivos CSV
         function lerCSV(url, index) {
             Papa.parse(url, {
                 download: true,
                 complete: function (result) {
                     dadosCSV = result.data;
                     console.log("CSV carregado de:", url);
-                    processarDados(index);  // Passar o índice para identificar a tabela
+                    processarDados(index);
                 },
                 header: true
             });
         }
 
-        // Função para processar os dados e agrupar as informações para cada CSV
+        // Função para processar os dados e agrupar as informações
         function processarDados(index) {
             let times = {};
 
-            // Agrupar jogadores por time
+            // Agrupar por time
             dadosCSV.forEach(linha => {
                 const time = linha["Team Name"];
-                const kills = parseInt(linha["Kills"]) || 0;  // Garantir que as kills sejam um número válido
+                const kills = parseInt(linha["Kills"]) || 0;
                 const posicao = linha["Win Place"];
 
-                // Ignorar linhas que não contêm um time ou posição válida
                 if (!time || isNaN(kills) || !posicao) return;
 
                 if (!times[time]) {
                     times[time] = {
                         killsTime: 0,
-                        posicao: parseInt(posicao) // Garantir que a posição seja um número
+                        posicao: parseInt(posicao)
                     };
                 }
 
-                // Somar as kills do time
                 times[time].killsTime += kills;
             });
 
-            // Converter o objeto times em um array
+            // Ordenar os dados
             let timesOrdenados = Object.keys(times).map(time => {
                 return {
                     nomeTime: time,
@@ -120,50 +168,49 @@
                 };
             });
 
-            // Ordenar os times pela quantidade de kills (decrescente) e pela posição (crescente)
             timesOrdenados.sort((a, b) => {
                 if (b.killsTime === a.killsTime) {
-                    return a.posicao - b.posicao;  // Caso de empate, o time com a melhor posição ganha
+                    return a.posicao - b.posicao;
                 }
-                return b.killsTime - a.killsTime; // Ordenar pelas kills de forma decrescente
+                return b.killsTime - a.killsTime;
             });
 
-            // Atribuir pontos de acordo com a posição (10 pontos para o 1º, 9 para o 2º, etc.)
+            // Atribuir pontos
             timesOrdenados.forEach((time, index) => {
-                time.pontosPosicao = 10 - index; // Atribuindo pontos pela posição, 10 para o 1º, 9 para o 2º, etc.
+                time.pontosPosicao = 10 - index;
                 if (index >= 10) {
-                    time.pontosPosicao = 0; // Times além da 10ª posição recebem 0 pontos
+                    time.pontosPosicao = 0;
                 }
-                // Soma os pontos da posição com as kills
                 time.pontos = time.pontosPosicao + time.killsTime;
             });
 
-            // Preparar dados para exibir na tabela
-            let tabela = `<h2>Jogo #${index + 1}</h2>`;  // Exibir título para cada tabela
+            // Criar a tabela HTML
+            let tabela = `<div class="tabela">`;
+            tabela += `<h2>Jogo #${index + 1} - ${nomesMapas[index]}</h2>`;
             tabela += "<table>";
-            tabela += "<thead><tr><th>Posição</th><th>Nome do Time</th><th>Kills do Time</th><th>Pontos por Posição</th><th>Pontos Totais</th></tr></thead>";
+            tabela += "<thead><tr><th>Posição</th><th>Nome do Time</th><th>Kills</th><th>Pontos por Posição</th><th>Pontos Totais</th></tr></thead>";
             tabela += "<tbody>";
 
-            // Mostrar os times e seus totais
             timesOrdenados.forEach((time, index) => {
                 tabela += "<tr>";
-                tabela += `<td>${index + 1}</td>`;  // Mostrar posição na tabela
+                tabela += `<td>${index + 1}</td>`;
                 tabela += `<td>${time.nomeTime}</td>`;
                 tabela += `<td>${time.killsTime}</td>`;
-                tabela += `<td>${time.pontosPosicao}</td>`;  // Mostrar a pontuação pela posição
-                tabela += `<td>${time.pontos}</td>`;  // Mostrar a pontuação total (posição + kills)
+                tabela += `<td>${time.pontosPosicao}</td>`;
+                tabela += `<td>${time.pontos}</td>`;
                 tabela += "</tr>";
             });
 
             tabela += "</tbody></table>";
-            document.getElementById("tabelaResultado").innerHTML += tabela;  // Adicionar a tabela ao conteúdo
+            tabela += "</div>";
+
+            document.getElementById("tabelaResultado").innerHTML += tabela; 
         }
 
-        // Carregar todos os arquivos CSV predefinidos
+        // Carregar todos os arquivos CSV
         arquivosCSV.forEach((arquivo, index) => {
-            lerCSV(arquivo, index); // Ler cada arquivo CSV automaticamente e passar o índice
+            lerCSV(arquivo, index);
         });
     </script>
 </body>
-
 </html>
