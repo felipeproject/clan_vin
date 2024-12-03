@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Clã - VIN Gaming</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo geral */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212; /* Preto gamer */
+            color: #d9d9d9; /* Cinza claro */
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: #00ff00; /* Verde neon */
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #d9d9d9;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            color: #00ff00;
+            background: #1e1e1e;
+            text-decoration: none;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #00ff00;
+            color: #121212;
+        }
+
+        section {
+            margin-bottom: 30px;
+            opacity: 0; /* Invisível inicialmente */
+            transform: translateY(50px); /* Move para baixo inicialmente */
+            animation: fadeIn 1s forwards; /* Animação */
+        }
+
+        /* Animação dos separadores */
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: #00ff00;
+            text-shadow: 0 0 8px #00ff00;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            opacity: 0; /* Invisível inicialmente */
+            animation: fadeInCard 0.5s forwards; /* Animação dos cards */
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        .card strong {
+            color: #00ff00;
+        }
+
+        @keyframes fadeInCard {
+            to {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VIN Gaming</h1>
+        <p>Bem-vindo ao portal oficial do nosso clã!</p>
+    </header>
+    
+    <nav>
+        <a href="#campeonatos">Campeonatos</a>
+        <a href="#inscricoes">Inscrições</a>
+        <a href="#regras">Regras</a>
+        <a href="#contatos">Contato</a>
+    </nav>
+    
+    <section id="campeonatos">
+        <h2>Campeonatos Ativos</h2>
+        <div class="card">
+            <p><strong>Evento:</strong> Campeonato de Esquads FPP</p>
+            <p><strong>Status:</strong> Votação de datas em andamento</p>
+            <p><a href="https://forms.gle/Ccq49q26XjpvdWj18" target="_blank">🔗 Clique aqui para votar</a></p>
+        </div>
+    </section>
+    
+    <section id="inscricoes">
+        <h2>Inscrições</h2>
+        <div class="card">
+            <p><strong>Valor por equipe:</strong> R$ 60,00</p>
+            <p><strong>Valor por pessoa:</strong> R$ 15,00</p>
+            <p><strong>Pagamento via PIX:</strong> 54992767447</p>
+            <p>Todos os valores arrecadados serão somados à premiação final!</p>
+        </div>
+    </section>
+    
+    <section id="regras">
+        <h2>Regras e Informações</h2>
+        <div class="card">
+            <p>Atualizações serão disponibilizadas na página oficial do evento.</p>
+            <p><strong>Nota:</strong> Até o momento, 14 votos foram recebidos. Participe da votação para ajudar a definir os horários!</p>
+        </div>
+    </section>
+    
+    <section id="contatos">
+        <h2>Contato da Equipe</h2>
+        <div class="card">
+            <p><strong>Organizadores:</strong></p>
+            <ul>
+                <li>@[VIN] gambin_metaleiro</li>
+                <li>@[VIN] Doomed_Aim</li>
+                <li>@[VIN] xA_N_D_R_Ex</li>
+                <li>@[VIN] xCHUMELAx</li>
+            </ul>
+        </div>
+        <div class="card">
+            <p><strong>Lives:</strong></p>
+            <ul>
+                <li>@[VIN] Braoolino</li>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 - VIN Gaming. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
