@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portal do Clã VIN Gaming - Campeonato de Esquads, Inscrições, Regras e Premiação.">
+    <meta name="keywords" content="Clã VIN, Campeonato Esquads, Inscrições, Regras, VIN Gaming, Premiação, Jogos">
     <title>Portal do Clã - VIN Gaming</title>
+
+    <!-- Link para Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         /* Reset básico */
         * {
@@ -14,168 +22,345 @@
 
         /* Estilo geral */
         body {
-            font-family: 'Arial', sans-serif;
-            background: #121212; /* Preto gamer */
-            color: #d9d9d9; /* Cinza claro */
+            font-family: 'Roboto', sans-serif;
+            background: #1e1e1e;
+            /* Fundo escuro */
+            color: #ddd;
+            /* Texto claro */
             line-height: 1.6;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         header {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 20px 0;
             text-align: center;
-            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         header h1 {
-            font-size: 2.8rem;
-            color: #00ff00; /* Verde neon */
-            text-shadow: 0 0 10px #00ff00;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #d9d9d9;
+            font-size: 3rem;
+            color: #65ae65;
+            /* Verde neon */
+            font-weight: bold;
         }
 
         nav {
-            text-align: center;
+            display: flex;
+            justify-content: center;
             margin: 20px 0;
         }
 
         nav a {
-            display: inline-block;
-            margin: 0 10px;
             padding: 10px 20px;
-            color: #00ff00;
-            background: #1e1e1e;
+            color: #fff;
+            background: #333;
             text-decoration: none;
-            border: 1px solid #333333;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 50px;
+            margin: 0 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s ease;
         }
 
         nav a:hover {
-            background: #00ff00;
-            color: #121212;
+            background: #009dff;
+            transform: translateY(-5px);
+        }
+
+        .highlight {
+            background: #333;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 2rem;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease;
+        }
+
+        .highlight:hover {
+            background: #009dff;
         }
 
         section {
-            margin-bottom: 30px;
-            opacity: 0; /* Invisível inicialmente */
-            transform: translateY(50px); /* Move para baixo inicialmente */
-            animation: fadeIn 1s forwards; /* Animação */
-        }
-
-        /* Animação dos separadores */
-        section:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        section:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        section:nth-child(5) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            padding: 40px 20px;
+            text-align: center;
         }
 
         section h2 {
-            font-size: 1.8rem;
-            color: #00ff00;
-            text-shadow: 0 0 8px #00ff00;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
         }
 
         .card {
-            background: #1e1e1e;
-            padding: 15px;
-            border: 1px solid #333333;
-            border-radius: 8px;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px;
             margin-bottom: 20px;
-            opacity: 0; /* Invisível inicialmente */
-            animation: fadeInCard 0.5s forwards; /* Animação dos cards */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .card:nth-child(2) {
-            animation-delay: 0.4s;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card p {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            color: #ddd;
         }
 
         .card strong {
-            color: #00ff00;
+            color: #fff;
         }
 
-        @keyframes fadeInCard {
-            to {
-                opacity: 1;
-            }
+        .button-link {
+            display: inline-block;
+            padding: 12px 20px;
+            color: #fff;
+            background: #009dff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .button-link:hover {
+            background: #007bb5;
+            transform: translateY(-3px);
         }
 
         footer {
+            background: #333;
+            color: #aaa;
+            padding: 15px;
             text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888888;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #009dff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #65ae65;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .banner {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>VIN Gaming</h1>
-        <p>Bem-vindo ao portal oficial do nosso clã!</p>
+        <h1>Campeonato de Esquads - Clã VIN</h1>
     </header>
-    
+
+    <img src="campeonato-squads.png" alt="Banner do Clã Os Vingadores - Campeonato de Esquads" class="banner">
+
     <nav>
-        <a href="#campeonatos">Campeonatos</a>
+        <a href="#campeonatos">Campeonato</a>
         <a href="#inscricoes">Inscrições</a>
         <a href="#regras">Regras</a>
         <a href="#contatos">Contato</a>
     </nav>
-    
+
+    <!-- Área de Destaque -->
+    <div class="highlight">
+        Premiação Atual: <span id="premiacao-total">R$ 0,00</span>
+    </div>
+
     <section id="campeonatos">
         <h2>Campeonatos Ativos</h2>
         <div class="card">
-            <p><strong>Evento:</strong> Campeonato de Esquads FPP</p>
-            <p><strong>Status:</strong> Votação de datas em andamento</p>
-            <p><a href="https://forms.gle/Ccq49q26XjpvdWj18" target="_blank">🔗 Clique aqui para votar</a></p>
+            <p><strong>Modo:</strong> FPP (First-Person Perspective)</p>
+            <p><strong>Status:</strong> Votação de datas e horários</p>
+            <p><strong>Nota:<br></strong> Até o momento, 18 votos foram recebidos. Participe da votação para ajudar a
+                definir os horários!</p>
+            <a href="https://forms.gle/Ccq49q26XjpvdWj18" target="_blank" class="button-link">Vote agora</a>
         </div>
     </section>
-    
+
     <section id="inscricoes">
         <h2>Inscrições</h2>
         <div class="card">
-            <p><strong>Valor por equipe:</strong> R$ 60,00</p>
-            <p><strong>Valor por pessoa:</strong> R$ 15,00</p>
+            <p><strong>Valor individual:</strong> R$ 15,00</p>
             <p><strong>Pagamento via PIX:</strong> 54992767447</p>
-            <p>Todos os valores arrecadados serão somados à premiação final!</p>
+            <p>Todo valor arrecadado aumenta a premiação final!</p>
         </div>
     </section>
-    
+
+    <section id="equipes">
+        <h2>Equipes Participantes</h2>
+
+        <!-- Equipe 1: Máximo -->
+        <div class="card">
+            <p><strong>Equipe 1: Máximo</strong></p>
+            <ul class="team-list">
+                <li class="team-member">
+                    <img src="jogador1.jpg" alt="João Silva" class="team-photo">
+                    <span>Jogador 1: João Silva</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador2.jpg" alt="Carlos Souza" class="team-photo">
+                    <span>Jogador 2: Carlos Souza</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador3.jpg" alt="Lucas Pereira" class="team-photo">
+                    <span>Jogador 3: Lucas Pereira</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador4.jpg" alt="Pedro Oliveira" class="team-photo">
+                    <span>Jogador 4: Pedro Oliveira</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Equipe 2: Lendários -->
+        <div class="card">
+            <p><strong>Equipe 2: Lendários</strong></p>
+            <ul class="team-list">
+                <li class="team-member">
+                    <img src="jogador5.jpg" alt="Ana Costa" class="team-photo">
+                    <span>Jogador 1: Ana Costa</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador6.jpg" alt="Felipe Gomes" class="team-photo">
+                    <span>Jogador 2: Felipe Gomes</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador7.jpg" alt="Mariana Alves" class="team-photo">
+                    <span>Jogador 3: Mariana Alves</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador8.jpg" alt="Bruno Martins" class="team-photo">
+                    <span>Jogador 4: Bruno Martins</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Equipe 3: Vingadores -->
+        <div class="card">
+            <p><strong>Equipe 3: Vingadores</strong></p>
+            <ul class="team-list">
+                <li class="team-member">
+                    <img src="jogador9.jpg" alt="Gustavo Pereira" class="team-photo">
+                    <span>Jogador 1: Gustavo Pereira</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador10.jpg" alt="Renata Souza" class="team-photo">
+                    <span>Jogador 2: Renata Souza</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador11.jpg" alt="Diego Ramos" class="team-photo">
+                    <span>Jogador 3: Diego Ramos</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador12.jpg" alt="Eduardo Lima" class="team-photo">
+                    <span>Jogador 4: Eduardo Lima</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Equipe 4: Fênix -->
+        <div class="card">
+            <p><strong>Equipe 4: Fênix</strong></p>
+            <ul class="team-list">
+                <li class="team-member">
+                    <img src="jogador13.jpg" alt="Carolina Ferreira" class="team-photo">
+                    <span>Jogador 1: Carolina Ferreira</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador14.jpg" alt="Rafael Oliveira" class="team-photo">
+                    <span>Jogador 2: Rafael Oliveira</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador15.jpg" alt="Tiago Santos" class="team-photo">
+                    <span>Jogador 3: Tiago Santos</span>
+                </li>
+                <li class="team-member">
+                    <img src="jogador16.jpg" alt="Laura Martins" class="team-photo">
+                    <span>Jogador 4: Laura Martins</span>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+
+    </section>
+
+
     <section id="regras">
         <h2>Regras e Informações</h2>
         <div class="card">
-            <p>Atualizações serão disponibilizadas na página oficial do evento.</p>
-            <p><strong>Nota:</strong> Até o momento, 14 votos foram recebidos. Participe da votação para ajudar a definir os horários!</p>
+            <p><strong>Regras principais:</strong></p>
+            <ul>
+                <li>Mapas serão selecionados por votação entre os participantes e o comitê organizador. A votação será
+                    realizada antes do evento e os mapas vencedores serão utilizados durante o torneio.</li>
+                <li>Inscrição confirmada apenas após o pagamento da taxa de inscrição. Não serão aceitas inscrições sem
+                    comprovação do pagamento.</li>
+                <li>Todos os jogadores devem manter a boa conduta e respeito aos outros participantes. Qualquer atitude
+                    antidesportiva poderá resultar em desqualificação imediata.</li>
+                <li>Apenas jogadores previamente inscritos e aprovados pelo comitê organizador poderão participar.
+                    Substituições de jogadores após a inscrição não são permitidas, a menos que autorizadas pela
+                    organização.</li>
+                <li>A organização se reserva o direito de alterar as regras ou formatos do torneio a qualquer momento,
+                    com aviso prévio aos participantes.</li>
+                <li>Em caso de falhas técnicas, a organização pode reiniciar uma partida, a seu critério, para garantir
+                    a justiça e o equilíbrio do torneio.</li>
+                <li>Todos os participantes devem estar cientes de que, ao se inscrever, aceitam as regras e condições do
+                    torneio, além de qualquer decisão final da organização ser irrevogável.</li>
+            </ul>
         </div>
     </section>
-    
+
+
     <section id="contatos">
-        <h2>Contato da Equipe</h2>
+        <h2>Contatos</h2>
+        <div class="card">
+            <p><strong>Comunicação oficial:</strong></p>
+            <a href="https://discord.gg/4bQMAeZN" target="_blank" class="button-link">Entre no Discord</a>
+            <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank" class="button-link">Grupo
+                WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="contatos">
+        <h2>Equipe</h2>
         <div class="card">
             <p><strong>Organizadores:</strong></p>
             <ul>
@@ -192,9 +377,16 @@
             </ul>
         </div>
     </section>
-    
+
     <footer>
-        <p>&copy; 2024 - VIN Gaming. Todos os direitos reservados.</p>
+        <p>&copy; 2024 - Clã VIN Gaming. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
     </footer>
+
+    <script>
+        // Atualize a premiação dinamicamente
+        const totalPremiacao = 180.00;
+        document.getElementById('premiacao-total').textContent = totalPremiacao.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    </script>
 </body>
+
 </html>
