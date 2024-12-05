@@ -229,57 +229,187 @@
 
         </div>
     </section>
-
-    <section id="equipes">
-        <h2>Equipes Participantes</h2>
-
-        <!-- Equipe 1: Máximo -->
-        <div class="card">
-            <p><strong>Team #3: </strong></p>
-            <ul class="team-list">
-                <li class="team-member">
-                    <img src="jogador1.jpg" alt="" class="team-photo">
-                    <span>Capitão: xA_N_D_R_Ex </span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador2.jpg" alt="" class="team-photo">
-                    <span> Doomed_Aim 🗳️ </span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador3.jpg" alt="" class="team-photo">
-                    <span> Paulao23 🗳️</span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador4.jpg" alt="" class="team-photo">
-                    <span>PESADO-GAMEPLAY 🗳️</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Equipe 1: Máximo -->
-        <div class="card">
-            <p><strong>Team #5: </strong></p>
-            <ul class="team-list">
-                <li class="team-member">
-                    <img src="jogador1.jpg" alt="" class="team-photo">
-                    <span>Capitão: 👨‍✈️ STR4T_FPS 🗳️ </span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador2.jpg" alt="" class="team-photo">
-                    <span> MESTRE-M </span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador3.jpg" alt="" class="team-photo">
-                    <span> OKiNGTATiCO 🗳️ </span>
-                </li>
-                <li class="team-member">
-                    <img src="jogador4.jpg" alt="" class="team-photo">
-                    <span>ComedordeABOBA 🗳️</span>
-                </li>
-            </ul>
-        </div>
-
-    </section>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Portal do Clã VIN - Campeonato de Esquads, Inscrições, Regras e Premiação.">
+        <meta name="keywords" content="Clã VIN, Campeonato Esquads, Inscrições, Regras, VIN Gaming, Premiação, Jogos">
+        <title>Campeonato de Esquads - Clã VIN</title>
+    
+        <!-- Link para Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+        <style>
+            /* Reset básico */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: 'Roboto', sans-serif;
+                background: #1e1e1e;
+                color: #ddd;
+                line-height: 1.6;
+            }
+    
+            header {
+                background: #2a2a2a;
+                color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+    
+            header h1 {
+                font-size: 3rem;
+                color: #65ae65;
+                font-weight: bold;
+            }
+    
+            nav {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+            }
+    
+            nav a {
+                padding: 10px 20px;
+                color: #fff;
+                background: #333;
+                text-decoration: none;
+                border-radius: 50px;
+                margin: 0 15px;
+                text-transform: uppercase;
+                font-weight: bold;
+                transition: 0.3s ease;
+            }
+    
+            nav a:hover {
+                background: #009dff;
+                transform: translateY(-5px);
+            }
+    
+            section {
+                padding: 40px 20px;
+                text-align: center;
+            }
+    
+            section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                color: #fff;
+            }
+    
+            .team-section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+    
+            .team-card {
+                background: #2a2a2a;
+                padding: 20px;
+                border-radius: 12px;
+                width: 300px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+    
+            .team-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+    
+            .team-card img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin: 10px 0;
+                border: 3px solid #009dff;
+                object-fit: cover;
+            }
+    
+            .team-card h3 {
+                color: #65ae65;
+                margin-bottom: 10px;
+            }
+    
+            .team-card .member-info {
+                color: #ddd;
+                font-size: 1rem;
+            }
+    
+            footer {
+                background: #333;
+                color: #aaa;
+                padding: 15px;
+                text-align: center;
+                font-size: 1rem;
+            }
+    
+            footer a {
+                color: #009dff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+    
+            footer a:hover {
+                color: #65ae65;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <header>
+            <h1>Campeonato de Esquads - Clã VIN</h1>
+        </header>
+    
+        <section id="equipes">
+            <h2>Equipes Participantes</h2>
+            <div class="team-section">
+                <!-- Equipe 1 -->
+                <div class="team-card">
+                    <h3>Team #3</h3>
+                    <img src="jogador1.jpg" alt="Capitão xA_N_D_R_Ex">
+                    <p class="member-info">Capitão: <strong>xA_N_D_R_Ex</strong></p>
+                    <img src="jogador2.jpg" alt="Doomed_Aim">
+                    <p class="member-info">Doomed_Aim</p>
+                    <img src="jogador3.jpg" alt="Paulao23">
+                    <p class="member-info">Paulao23</p>
+                    <img src="jogador4.jpg" alt="PESADO-GAMEPLAY">
+                    <p class="member-info">PESADO-GAMEPLAY</p>
+                </div>
+    
+                <!-- Equipe 2 -->
+                <div class="team-card">
+                    <h3>Team #5</h3>
+                    <img src="jogador1.jpg" alt="Capitão STR4T_FPS">
+                    <p class="member-info">Capitão: <strong>STR4T_FPS</strong></p>
+                    <img src="jogador2.jpg" alt="MESTRE-M">
+                    <p class="member-info">MESTRE-M</p>
+                    <img src="jogador3.jpg" alt="OKiNGTATiCO">
+                    <p class="member-info">OKiNGTATiCO</p>
+                    <img src="jogador4.jpg" alt="ComedordeABOBA">
+                    <p class="member-info">ComedordeABOBA</p>
+                </div>
+            </div>
+        </section>
+    
+        <footer>
+            <p>&copy; 2024 - Clã VIN. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
+        </footer>
+    </body>
+    
+    </html>
+    
+    
 
     <section id="regras">
         <h2>Regras e Informações</h2>
