@@ -237,14 +237,14 @@ a {
 }
 
 .comunicacao-link.discord {
-    background-color: #61dafb;
+    background-color: #61dafbc6;
     color: #282c34;
 }
 
 .comunicacao-link.discord:hover { background-color: #4fa3d1; }
 
 .comunicacao-link.whatsapp {
-    background-color: #25d366;
+    background-color: #25d36589;
     color: #fff;
 }
 
