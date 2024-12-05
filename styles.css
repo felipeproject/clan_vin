@@ -46,6 +46,7 @@ body {
     text-decoration: none;
     margin: 0 15px;
     font-size: 1.2em;
+    transition: color 0.3s;
 }
 
 .header a:hover {
@@ -54,6 +55,9 @@ body {
 
 .content {
     margin-top: 80px;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
 }
 
 h1 {
@@ -71,12 +75,14 @@ h1 {
     max-width: 600px;
     margin-bottom: 40px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .campeonatos-lista {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+    margin-top: 40px;
 }
 
 .campeonato-linha {
@@ -87,17 +93,20 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .campeonato-linha:hover {
     transform: scale(1.05);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.3);
 }
 
 .campeonato-linha-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .detalhes-campeonato h3,
@@ -108,8 +117,13 @@ h1 {
 .imagem-campeonato {
     width: 150px;
     height: 100px;
-    border-radius: 10px;
+    border-radius: 8px;
     object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.imagem-campeonato:hover {
+    transform: scale(1.05);
 }
 
 .separador {
@@ -123,6 +137,8 @@ h1 {
     padding: 5px 10px;
     border-radius: 5px;
     color: white;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .status-em-andamento { background-color: var(--cor-status-em-andamento); }
@@ -237,11 +253,6 @@ a {
     background-color: #128c7e;
 }
 
-.content {
-    padding: 20px;
-    text-align: center;
-}
-
 /* Navegação responsiva */
 .navbar {
     display: flex;
@@ -277,7 +288,7 @@ a {
 
     .campeonatos-lista {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
     }
 
     .campeonato-linha {
