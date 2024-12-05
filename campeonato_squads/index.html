@@ -11,177 +11,8 @@
     <!-- Link para Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Estilo geral */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #1e1e1e;
-            /* Fundo escuro */
-            color: #ddd;
-            /* Texto claro */
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-        }
-
-        header {
-            background: #2a2a2a;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: #65ae65;
-            /* Verde neon */
-            font-weight: bold;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        nav a {
-            padding: 10px 20px;
-            color: #fff;
-            background: #333;
-            text-decoration: none;
-            border-radius: 50px;
-            margin: 0 15px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s ease;
-        }
-
-        nav a:hover {
-            background: #009dff;
-            transform: translateY(-5px);
-        }
-
-        .highlight {
-            background: #333;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-            font-size: 2rem;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s ease;
-        }
-
-        .highlight:hover {
-            background: #009dff;
-        }
-
-        section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .card {
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .card p {
-            margin-bottom: 15px;
-            color: #ddd;
-        }
-
-        .card strong {
-            color: #fff;
-        }
-
-        .button-link {
-            display: inline-block;
-            padding: 12px 20px;
-            color: #fff;
-            background: #009dff;
-            text-decoration: none;
-            border-radius: 30px;
-            transition: background 0.3s ease, transform 0.3s ease;
-            font-weight: bold;
-        }
-
-        .button-link:hover {
-            background: #007bb5;
-            transform: translateY(-3px);
-        }
-
-        footer {
-            background: #333;
-            color: #aaa;
-            padding: 15px;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        footer a {
-            color: #009dff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #65ae65;
-        }
-
-        /* Banner */
-        .banner {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            display: block;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-
-            .card {
-                padding: 15px;
-            }
-
-            .banner {
-                max-width: 90%;
-            }
-        }
-    </style>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -190,7 +21,6 @@
     </header>
 
     <img src="banner.png" alt="Banner do Clã Os Vingadores - Campeonato de Esquads" class="banner">
-
 
     <nav>
         <a href="#campeonatos">Campeonato</a>
@@ -225,254 +55,62 @@
             <p>💰 Premiação:
                 - R$ 100,00 por equipe será o valor inicial da premiação.
                 - Caso a arrecadação (além da inscrição) ultrapasse esse valor, o total será dividido de forma
-                proporcional entre o 1º e 2º colocado ou ate 3º.</p>
+                proporcional entre o 1º e 2º colocado ou até 3º.
+            </p>
 
         </div>
     </section>
-    <!DOCTYPE html>
-    <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Portal do Clã VIN - Campeonato de Esquads, Inscrições, Regras e Premiação.">
-        <meta name="keywords" content="Clã VIN, Campeonato Esquads, Inscrições, Regras, VIN Gaming, Premiação, Jogos">
-        <title>Campeonato de Esquads - Clã VIN</title>
-
-        <!-- Link para Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-        <style>
-            /* Reset básico */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: 'Roboto', sans-serif;
-                background: #1e1e1e;
-                color: #ddd;
-                line-height: 1.6;
-            }
-
-            header {
-                background: #2a2a2a;
-                color: #fff;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            }
-
-            header h1 {
-                font-size: 3rem;
-                color: #65ae65;
-                font-weight: bold;
-            }
-
-            nav {
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            }
-
-            nav a {
-                padding: 10px 20px;
-                color: #fff;
-                background: #333;
-                text-decoration: none;
-                border-radius: 50px;
-                margin: 0 15px;
-                text-transform: uppercase;
-                font-weight: bold;
-                transition: 0.3s ease;
-            }
-
-            nav a:hover {
-                background: #009dff;
-                transform: translateY(-5px);
-            }
-
-            section {
-                padding: 40px 20px;
-                text-align: center;
-            }
-
-            section h2 {
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-                color: #fff;
-            }
-
-            .team-section {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 25px;
-            }
-
-            .team-card {
-                background: #2a2a2a;
-                padding: 20px;
-                border-radius: 12px;
-                width: 300px;
-                text-align: center;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .team-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .team-card img {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-            }
-
-            .team-card h3 {
-                color: #65ae65;
-                margin-bottom: 10px;
-            }
-
-            .team-card .member-info {
-                color: #ddd;
-                font-size: 1rem;
-            }
-
-            footer {
-                background: #333;
-                color: #aaa;
-                padding: 15px;
-                text-align: center;
-                font-size: 1rem;
-            }
-
-            footer a {
-                color: #009dff;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            footer a:hover {
-                color: #65ae65;
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <h1>Campeonato de Esquads - Clã VIN</h1>
-        </header>
-
-        <section id="equipes">
-            <h2>Equipes Participantes</h2>
-            <div class="team-section">
-                <div class="team-card">
-                    <h3>Team #3</h3>
-                    <img src="USER.png" alt="Capitão xA_N_D_R_Ex">
-                    <p class="member-info">Capitão: <strong>xA_N_D_R_Ex</strong></p>
-                    <img src="USER.png" alt="Doomed_Aim">
-                    <p class="member-info">Doomed_Aim</p>
-                    <img src="USER.png" alt="Paulao23">
-                    <p class="member-info">Paulao23</p>
-                    <img src="USER.png" alt="PESADO-GAMEPLAY">
-                    <p class="member-info">PESADO-GAMEPLAY</p>
-                </div>
-
-                <div class="team-card">
-                    <h3>Team #5</h3>
-                    <img src="USER.png" alt="Capitão STR4T_FPS">
-                    <p class="member-info">Capitão: <strong>STR4T_FPS</strong></p>
-                    <img src="USER.png" alt="MESTRE-M">
-                    <p class="member-info">MESTRE-M</p>
-                    <img src="USER.png" alt="OKiNGTATiCO">
-                    <p class="member-info">OKiNGTATiCO</p>
-                    <img src="USER.png" alt="ComedordeABOBA">
-                    <p class="member-info"></p>
-                </div>
-
-                <div class="team-card">
-                    <h3>Team #6</h3>
-                    <img src="USER.png" alt="Capitão STR4T_FPS">
-                    <p class="member-info">Capitão: <strong>ComedordeABOBA</strong></p>
-                    <img src="USER.png" alt="">
-                    <p class="member-info"></p>
-                    <img src="USER.png" alt="">
-                    <p class="member-info"></p>
-                    <img src="USER.png" alt="">
-                    <p class="member-info"></p>
-                </div>
+    <section id="equipes">
+        <h2>Equipes Participantes</h2>
+        <div class="team-section">
+            <!-- Team #3 -->
+            <div class="team-card">
+                <h3>Team #3</h3>
+                <img src="USER.png" alt="Capitão xA_N_D_R_Ex">
+                <p class="member-info">Capitão: <strong>xA_N_D_R_Ex</strong></p>
+                <img src="USER.png" alt="Doomed_Aim">
+                <p class="member-info">Doomed_Aim</p>
+                <img src="USER.png" alt="Paulao23">
+                <p class="member-info">Paulao23</p>
+                <img src="USER.png" alt="PESADO-GAMEPLAY">
+                <p class="member-info">PESADO-GAMEPLAY</p>
             </div>
-            <section id="regras">
-                <h2>Regras e Informações</h2>
-                <div class="card">
-                    <p><strong>Regras principais:</strong></p>
-                    <ul>
-                        <li>Mapas serão selecionados por votação entre os participantes e o comitê organizador. A
-                            votação será
-                            realizada antes do evento e os mapas vencedores serão utilizados durante o torneio.</li>
-                        <li>Inscrição confirmada apenas após o pagamento da taxa de inscrição. Não serão aceitas
-                            inscrições sem
-                            comprovação do pagamento.</li>
-                        <li>Todos os jogadores devem manter a boa conduta e respeito aos outros participantes. Qualquer
-                            atitude
-                            antidesportiva poderá resultar em desqualificação imediata.</li>
-                        <li>Apenas jogadores previamente inscritos e aprovados pelo comitê organizador poderão
-                            participar.
-                            Substituições de jogadores após a inscrição não são permitidas, a menos que autorizadas pela
-                            organização.</li>
-                        <li>A organização se reserva o direito de alterar as regras ou formatos do torneio a qualquer
-                            momento,
-                            com aviso prévio aos participantes.</li>
-                        <li>Em caso de falhas técnicas, a organização pode reiniciar uma partida, a seu critério, para
-                            garantir
-                            a justiça e o equilíbrio do torneio.</li>
-                        <li>Todos os participantes devem estar cientes de que, ao se inscrever, aceitam as regras e
-                            condições do
-                            torneio, além de qualquer decisão final da organização ser irrevogável.</li>
-                    </ul>
-                </div>
-            </section>
+
+            <!-- Team #5 -->
+            <div class="team-card">
+                <h3>Team #5</h3>
+                <img src="USER.png" alt="Capitão STR4T_FPS">
+                <p class="member-info">Capitão: <strong>STR4T_FPS</strong></p>
+                <img src="USER.png" alt="MESTRE-M">
+                <p class="member-info">MESTRE-M</p>
+                <img src="USER.png" alt="OKiNGTATiCO">
+                <p class="member-info">OKiNGTATiCO</p>
+                <img src="USER.png" alt="ComedordeABOBA">
+                <p class="member-info">ComedordeABOBA</p>
+            </div>
+
+            <!-- Team #6 -->
+            <div class="team-card">
+                <h3>Team #6</h3>
+                <img src="USER.png" alt="Capitão STR4T_FPS">
+                <p class="member-info">Capitão: <strong>ComedordeABOBA</strong></p>
+                <img src="USER.png" alt="">
+                <p class="member-info"></p>
+                <img src="USER.png" alt="">
+                <p class="member-info"></p>
+                <img src="USER.png" alt="">
+                <p class="member-info"></p>
+            </div>
+        </div>
+    </section>
 
 
-            <section id="contatos">
-                <h2>Contatos</h2>
-                <div class="card">
-                    <p><strong>Comunicação oficial:</strong></p>
-                    <a href="https://discord.gg/4bQMAeZN" target="_blank" class="button-link">Entre no Discord</a>
-                    <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank" class="button-link">Grupo
-                        WhatsApp</a>
-                </div>
-            </section>
+    <footer>
+        <p>Desenvolvido por <a href="https://www.linkedin.com" target="_blank">Seu Nome</a> | Todos os direitos
+            reservados</p>
+    </footer>
 
-            <section id="contatos">
-                <h2>Equipe</h2>
-                <div class="card">
-                    <p><strong>Organizadores:</strong></p>
-                    <ul>
-                        <li>@[VIN] gambin_metaleiro</li>
-                        <li>@[VIN] Doomed_Aim</li>
-                        <li>@[VIN] xA_N_D_R_Ex</li>
-                        <li>@[VIN] xCHUMELAx</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <p><strong>Lives:</strong></p>
-                    <ul>
-                        <li>@[VIN] Braoolino</li>
-                    </ul>
-                </div>
-            </section>
+</body>
 
-            <script>
-                // Atualize a premiação dinamicamente
-                const totalPremiacao = 145.00;
-                document.getElementById('premiacao-total').textContent = totalPremiacao.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            </script>
-    </body>
-
-    </html>
+</html>

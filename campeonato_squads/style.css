@@ -1,0 +1,202 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #1e1e1e;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+header {
+    background: #2a2a2a;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #65ae65;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+nav a {
+    padding: 10px 20px;
+    color: #fff;
+    background: #333;
+    text-decoration: none;
+    border-radius: 50px;
+    margin: 0 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    background: #009dff;
+    transform: translateY(-5px);
+}
+
+.highlight {
+    background: #333;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease;
+}
+
+.highlight:hover {
+    background: #009dff;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.card {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card p {
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.card strong {
+    color: #fff;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 12px 20px;
+    color: #fff;
+    background: #009dff;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.button-link:hover {
+    background: #007bb5;
+    transform: translateY(-3px);
+}
+
+footer {
+    background: #333;
+    color: #aaa;
+    padding: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #009dff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #65ae65;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .banner {
+        max-width: 90%;
+    }
+}
+
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.team-card {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.team-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    color: #65ae65;
+    margin-bottom: 10px;
+}
+
+.team-card .member-info {
+    color: #ddd;
+    font-size: 1rem;
+}
