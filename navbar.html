@@ -1,19 +1,49 @@
 <header>
     <!-- Banner da página -->
-    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
+    <img src="banner.png" alt="Banner do Clan Os Vingadores" 
+         style="width: 100%; height: auto; max-height: 300px; object-fit: cover;">
 
-    <!-- Aba Superior (Header) -->
-    <div class="navbar-container">
-        <!-- Navegação principal -->
-        <nav class="navbar">
-            <a href="#">Início</a>
-            <span class="separator">|</span>
-            <a href="times.html">Times</a>
-            <span class="separator">|</span>
-            <a href="#">Eventos</a>
+    <!-- Navegação e aba superior -->
+    <div style="display: flex; justify-content: center; align-items: center; padding: 10px 20px; background-color: #2c3e50;">
+
+        <!-- Navegação principal com links interativos -->
+        <nav style="display: flex; justify-content: center; align-items: center; font-size: 1.1rem; color: #ecf0f1;">
+            <a href="#" 
+               style="color: #ecf0f1; text-decoration: none; padding: 10px 15px; transition: all 0.3s ease; transform: scale(1);">
+               Início
+            </a>
+            <span style="color: #7f8c8d; font-size: 1.2rem; padding: 0 10px;">|</span>
+            <a href="times.html" 
+               style="color: #ecf0f1; text-decoration: none; padding: 10px 15px; transition: all 0.3s ease; transform: scale(1);">
+               Times
+            </a>
+            <span style="color: #7f8c8d; font-size: 1.2rem; padding: 0 10px;">|</span>
+            <a href="#" 
+               style="color: #ecf0f1; text-decoration: none; padding: 10px 15px; transition: all 0.3s ease; transform: scale(1);">
+               Eventos
+            </a>
         </nav>
-
-        <!-- Separador -->
-        <hr class="separador">
     </div>
+
+    <!-- Linha separadora -->
+    <hr style="border: none; border-top: 2px solid #34495e; margin: 20px 0;">
 </header>
+
+<script>
+    // Adicionando a animação de aumento e alteração de cor ao passar o mouse
+    const links = document.querySelectorAll("a");
+
+    links.forEach(link => {
+        link.addEventListener("mouseover", () => {
+            link.style.transform = "scale(1.1)";  // Aumenta o tamanho do link
+            link.style.backgroundColor = "#3498db";  // Muda a cor de fundo para azul claro
+            link.style.color = "#fff";  // Altera a cor do texto para branco
+        });
+
+        link.addEventListener("mouseout", () => {
+            link.style.transform = "scale(1)";  // Retorna ao tamanho original
+            link.style.backgroundColor = "transparent";  // Restaura a cor de fundo
+            link.style.color = "#ecf0f1";  // Restaura a cor do texto
+        });
+    });
+</script>
