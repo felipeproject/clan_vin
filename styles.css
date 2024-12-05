@@ -1,0 +1,291 @@
+:root {
+    --cor-fundo: #1b1b1b;
+    --cor-texto-principal: #ecf0f1;
+    --cor-texto-secundario: #b2bec3;
+    --cor-status-em-andamento: #01331e;
+    --cor-status-em-votacao: #583a0a9d;
+    --cor-status-encerrado: #7f8c8d28;
+    --cor-destaque: #0082ce;
+    --cor-link: #1cceaa;
+    --cor-link-hover: #00cec9;
+    --cor-borda: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100%;
+    background-color: #333;
+    color: var(--cor-texto-principal);
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header a {
+    color: var(--cor-link);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+
+.header a:hover {
+    color: var(--cor-link-hover);
+}
+
+.content {
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--cor-texto-principal);
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.banner {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+
+.campeonatos-lista {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.campeonato-linha {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #2d3436;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.campeonato-linha:hover {
+    transform: scale(1.05);
+}
+
+.campeonato-linha-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detalhes-campeonato h3,
+.detalhes-campeonato h2 {
+    margin-bottom: 10px;
+}
+
+.imagem-campeonato {
+    width: 150px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid var(--cor-borda);
+    margin: 20px 0;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.status-em-andamento { background-color: var(--cor-status-em-andamento); }
+.status-em-votacao { background-color: var(--cor-status-em-votacao); }
+.status-encerrado { background-color: var(--cor-status-encerrado); }
+
+.botao-discord,
+.botao-whatsapp {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: var(--cor-destaque);
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.botao-discord:hover,
+.botao-whatsapp:hover {
+    background-color: #00cec9;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar-container {
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.navbar {
+    display: inline-flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #61dafb;
+    color: #282c34;
+}
+
+.separator {
+    color: #555;
+    font-size: 20px;
+    margin: 0 15px;
+}
+
+.separador {
+    margin-top: 20px;
+    border: 0;
+    height: 1px;
+    background-color: #444;
+}
+
+.comunicacao {
+    background-color: #282c34;
+    color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+}
+
+.comunicacao-texto {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.comunicacao-links {
+    margin-top: 10px;
+}
+
+.comunicacao-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.comunicacao-link.discord {
+    background-color: #61dafb;
+    color: #282c34;
+}
+
+.comunicacao-link.discord:hover { background-color: #4fa3d1; }
+
+.comunicacao-link.whatsapp {
+    background-color: #25d366;
+    color: #fff;
+}
+
+.comunicacao-link.whatsapp:hover {
+    background-color: #128c7e;
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navegação responsiva */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.separator {
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        padding: 10px;
+        font-size: 1.2em;
+    }
+
+    .campeonatos-lista {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .campeonato-linha {
+        padding: 15px;
+    }
+
+    .imagem-campeonato {
+        width: 120px;
+        height: 80px;
+    }
+}
