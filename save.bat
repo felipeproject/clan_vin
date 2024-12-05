@@ -1,3 +1,5 @@
+:reload
+
 @echo off
 
 :: Adicione as alterações ao staging
@@ -13,3 +15,5 @@ git push origin main
 :: git push origin sua-branch
 
 echo Atualização concluída!
+
+goto:reload
