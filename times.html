@@ -105,7 +105,14 @@
             margin-top: 10px;
         }
 
-        th, td {
+        .banner {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        th,
+        td {
             padding: 8px;
             text-align: center;
             border: 1px solid var(--cor-borda);
@@ -153,361 +160,481 @@
                 font-size: 0.9em;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 6px;
             }
         }
     </style>
 </head>
 
-<body>
-        <!-- Home Button -->
-        
-        
-                <button onclick="window.location.href='index.html';" style="
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #42475c;
-    color: white;
-    padding: 20px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font-size: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100px;
-    text-align: center;
-    ">
-    Home
-</button>
-  
-          
-    <div class="secao">
-        <h2>Times Participantes</h2>      
-        <div class="lista-times">
-            <!-- Card para Team #1 -->
-            <div class="time confirmado">
-                <div class="nome-time">Team #1</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ xandexande 🗳️</td></tr>
-                        <tr><td>Al3Mrcs 🗳️</td></tr>
-                        <tr><td>SALOMON_BR 🗳️</td></tr>
-                        <tr><td>dedel32010324</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Confirmado <span class="status-icon">✔️</span>
-                </div>
-            </div>
+<header>
+    <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
 
-            <div class="time confirmado">
-                <div class="nome-time">Team #2</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ TEXAS3006 🗳️</td></tr>
-                        <tr><td>Bradok081</td></tr>
-                        <tr><td>fb-gg-MidiGamer 🗳️</td></tr>
-                        <tr><td>Gambin-Metaleiro 🗳️</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Confirmado <span class="status-icon">✔️</span>
-                </div>
-            </div>
-            
-            <div class="time confirmado">
-                <div class="nome-time">Team #3</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ xA_N_D_R_Ex 🗳️</td></tr>
-                        <tr><td>Doomed_Aim 🗳️</td></tr>
-                        <tr><td>Paulao23 🗳️</td></tr>
-                        <tr><td>EdlyCruz 🗳️</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Confirmado <span class="status-icon">✔️</span>
-                </div>
-            </div>
-            
-            <div class="time confirmado">
-                <div class="nome-time">Team #4</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ Brock-br</td></tr>
-                        <tr><td>domRJ-</td></tr>
-                        <tr><td>PESADO-GAMEPLAY 🗳️</td></tr>
-                        <tr><td>SubZroz</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Confirmado <span class="status-icon">✔️</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #5</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ STR4T_FPS 🗳️</td></tr>
-                        <tr><td>MESTRE-M</td></tr>
-                        <tr><td>OKiNGTATiCO</td></tr>
-                        <tr><td>ComedordeABOBA</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #6</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ Tauzudu</td></tr>
-                        <tr><td>Destr0yyy</td></tr>
-                        <tr><td>Pavanelli-ZO</td></tr>
-                        <tr><td>OrnelasRP</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #7</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ ImortanRick88</td></tr>
-                        <tr><td>Mateus_Sousa</td></tr>
-                        <tr><td>Kisaki121</td></tr>
-                        <tr><td>BRP28</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #8</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Azafree22</td></tr>
-                        <tr><td>Willzao95</td></tr>
-                        <tr><td>FelipeVicente</td></tr>
-                        
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #9</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td> 👨‍✈️ Slokuz</td></tr>
-                        <tr><td>Frontalsmile</td></tr>
-                        <tr><td>Weslleycxrloko</td></tr>
-                        <tr><td>xJMaRcox</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #10</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ BR_Babayaga</td></tr>
-                        <tr><td>iGxFiveStar</td></tr>
-                        <tr><td>kaisNakoLover</td></tr>
-                        <tr><td>Wfaolivera_</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #11</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ erikao019</td></tr>
-                        <tr><td>Yuri2099</td></tr>
-                        <tr><td>bruninhoww</td></tr>
-                        <tr><td>nokyamlavor</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #12</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ FISHERKILLER02</td></tr>
-                        <tr><td>berser_rs</td></tr>
-                        <tr><td>Djaaploko</td></tr>
-                        <tr><td>Mga-ZeDaManga</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #13</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ WF_PROZIN</td></tr>
-                        <tr><td>Xx_MOTA_xX10</td></tr>
-                        <tr><td>LandersSA</td></tr>
-                        <tr><td>Lelekinho</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
- 
-            <div class="time esperando">
-                <div class="nome-time">Team #14</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ KalixtoGood</td></tr>
-                        <tr><td>Dukkar</td></tr>
-                        <tr><td>Sizer_BOY</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #15</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>👨‍✈️ xCHUMELAx</td></tr>
-                        <tr><td>DuSlowD</td></tr>
-                        <tr><td>wewfwfwf</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
-            
-            <div class="time esperando">
-                <div class="nome-time">Team #16</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <!-- th>Jogadores</th -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>✘ CARNEIRO007 </td></tr>
-                        <tr><td>SUQUINHO-</td></tr>
-                    </tbody>
-                </table>
-                <div class="status">
-                    Esperando <span class="status-icon">⏳</span>
-                </div>
-            </div>
+    <div class="navbar-container"
+        style="background-color: #282c3400; color: #fff; padding: 20px 0; text-align: center;">
+        <nav class="navbar" style="display: inline-flex; gap: 30px; justify-content: center; align-items: center;">
+            <a href="index.html"
+                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Início</a>
+            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
+            <a href="times.html"
+                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Times</a>
+            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
+            <a href="index.html"
+                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Eventos</a>
+            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
+            <a href="Votação.html"
+                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Votação</a>
+        </nav>
+        <hr class="separador" style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;">
+    </div>
 
-            <!-- th>Jogadores nao participantes</th
+
+    <!-- Linha separadora -->
+</header>
+<div class="secao">
+    <h2>Times Participantes</h2>
+    <div class="lista-times">
+        <!-- Card para Team #1 -->
+        <div class="time confirmado">
+            <div class="nome-time">Team #1</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ xandexande 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>Al3Mrcs 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>SALOMON_BR 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>dedel32010324</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Confirmado <span class="status-icon">✔️</span>
+            </div>
+        </div>
+
+        <div class="time confirmado">
+            <div class="nome-time">Team #2</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ TEXAS3006 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>Bradok081</td>
+                    </tr>
+                    <tr>
+                        <td>fb-gg-MidiGamer 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>Gambin-Metaleiro 🗳️</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Confirmado <span class="status-icon">✔️</span>
+            </div>
+        </div>
+
+        <div class="time confirmado">
+            <div class="nome-time">Team #3</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ xA_N_D_R_Ex 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>Doomed_Aim 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>Paulao23 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>EdlyCruz 🗳️</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Confirmado <span class="status-icon">✔️</span>
+            </div>
+        </div>
+
+        <div class="time confirmado">
+            <div class="nome-time">Team #4</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ Brock-br</td>
+                    </tr>
+                    <tr>
+                        <td>domRJ-</td>
+                    </tr>
+                    <tr>
+                        <td>PESADO-GAMEPLAY 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>SubZroz</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Confirmado <span class="status-icon">✔️</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #5</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ STR4T_FPS 🗳️</td>
+                    </tr>
+                    <tr>
+                        <td>MESTRE-M</td>
+                    </tr>
+                    <tr>
+                        <td>OKiNGTATiCO</td>
+                    </tr>
+                    <tr>
+                        <td>ComedordeABOBA</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #6</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ Tauzudu</td>
+                    </tr>
+                    <tr>
+                        <td>Destr0yyy</td>
+                    </tr>
+                    <tr>
+                        <td>Pavanelli-ZO</td>
+                    </tr>
+                    <tr>
+                        <td>OrnelasRP</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #7</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ ImortanRick88</td>
+                    </tr>
+                    <tr>
+                        <td>Mateus_Sousa</td>
+                    </tr>
+                    <tr>
+                        <td>Kisaki121</td>
+                    </tr>
+                    <tr>
+                        <td>BRP28</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #8</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Azafree22</td>
+                    </tr>
+                    <tr>
+                        <td>Willzao95</td>
+                    </tr>
+                    <tr>
+                        <td>FelipeVicente</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #9</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 👨‍✈️ Slokuz</td>
+                    </tr>
+                    <tr>
+                        <td>Frontalsmile</td>
+                    </tr>
+                    <tr>
+                        <td>Weslleycxrloko</td>
+                    </tr>
+                    <tr>
+                        <td>xJMaRcox</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #10</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ BR_Babayaga</td>
+                    </tr>
+                    <tr>
+                        <td>iGxFiveStar</td>
+                    </tr>
+                    <tr>
+                        <td>kaisNakoLover</td>
+                    </tr>
+                    <tr>
+                        <td>Wfaolivera_</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #11</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ erikao019</td>
+                    </tr>
+                    <tr>
+                        <td>Yuri2099</td>
+                    </tr>
+                    <tr>
+                        <td>bruninhoww</td>
+                    </tr>
+                    <tr>
+                        <td>nokyamlavor</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #12</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ FISHERKILLER02</td>
+                    </tr>
+                    <tr>
+                        <td>berser_rs</td>
+                    </tr>
+                    <tr>
+                        <td>Djaaploko</td>
+                    </tr>
+                    <tr>
+                        <td>Mga-ZeDaManga</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #13</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ WF_PROZIN</td>
+                    </tr>
+                    <tr>
+                        <td>Xx_MOTA_xX10</td>
+                    </tr>
+                    <tr>
+                        <td>LandersSA</td>
+                    </tr>
+                    <tr>
+                        <td>Lelekinho</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #14</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ KalixtoGood</td>
+                    </tr>
+                    <tr>
+                        <td>Dukkar</td>
+                    </tr>
+                    <tr>
+                        <td>Sizer_BOY</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #15</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>👨‍✈️ xCHUMELAx</td>
+                    </tr>
+                    <tr>
+                        <td>DuSlowD</td>
+                    </tr>
+                    <tr>
+                        <td>wewfwfwf</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <div class="time esperando">
+            <div class="nome-time">Team #16</div>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- th>Jogadores</th -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>✘ CARNEIRO007 </td>
+                    </tr>
+                    <tr>
+                        <td>SUQUINHO-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                Esperando <span class="status-icon">⏳</span>
+            </div>
+        </div>
+
+        <!-- th>Jogadores nao participantes</th
             <tr><td>Alemaofire13</td></tr> -->
-            <!-- <tr><td>Gabrielhoffmann </td></tr> -->
-            <!-- <tr><td>MYTO-machad0</td></tr> -->
-            
+        <!-- <tr><td>Gabrielhoffmann </td></tr> -->
+        <!-- <tr><td>MYTO-machad0</td></tr> -->
+
         </body>
-        </html>
+
+</html>

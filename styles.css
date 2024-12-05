@@ -139,6 +139,8 @@ h1 {
     text-transform: uppercase;
 }
 
+
+
 .status-em-andamento { background-color: var(--cor-status-em-andamento); }
 .status-em-votacao { background-color: var(--cor-status-em-votacao); }
 .status-encerrado { background-color: var(--cor-status-encerrado); }
