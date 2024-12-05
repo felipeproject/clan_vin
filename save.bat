@@ -17,5 +17,5 @@ git push origin main
 echo Atualização concluída!
 
 cls
-Reload ?
+pause
 goto:reload
