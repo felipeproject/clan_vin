@@ -6,74 +6,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados das Votações - Clan Os Vingadores</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Gráfico para exibição de resultados -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilos básicos e layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .navbar-container {
+            background-color: #2a2a2a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: inline-flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .separator {
+            color: #ccc;
+            font-size: 20px;
+            margin: 0 15px;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .votacao-section {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .votacao-section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .result-card {
+            background-color: #333;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .result-card h4 {
+            font-size: 20px;
+            color: #ffb347;
+        }
+
+        .result-card .result-text {
+            font-size: 18px;
+        }
+
+        .result-card .percent {
+            font-weight: bold;
+        }
+
+        .chart-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        canvas {
+            width: 100% !important;
+            max-width: 600px;
+            height: 400px;
+        }
+    </style>
 </head>
 
 <body>
     <img src="banner.png" alt="Banner do Clan Os Vingadores" class="banner">
 
-    <div class="navbar-container"
-        style="background-color: #282c3400; color: #fff; padding: 20px 0; text-align: center;">
-        <nav class="navbar" style="display: inline-flex; gap: 30px; justify-content: center; align-items: center;">
-            <a href="index.html"
-                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Início</a>
-            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
-            <a href="times.html"
-                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Times</a>
-            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
-            <a href="index.html"
-                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Eventos</a>
-            <span class="separator" style="color: #ccc; font-size: 20px; margin: 0 15px;">|</span>
-            <a href="Votação.html"
-                style="color: #fff; text-decoration: none; font-weight: 500; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">Votação</a>
+    <div class="navbar-container">
+        <nav class="navbar">
+            <a href="index.html">Início</a>
+            <span class="separator">|</span>
+            <a href="times.html">Times</a>
+            <span class="separator">|</span>
+            <a href="index.html">Eventos</a>
+            <span class="separator">|</span>
+            <a href="Votação.html">Votação</a>
         </nav>
-        <hr class="separador" style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;">
     </div>
-
 
     <div class="content">
         <h1>Resultados das Votações</h1>
 
-        <!-- Resultados das Votações -->
-        <section class="votacao">
+        <div class="votacao-section">
             <h2>🎮 Campeonato de SQUADS - FPP</h2>
-            <p><strong>Status:</strong> <span class="status status-encerrado">Encerrado</span></p>
-            <p><strong>Data de Início:</strong> 6, 7 e 8 de novembro</p>
-            <p><strong>Resultado:</strong> Votação encerrada. O evento será realizado com o formato TTP.</p>
-            <hr class="separador">
-        </section>
+            <p><strong>Status:</strong> Inscrição e votação das equipes até 05/12 (meia-noite). Já contamos com 21 votos.</p>
+            <p><strong>Data de Início:</strong> A ser definida após a votação.</p>
+            <p><strong>Resultado:</strong> Votação em andamento. O evento será realizado após definição das datas e horários.</p>
+        </div>
 
-        <section class="votacao">
-            <h2>👤 Campeonato de Solos - Temporada #2</h2>
-            <p><strong>Status:</strong> <span class="status status-em-andamento">Em Andamento</span></p>
-            <p><strong>Data de Início:</strong> Dezembro</p>
-            <p><strong>Formato:</strong> TTP</p>
-            <hr class="separador">
-            <p><strong>Resultado:</strong> O evento está em andamento. Detalhes serão atualizados em breve.</p>
-        </section>
+ate o momte esa se encaminho  campeonato para dia, hora, e mapas
 
-        <section class="votacao">
-            <h2>👥🏆 Liga de Clãs PUBG</h2>
-            <p><strong>Status:</strong> <span class="status status-em-votacao">Em Votação</span></p>
-            <p><strong>Data de Início:</strong> Janeiro</p>
-            <p><strong>Formato:</strong> A ser decidido</p>
-            <hr class="separador">
-            <p><strong>Resultado:</strong> A votação está em andamento. Participe para escolher o formato do campeonato.
-            </p>
-        </section>
 
+        <div class="result-card">
+            <h4>Data e horário do Campeonato</h4>
+            <p class="result-text">8 votos - <span class="percent">38,1%</span> para 1 dia de evento.</p>
+        </div>
+
+        <div class="result-card">
+            <h4>Disponibilidade para o Campeonato</h4>
+            <p class="result-text">Sábado, 7 de dezembro: <span class="percent">16 votos - 76,2%</span></p>
+        </div>
+
+        <div class="result-card">
+            <h4>Horário preferido para o Campeonato</h4>
+            <p class="result-text">20h - 22h: <span class="percent">14 votos - 66,7%</span></p>
+        </div>
+
+        <div class="result-card">
+            <h4>Mapas preferidos para o Campeonato de PUBG</h4>
+            <p class="result-text">Erangel: <span class="percent">52,4% - 11 votos</span></p>
+            <p class="result-text">Miramar: <span class="percent">33,3% - 7 votos</span></p>
+            <p class="result-text">Taego: <span class="percent">23,8% - 5 votos</span></p>
+        </div>
+
+        <!-- Gráfico de resultados -->
+        <div class="chart-container">
+            <canvas id="resultChart"></canvas>
+        </div>
     </div>
 
-    <footer>
-        <div class="comunicacao">
-            <p class="comunicacao-texto">Comunicação oficial:</p>
-            <div class="comunicacao-links">
-                <a href="https://discord.gg/4bQMAeZN" target="_blank" class="comunicacao-link discord">Entre no
-                    Discord</a>
-                <a href="https://chat.whatsapp.com/F9PUAYZeFVl5SzhEolIBx3" target="_blank"
-                    class="comunicacao-link whatsapp">Grupo WhatsApp</a>
-            </div>
-        </div>
-    </footer>
+    <script>
+        // Gráfico com os resultados das votações
+        var ctx = document.getElementById('resultChart').getContext('2d');
+        var resultChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1 dia de evento', 'Sábado, 7 de dezembro', '20h - 22h', 'Erangel', 'Miramar', 'Taego'],
+                datasets: [{
+                    label: 'Votos',
+                    data: [8, 16, 14, 11, 7, 5],
+                    backgroundColor: ['#ffb347', '#ff6347', '#4CAF50', '#2196F3', '#8E44AD', '#E74C3C'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#333',
+                        titleColor: '#fff',
+                        bodyColor: '#fff'
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 
