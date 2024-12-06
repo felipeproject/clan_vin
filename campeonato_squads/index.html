@@ -28,32 +28,73 @@
         <a href="#equipes">Equipes</a>
     </nav>
 
-    <!-- Área de Destaque -->
-    <section id="Premiação">
-    </section>
-    <div class="highlight" style="
-    background: linear-gradient(135deg, #1b9a83, #fffc4092); 
-    padding: 15px 30px; 
-    border-radius: 10px; 
-    color: #fff; 
-    font-family: 'Arial', sans-serif; 
-    font-size: 20px; 
-    text-align: center; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px;">
-        <span style="font-weight: bold; font-size: 28px;">Premiação:</span>
-        <span id="premiacao-total" style="font-weight: bold; font-size: 50px; color: #ffffff;">R$ 295,00</span>
-        <div clas="card">
-            <p><strong>Valor da Premiação:</strong> R$ 295,00</p>
-            <p><strong>A premiação será distribuída da seguinte forma:
-                    <li>1º lugar: R$ 206,50</li>
-                    <li>2º lugar: R$ 88,50 </li>
-                    <li>3º lugar: R$ 60,00</li>
-        </div>
+<!-- Área de Destaque -->
+<section id="Premiação"></section>
+
+<div class="highlight">
+    <span class="highlight-title">Premiação:</span>
+    <span id="premiacao-total" class="highlight-value">R$ 295,00</span>
+    <div class="card">
+        <p><strong>Valor da Premiação:</strong> R$ 295,00</p>
+        <p><strong>A premiação será distribuída da seguinte forma:</strong></p>
+        <ul>
+            <li>1º lugar: R$ 206,50</li>
+            <li>2º lugar: R$ 88,50</li>
+            <li>3º lugar: R$ 60,00</li>
+        </ul>
     </div>
+</div>
+
+<style>
+    .highlight {
+        background: linear-gradient(135deg, #1b9a8359, #fffc402a);
+        padding: 15px 30px;
+        border-radius: 10px;
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .highlight-title {
+        font-weight: bold;
+        font-size: 28px;
+    }
+
+    .highlight-value {
+        font-weight: bold;
+        font-size: 50px;
+        color: #ffffff;
+    }
+
+    .card {
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .card p {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .card ul {
+        list-style-type: none;
+        padding-left: 0;
+        color: #fff;
+    }
+
+    .card li {
+        margin: 5px 0;
+    }
+</style>
 
 
     <section id="regras">

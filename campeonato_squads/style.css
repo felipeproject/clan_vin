@@ -45,11 +45,6 @@ nav a {
     transition: 0.3s ease;
 }
 
-nav a:hover {
-    background: #009dff;
-    transform: translateY(-5px);
-}
-
 .highlight {
     background: #333;
     padding: 20px;
@@ -63,7 +58,7 @@ nav a:hover {
 }
 
 .highlight:hover {
-    background: #009dff;
+    background: #ffe6002d;
 }
 
 section {
