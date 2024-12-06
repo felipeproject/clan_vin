@@ -45,6 +45,11 @@ nav a {
     transition: 0.3s ease;
 }
 
+nav a:hover {
+    background: #ffffff88;
+    transform: translateY(-5px);
+}
+
 .highlight {
     background: #333;
     padding: 20px;
