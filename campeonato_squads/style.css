@@ -5,12 +5,14 @@
     box-sizing: border-box;
 }
 
+html {
+    zoom: 0.9; /* Ajusta o zoom para 120% */
+  }
 /* Estilo geral */
 body {
     font-family: 'Roboto', sans-serif;
     background: #1e1e1e;
     color: #ddd;
-    line-height: 1.6;
 }
 
 header {
