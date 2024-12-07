@@ -26,24 +26,88 @@
     </nav>
     <img src="banner.png" alt="Banner do Clã Os Vingadores - Campeonato de Esquads" class="banner">
 
-    <!-- Área de Destaque -->
-    <section id="Premiação">
-    </section>
-    <div class="highlight" style="
-    background: linear-gradient(135deg, #1b9a8336, #fffc4025); 
-<span style=" font-weight: bold; font-size: 28px;">Premiação:</span>
-        <span id="premiacao-total" style="font-weight: bold; font-size: 50px; color: #ffffff;">R$ 295,00</span><br><br>
-
-        <div class="card" style="text-align: left;">
 
 
-            <p><strong><br>A premiação será distribuída da seguinte forma:</strong></p>
-            <ul>
-                <li>1º lugar: R$ 206,50</li>
-                <li>2º lugar: R$ 88,50</li>
-                <li>3º lugar: R$ 60,00</li>
-            </ul>
+        <!-- Seção de Resultados -->
+<section id="resultados" style="background-color: #000000; color: #FFFFFF; padding: 20px;">
+    <header>
+        <p style="font-size: 20px; font-weight: bold; color: #00FF00;">Confira os resultados e a pontuação geral das equipes!</p>
+    </header>
+    
+    <div class="tabela-container" style="margin-top: 20px;">
+        <!-- Tabela Geral -->
+        <div class="tabela" id="tabelaGeral" style="background-color: #222222; padding: 15px; border-radius: 5px;">
+            <br><h2 style="color: #00FF00; font-size: 24px;">Tabela Geral</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Posição</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Equipe</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Pontos Totais</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaGeralBody"></tbody>
+            </table>
         </div>
+
+        <!-- Tabelas de Rodadas -->
+        <div class="tabela" id="tabelaTaego" style="display:none; background-color: #222222; padding: 15px; border-radius: 5px;">
+            <h2 style="color: #00FF00; font-size: 24px;">Rodada Taego</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Posição</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Equipe</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Kills</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaTaegoBody"></tbody>
+            </table>
+        </div>
+
+        <div class="tabela" id="tabelaErangel" style="display:none; background-color: #222222; padding: 15px; border-radius: 5px;">
+            <h2 style="color: #00FF00; font-size: 24px;">Rodada Erangel</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Posição</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Equipe</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Kills</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaErangelBody"></tbody>
+            </table>
+        </div>
+
+        <div class="tabela" id="tabelaMiramar" style="display:none; background-color: #222222; padding: 15px; border-radius: 5px;">
+            <h2 style="color: #00FF00; font-size: 24px;">Rodada Miramar</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Posição</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Equipe</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Kills</th>
+                        <th style="border-bottom: 2px solid #00FF00; padding: 10px; text-align: left;">Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaMiramarBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Botões para alternar as rodadas -->
+        <div class="buttons" style="margin-top: 20px;">
+            <button class="button" id="btnTaego" onclick="showRound('taego')" disabled style="background-color: #00FF00; color: #000000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Rodada Taego</button>
+            <button class="button" id="btnErangel" onclick="showRound('erangel')" disabled style="background-color: #00FF00; color: #000000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Rodada Erangel</button>
+            <button class="button" id="btnMiramar" onclick="showRound('miramar')" disabled style="background-color: #00FF00; color: #000000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Rodada Miramar</button>
+        </div>
+    </div>
+</section>
+
+
+
+
 
         <section id="equipes">
             <h5>Equipes Participantes</h5><br>
@@ -162,11 +226,34 @@
 
                 </div>
 
+                    <!-- Área de Destaque -->
+    <section id="Premiação">
+    </section>
+    <div class="highlight" style="
+    background: linear-gradient(135deg, #1b9a8336, #fffc4025); 
+<span style=" font-weight: bold; font-size: 28px;">Premiação:</span>
+        <span id="premiacao-total" style="font-weight: bold; font-size: 50px; color: #ffffff;">R$ 295,00</span><br><br>
+
+        <div class="card" style="text-align: left;">
+
+
+            <p><strong><br>A premiação será distribuída da seguinte forma:</strong></p>
+            <ul>
+                <li>1º lugar: R$ 206,50</li>
+                <li>2º lugar: R$ 88,50</li>
+                <li>3º lugar: R$ 60,00</li>
+            </ul>
+        </div>
+
+
+
+
                 <section id="Informações">
                     <br><br>
                     <h2>Informações</h2><br>
                     <a href="https://felipeproject.github.io/clan_vin/Vota%C3%A7%C3%A3o.html" target="_blank"
-                        style="text-decoration: none; color: rgba(255, 255, 255, 0.822); background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Resultado da votação</a><br><br>
+                        style="text-decoration: none; color: rgba(255, 255, 255, 0.822); background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Resultado
+                        da votação</a><br><br>
                     <div class="card" style="border: 1px solid #ccc; padding: 20px; background-color: #f9f9f923;">
                         <p><strong>Modo:</strong> FPP (First-Person Perspective)</p><br>
                         <p><strong>Data:</strong> 📅 Sabado, 7 de dezembro de 2024 <br>
@@ -174,26 +261,129 @@
                             📍 Formato: Evento de 1 dia com 3 jogos em sequência
                         </p><br>
                         <p>
-                            
-                            <div style="display: flex; justify-content: space-between; gap: 20px;">
-                                <div style="text-align: center;">
-                                    <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/9b5d63e.jpg" alt="Mapa de Erangel" style="max-width: 90%; height: auto; border-radius: 8px;">
-                                    <p>1º Erangel</p>
-                                </div>
-                                
-                                <div style="text-align: center;">
-                                    <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/0d771c0.jpg" alt="Mapa de Taego" style="max-width: 90%; height: auto; border-radius: 8px;">
-                                    <p>2º Taego</p>
-                                </div>
-                                
-                                <div style="text-align: center;">
-                                    <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/b5c3c7f.jpg" alt="Mapa de Miramar" style="max-width: 90%; height: auto; border-radius: 8px;">
-                                    <p>3º Miramar - Final 🏆</p>
-                                </div>
+
+                        <div style="display: flex; justify-content: space-between; gap: 20px;">
+                            <div style="text-align: center;">
+                                <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/9b5d63e.jpg"
+                                    alt="Mapa de Erangel" style="max-width: 90%; height: auto; border-radius: 8px;">
+                                <p>1º Erangel</p>
                             </div>
-                            
+
+                            <div style="text-align: center;">
+                                <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/0d771c0.jpg"
+                                    alt="Mapa de Taego" style="max-width: 90%; height: auto; border-radius: 8px;">
+                                <p>2º Taego</p>
+                            </div>
+
+                            <div style="text-align: center;">
+                                <img src="https://wstatic-prod.pubg.com/web/live/main_b22467e/img/b5c3c7f.jpg"
+                                    alt="Mapa de Miramar" style="max-width: 90%; height: auto; border-radius: 8px;">
+                                <p>3º Miramar - Final 🏆</p>
+                            </div>
+                        </div>
+
                 </section>
-                
+
 </body>
+<script>
+    // Armazena os pontos de todas as rodadas e as equipes
+    let pontosEquipes = {};
+
+    // Função para carregar as tabelas de uma rodada específica
+    function carregarTabela(nomeArquivo, tabelaId, tabelaBodyId, botaoId) {
+        fetch(nomeArquivo)
+            .then(response => response.text())
+            .then(data => {
+                const linhas = data.split("\n");
+                const tabelaBody = document.getElementById(tabelaBodyId);
+                tabelaBody.innerHTML = ''; // Limpa a tabela da rodada
+                let dadosValido = false;
+
+                for (let i = 1; i < linhas.length; i++) {
+                    const dados = linhas[i].split(",");
+                    if (dados.length === 4) {
+                        const posicao = dados[0];
+                        const nomeEquipe = dados[1];
+                        const kills = parseInt(dados[2]);
+                        const pontos = parseInt(dados[3]);
+
+                        // Atualiza os pontos da equipe
+                        if (!pontosEquipes[nomeEquipe]) {
+                            pontosEquipes[nomeEquipe] = 0;
+                        }
+                        pontosEquipes[nomeEquipe] += pontos;
+
+                        // Cria uma nova linha na tabela da rodada
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${posicao}</td>
+                            <td>${nomeEquipe}</td>
+                            <td>${kills}</td>
+                            <td>${pontos}</td>
+                        `;
+                        tabelaBody.appendChild(row);
+                        dadosValido = true;
+                    }
+                }
+
+                // Se dados válidos foram encontrados, habilita o botão correspondente
+                if (dadosValido) {
+                    document.getElementById(botaoId).disabled = false;
+                }
+
+                // Sempre que uma nova rodada é carregada, atualiza a tabela geral
+                atualizarTabelaGeral();
+            })
+            .catch(error => {
+                console.error('Erro ao carregar o arquivo CSV:', error);
+            });
+    }
+
+    // Função para atualizar a tabela geral com a soma dos pontos
+    function atualizarTabelaGeral() {
+        const tabelaGeralBody = document.getElementById("tabelaGeralBody");
+        tabelaGeralBody.innerHTML = ''; // Limpa a tabela geral
+
+        let posicao = 1;
+        Object.keys(pontosEquipes).sort((a, b) => pontosEquipes[b] - pontosEquipes[a]).forEach(nomeEquipe => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${posicao++}</td>
+                <td>${nomeEquipe}</td>
+                <td>${pontosEquipes[nomeEquipe]}</td>
+            `;
+            tabelaGeralBody.appendChild(row);
+        });
+    }
+
+    // Função para exibir a rodada específica
+    function showRound(round) {
+        // Oculta todas as tabelas de rodadas
+        document.getElementById("tabelaTaego").style.display = 'none';
+        document.getElementById("tabelaErangel").style.display = 'none';
+        document.getElementById("tabelaMiramar").style.display = 'none';
+
+        // Exibe a tabela correspondente
+        if (round === 'taego') {
+            document.getElementById("tabelaTaego").style.display = 'block';
+        } else if (round === 'erangel') {
+            document.getElementById("tabelaErangel").style.display = 'block';
+        } else if (round === 'miramar') {
+            document.getElementById("tabelaMiramar").style.display = 'block';
+        }
+    }
+
+    // Função para carregar dados de CSV
+    function carregarTodosCSV() {
+        carregarTabela('taego.csv', 'tabelaTaego', 'tabelaTaegoBody', 'btnTaego');
+        carregarTabela('erangel.csv', 'tabelaErangel', 'tabelaErangelBody', 'btnErangel');
+        carregarTabela('miramar.csv', 'tabelaMiramar', 'tabelaMiramarBody', 'btnMiramar');
+    }
+
+    // Inicializa a página e carrega os dados
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarTodosCSV();
+    });
+</script>
 
 </html>

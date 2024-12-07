@@ -1,0 +1,232 @@
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00000027;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e4913;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .tabela-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tabela {
+            width: 80%;
+            margin: 10px 0;
+            border-collapse: collapse;
+        }
+        .tabela th, .tabela td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .tabela th {
+            background-color: #343a40;
+            color: white;
+        }
+        .buttons {
+            margin: 20px;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        .button:hover {
+            background-color: #24b300;
+        }
+        .button:disabled {
+            background-color: #c6c6c6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>Confira os resultados e a pontuação geral das equipes!</p>
+    </header>
+
+    <div class="tabela-container">
+        <!-- Tabela Geral -->
+        <div class="tabela" id="tabelaGeral">
+            <h2>Tabela Geral</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Equipe</th>
+                        <th>Pontos Totais</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaGeralBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Tabelas de Rodadas -->
+        <div class="tabela" id="tabelaTaego" style="display:none;">
+            <h2>Rodada Taego</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Equipe</th>
+                        <th>Kills</th>
+                        <th>Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaTaegoBody"></tbody>
+            </table>
+        </div>
+
+        <div class="tabela" id="tabelaErangel" style="display:none;">
+            <h2>Rodada Erangel</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Equipe</th>
+                        <th>Kills</th>
+                        <th>Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaErangelBody"></tbody>
+            </table>
+        </div>
+
+        <div class="tabela" id="tabelaMiramar" style="display:none;">
+            <h2>Rodada Miramar</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Equipe</th>
+                        <th>Kills</th>
+                        <th>Pontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaMiramarBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Botões para alternar as rodadas -->
+        <div class="buttons">
+            <button class="button" id="btnTaego" onclick="showRound('taego')" disabled>Rodada Taego</button>
+            <button class="button" id="btnErangel" onclick="showRound('erangel')" disabled>Rodada Erangel</button>
+            <button class="button" id="btnMiramar" onclick="showRound('miramar')" disabled>Rodada Miramar</button>
+        </div>
+    </div>
+
+    <script>
+        // Armazena os pontos de todas as rodadas e as equipes
+        let pontosEquipes = {};
+
+        // Função para carregar as tabelas de uma rodada específica
+        function carregarTabela(nomeArquivo, tabelaId, tabelaBodyId, botaoId) {
+            fetch(nomeArquivo)
+                .then(response => response.text())
+                .then(data => {
+                    const linhas = data.split("\n");
+                    const tabelaBody = document.getElementById(tabelaBodyId);
+                    tabelaBody.innerHTML = ''; // Limpa a tabela da rodada
+                    let dadosValido = false;
+
+                    for (let i = 1; i < linhas.length; i++) {
+                        const dados = linhas[i].split(",");
+                        if (dados.length === 4) {
+                            const posicao = dados[0];
+                            const nomeEquipe = dados[1];
+                            const kills = parseInt(dados[2]);
+                            const pontos = parseInt(dados[3]);
+
+                            // Atualiza os pontos da equipe
+                            if (!pontosEquipes[nomeEquipe]) {
+                                pontosEquipes[nomeEquipe] = 0;
+                            }
+                            pontosEquipes[nomeEquipe] += pontos;
+
+                            // Cria uma nova linha na tabela da rodada
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${posicao}</td>
+                                <td>${nomeEquipe}</td>
+                                <td>${kills}</td>
+                                <td>${pontos}</td>
+                            `;
+                            tabelaBody.appendChild(row);
+                            dadosValido = true;
+                        }
+                    }
+
+                    // Se dados válidos foram encontrados, habilita o botão correspondente
+                    if (dadosValido) {
+                        document.getElementById(botaoId).disabled = false;
+                    }
+
+                    // Sempre que uma nova rodada é carregada, atualiza a tabela geral
+                    atualizarTabelaGeral();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar o arquivo CSV:', error);
+                });
+        }
+
+        // Função para atualizar a tabela geral com a soma dos pontos
+        function atualizarTabelaGeral() {
+            const tabelaGeralBody = document.getElementById("tabelaGeralBody");
+            tabelaGeralBody.innerHTML = ''; // Limpa a tabela geral
+
+            let posicao = 1;
+            Object.keys(pontosEquipes).sort((a, b) => pontosEquipes[b] - pontosEquipes[a]).forEach(nomeEquipe => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${posicao++}</td>
+                    <td>${nomeEquipe}</td>
+                    <td>${pontosEquipes[nomeEquipe]}</td>
+                `;
+                tabelaGeralBody.appendChild(row);
+            });
+        }
+
+        // Função para exibir a rodada específica
+        function showRound(round) {
+            // Oculta todas as tabelas de rodadas
+            document.getElementById("tabelaTaego").style.display = 'none';
+            document.getElementById("tabelaErangel").style.display = 'none';
+            document.getElementById("tabelaMiramar").style.display = 'none';
+
+            // Exibe a tabela correspondente
+            if (round === 'taego') {
+                document.getElementById("tabelaTaego").style.display = 'block';
+            } else if (round === 'erangel') {
+                document.getElementById("tabelaErangel").style.display = 'block';
+            } else if (round === 'miramar') {
+                document.getElementById("tabelaMiramar").style.display = 'block';
+            }
+        }
+
+        // Função para carregar dados de CSV
+        function carregarTodosCSV() {
+            carregarTabela('taego.csv', 'tabelaTaego', 'tabelaTaegoBody', 'btnTaego');
+            carregarTabela('erangel.csv', 'tabelaErangel', 'tabelaErangelBody', 'btnErangel');
+            carregarTabela('miramar.csv', 'tabelaMiramar', 'tabelaMiramarBody', 'btnMiramar');
+        }
+
+        // Inicializa a página e carrega os dados
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarTodosCSV(); // Carrega todas as rodadas e a tabela geral
+        });
+    </script>
+</body>
