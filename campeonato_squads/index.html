@@ -283,27 +283,33 @@
 
 </body>
 <script>
-    // Armazena os pontos de todas as rodadas e as equipes
-    let pontosEquipes = {};
+// Armazena os pontos de todas as rodadas e as equipes
+let pontosEquipes = {};
 
-    // Função para carregar as tabelas de uma rodada específica
-    function carregarTabela(nomeArquivo, tabelaId, tabelaBodyId, botaoId) {
-        fetch(nomeArquivo)
-            .then(response => response.text())
-            .then(data => {
-                const linhas = data.split("\n");
-                const tabelaBody = document.getElementById(tabelaBodyId);
-                tabelaBody.innerHTML = ''; // Limpa a tabela da rodada
-                let dadosValido = false;
+// Função para carregar as tabelas de uma rodada específica
+function carregarTabela(nomeArquivo, tabelaBodyId, botaoId) {
+    fetch(nomeArquivo)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro ao carregar o arquivo: ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            const linhas = data.split("\n");
+            const tabelaBody = document.getElementById(tabelaBodyId);
+            tabelaBody.innerHTML = ''; // Limpa a tabela da rodada
+            let dadosValidos = false;
 
-                for (let i = 1; i < linhas.length; i++) {
-                    const dados = linhas[i].split(",");
-                    if (dados.length === 4) {
-                        const posicao = dados[0];
-                        const nomeEquipe = dados[1];
-                        const kills = parseInt(dados[2]);
-                        const pontos = parseInt(dados[3]);
+            for (let i = 1; i < linhas.length; i++) {
+                const dados = linhas[i].split(",");
+                if (dados.length >= 4) { // Certifica que há pelo menos 4 colunas
+                    const posicao = dados[0].trim();
+                    const nomeEquipe = dados[1].trim();
+                    const kills = parseInt(dados[2].trim());
+                    const pontos = parseInt(dados[3].trim());
 
+                    if (!isNaN(kills) && !isNaN(pontos)) {
                         // Atualiza os pontos da equipe
                         if (!pontosEquipes[nomeEquipe]) {
                             pontosEquipes[nomeEquipe] = 0;
@@ -319,30 +325,33 @@
                             <td>${pontos}</td>
                         `;
                         tabelaBody.appendChild(row);
-                        dadosValido = true;
+                        dadosValidos = true;
                     }
                 }
+            }
 
-                // Se dados válidos foram encontrados, habilita o botão correspondente
-                if (dadosValido) {
-                    document.getElementById(botaoId).disabled = false;
-                }
+            // Se dados válidos foram encontrados, habilita o botão correspondente
+            if (dadosValidos) {
+                document.getElementById(botaoId).disabled = false;
+            }
 
-                // Sempre que uma nova rodada é carregada, atualiza a tabela geral
-                atualizarTabelaGeral();
-            })
-            .catch(error => {
-                console.error('Erro ao carregar o arquivo CSV:', error);
-            });
-    }
+            // Atualiza a tabela geral
+            atualizarTabelaGeral();
+        })
+        .catch(error => {
+            console.error('Erro ao carregar o arquivo CSV:', error);
+        });
+}
 
-    // Função para atualizar a tabela geral com a soma dos pontos
-    function atualizarTabelaGeral() {
-        const tabelaGeralBody = document.getElementById("tabelaGeralBody");
-        tabelaGeralBody.innerHTML = ''; // Limpa a tabela geral
+// Função para atualizar a tabela geral com a soma dos pontos
+function atualizarTabelaGeral() {
+    const tabelaGeralBody = document.getElementById("tabelaGeralBody");
+    tabelaGeralBody.innerHTML = ''; // Limpa a tabela geral
 
-        let posicao = 1;
-        Object.keys(pontosEquipes).sort((a, b) => pontosEquipes[b] - pontosEquipes[a]).forEach(nomeEquipe => {
+    let posicao = 1;
+    Object.keys(pontosEquipes)
+        .sort((a, b) => pontosEquipes[b] - pontosEquipes[a]) // Ordena por pontos decrescentes
+        .forEach(nomeEquipe => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${posicao++}</td>
@@ -351,36 +360,32 @@
             `;
             tabelaGeralBody.appendChild(row);
         });
-    }
+}
 
-    // Função para exibir a rodada específica
-    function showRound(round) {
-        // Oculta todas as tabelas de rodadas
-        document.getElementById("tabelaTaego").style.display = 'none';
-        document.getElementById("tabelaErangel").style.display = 'none';
-        document.getElementById("tabelaMiramar").style.display = 'none';
+// Função para exibir a rodada específica
+function showRound(round) {
+    // Oculta todas as tabelas de rodadas
+    document.getElementById("tabelaTaego").style.display = 'none';
+    document.getElementById("tabelaErangel").style.display = 'none';
+    document.getElementById("tabelaMiramar").style.display = 'none';
 
-        // Exibe a tabela correspondente
-        if (round === 'taego') {
-            document.getElementById("tabelaTaego").style.display = 'block';
-        } else if (round === 'erangel') {
-            document.getElementById("tabelaErangel").style.display = 'block';
-        } else if (round === 'miramar') {
-            document.getElementById("tabelaMiramar").style.display = 'block';
-        }
-    }
+    // Exibe a tabela correspondente
+    const tabelaId = `tabela${round.charAt(0).toUpperCase() + round.slice(1)}`;
+    document.getElementById(tabelaId).style.display = 'block';
+}
 
-    // Função para carregar dados de CSV
-    function carregarTodosCSV() {
-        carregarTabela('taego.csv', 'tabelaTaego', 'tabelaTaegoBody', 'btnTaego');
-        carregarTabela('erangel.csv', 'tabelaErangel', 'tabelaErangelBody', 'btnErangel');
-        carregarTabela('miramar.csv', 'tabelaMiramar', 'tabelaMiramarBody', 'btnMiramar');
-    }
+// Função para carregar dados de todos os CSVs
+function carregarTodosCSV() {
+    carregarTabela('taego.csv', 'tabelaTaegoBody', 'btnTaego');
+    carregarTabela('erangel.csv', 'tabelaErangelBody', 'btnErangel');
+    carregarTabela('miramar.csv', 'tabelaMiramarBody', 'btnMiramar');
+}
 
-    // Inicializa a página e carrega os dados
-    document.addEventListener('DOMContentLoaded', function () {
-        carregarTodosCSV();
-    });
+// Inicializa a página e carrega os dados
+document.addEventListener('DOMContentLoaded', function () {
+    carregarTodosCSV();
+});
+
 </script>
 
 </html>
